@@ -15,7 +15,7 @@ class controladorProducto{
   /*==================
   info Producto
   ===================*/
- static public function ctrInfoProveedor($codProducto){
+ static public function ctrInfoProducto($codProducto){
     $respuesta=ModeloProducto::MdlInfoProducto($codProducto);
 
     return $respuesta;
