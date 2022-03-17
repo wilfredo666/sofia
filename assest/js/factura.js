@@ -1,40 +1,64 @@
-function MVerVenta(){
-    $('#modal-lg').modal('show');
-    var obj="";
-    $.ajax(
-        {
-            type:"POST",
-            url:"vista/modulos/VerVenta.php",
-            data:obj,
-            success:function(data){
-                $("#contenido-lg").html(data);
-            }
-        }
-    )
-}
-
-function MEliVenta(){
-    $('#modal-default').modal('show');
-    var obj="";
-    $.ajax(
-        {
-            type:"POST",
-            url:"vista/modulos/FEliFactura.php",
-            data:obj,
-            success:function(data){
-                $("#contenido-default").html(data);
-            }
-        }
-    )
-}
-
-function MEditVenta(){
-   window.location="FormEditFactura";
-}
-
 function MNuevaVenta(){
   window.location="FormFactura";
 }
+
+function MVerVenta(codVenta){
+  $('#modal-lg').modal('show');
+  var obj="";
+  $.ajax(
+    {
+      type:"POST",
+      url:"vista/modulos/VerVenta.php?codVenta="+codVenta,
+      data:obj,
+      success:function(data){
+        $("#contenido-lg").html(data);
+      }
+    }
+  )
+}
+
+function MEditVenta(codVenta){
+  window.location="FormEditFactura?"+codVenta;
+}
+
+function MEliVenta(codVenta){
+  $('#modal-default').modal('show');
+  var obj="";
+  $.ajax(
+    {
+      type:"POST",
+      url:"vista/modulos/FEliFactura.php?codVenta="+codVenta,
+      data:obj,
+      success:function(data){
+        $("#contenido-default").html(data);
+      }
+    }
+  )
+}
+
+function EliVenta(codVenta){
+  var obj="";
+  $.ajax(
+    {
+      type:"POST",
+      url:"vista/modulos/EliVenta.php?codVenta="+codVenta,
+      data:obj,
+      success:function(data){
+
+        setTimeout(function(){
+          $("#modal-default").modal("hide");
+        },1000);
+        setTimeout(function(){
+          location.reload();
+        },1200);
+
+      }
+    }
+  )
+}
+
+
+
 /*==========================
 traduciendo los apartados de DataTable - reporte ventas
 ===========================*/
@@ -104,10 +128,24 @@ const redibujarTabla=()=>{
 }
 
 
+/*  formDetalle.onsubmit=(e)=>{
+    e.preventDefault();
+
+    //creando un objeto
+    const objDetalle={
+      cant: CantProducto.value,
+      descripcion: DescProducto.value,
+      preUnitario: PreUnitario.value,
+      preTotal: PreTotal.value
+    };
+
+    arregloDetalle.push(objDetalle);
+
+    redibujarTabla();
+  }*/
 
 
-formDetalle.onsubmit=(e)=>{
-  e.preventDefault();
+function agregarCarrito(){
 
   //creando un objeto
   const objDetalle={
@@ -120,6 +158,8 @@ formDetalle.onsubmit=(e)=>{
   arregloDetalle.push(objDetalle);
 
   redibujarTabla();
+
+
 }
 
 
