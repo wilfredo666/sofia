@@ -31,7 +31,29 @@
                   </tr>
                 </thead>
                 <tbody>
-               
+                 
+                 <?php 
+                  $clientes=controladorCliente::ctrMostrarClientes();
+                  
+                  foreach($clientes as $key => $value){
+                    
+                  ?>
+                  <tr>
+                    <td><?php echo $value["COD"];?></td>
+                    <td><?php echo $value["NIT"];?></td>
+                    <td><?php echo $value["RAZON"];?></td>
+                    <td><?php echo $value["NOMBRE"]." ".$value["APELLIDO"];?></td>
+                    <td><?php echo $value["DIRECCION"];?></td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-info" onclick="MVerCliente(<?php echo $value["COD"];?>);"><i class="fa fa-eye"></i></button>
+                        <button class="btn btn-warning" onclick="EditCliente(<?php echo $value["COD"];?>);"><i class="fa fa-pencil-alt"></i></button>
+                        <button class="btn btn-danger" onclick="MEliCliente(<?php echo $value["COD"];?>);"><i class="fa fa-times"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  <?php }?>
+
                 </tbody>
               </table>
             </div>

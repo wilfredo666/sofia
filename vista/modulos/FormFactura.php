@@ -33,7 +33,7 @@
           </div>
           <div class="form-group col-md-3">
             <label for="">NIT Cliente</label>
-            <input type="text" class="form-control" placeholder="Ejm: 002">
+            <input type="text" class="form-control" placeholder="Ejm: 1002065859" onkeyup="buscarnit();" id="nitCliente">
           </div>
           <div class="form-group col-md-3">
             <label for="">Nombre o Razón social</label>
