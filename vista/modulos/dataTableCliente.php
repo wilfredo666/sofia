@@ -14,7 +14,7 @@ Mostrar la tabla de clientes
 
     $botones="<div class='btn-group'><button class='btn btn-warning' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto'><i class='fa fa-times'></i></button></div>";
 
-
+json_encode($clientes);
     /*$datosJson= '{
     "data":[';
     foreach($clientes as $key => $value){
@@ -32,7 +32,7 @@ Mostrar la tabla de clientes
     $datosJson.=']
   }';*/
 
-    $datosJson= '{
+   /* $datosJson= '{
 
 "data":[
 
@@ -46,7 +46,7 @@ Mostrar la tabla de clientes
 ]
 
 ]
-  }';
+  }';*/
 
 
     /* $datosJson= '{
@@ -71,7 +71,7 @@ Mostrar la tabla de clientes
     ]
   }';*/
 
-    echo $datosJson;
+    //echo $datosJson;
 
   }
 }

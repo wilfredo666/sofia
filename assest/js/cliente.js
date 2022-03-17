@@ -1,8 +1,9 @@
+console.log("hello");
 /*==============================================
 Traduciendo DataTable clientes y cargando datos
 ===============================================*/
 $(function () {
-  $("#DataTableCliente").DataTable({
+  $("#DataTableClientes").DataTable({
     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
     "paging": true,
     "lengthChange": false,
@@ -11,7 +12,7 @@ $(function () {
     "info": true,
     "autoWidth": false,
     "responsive": true,
-    "ajax": "vista/modulos/dataTableCliente.php",
+    //"ajax": "vista/modulos/dataTableCliente.php",
     language: {
       "decimal": "",
       "emptyTable": "No hay información",
@@ -36,12 +37,12 @@ $(function () {
   }).buttons().container().appendTo('#DataTableClientes_wrapper .col-md-6:eq(0)');
 });
 
-/*$.ajax({
+$.ajax({
   url:"vista/modulos/dataTableCliente.php",
   success:function(data){
     console.log(data);
   }
-})*/
+})
 
 function FNuevoCliente(){
   window.location="FormRegCliente";
