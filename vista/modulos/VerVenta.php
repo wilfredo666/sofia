@@ -1,4 +1,12 @@
-<div class="modal-header">
+<?php
+require_once "../../controlador/ventaControlador.php";
+require_once "../../modelo/ventaModelo.php";
+$codVenta=$_GET["codVenta"];
+
+$cliente=controladorVenta::ctrInfoVenta($codVenta);
+
+?>
+ <div class="modal-header">
   <h4 class="modal-title"><span class="text-primary">Detalle Factura</h4>
     <button type="button" class="close" data-dismiss="modal" arial-label="Close">
       <span aria-hidden="true">&times;</span>

@@ -34,6 +34,22 @@ session_start();
          $_GET["ruta"]=="FormFactura"||
          $_GET["ruta"]=="FormEditFactura"||
          $_GET["ruta"]=="RepVentas"||
+         $_GET["ruta"]=="VCliente"||
+         $_GET["ruta"]=="VProveedor"||
+         $_GET["ruta"]=="VProducto"||
+         $_GET["ruta"]=="FormRegCliente"||
+         $_GET["ruta"]=="FormRegProveedor"||
+         $_GET["ruta"]=="FormRegProducto"||
+         $_GET["ruta"]=="RegCliente"||
+         $_GET["ruta"]=="RegProveedor"||
+         $_GET["ruta"]=="RegProducto"||
+         $_GET["ruta"]=="FormEditCliente"||
+         $_GET["ruta"]=="FormEditProveedor"||
+         $_GET["ruta"]=="FormEditProducto"||
+         $_GET["ruta"]=="EditCliente"||
+         $_GET["ruta"]=="EditProveedor"||
+         $_GET["ruta"]=="EditProveedor"||
+         
          $_GET["ruta"]=="salir"){
         include "modulos/".$_GET["ruta"].".php";
       }

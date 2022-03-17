@@ -68,6 +68,6 @@ seccion de modals
 <script src="assest/dist/js/pages/dashboard3.js"></script>
 
 <script src="assest/js/factura.js"></script>
-<script src="prueba.js"></script>
+<script src="assest/js/cliente.js"></script>
 </body>
 </html>

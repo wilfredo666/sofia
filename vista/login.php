@@ -26,6 +26,22 @@
               </div>
             </div>
           </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Servidor" name="ipServidor">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-server"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Base de datos" name="bdServidor">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-database"></span>
+              </div>
+            </div>
+          </div>
           <div class="row">
 
             <div class="col-12">

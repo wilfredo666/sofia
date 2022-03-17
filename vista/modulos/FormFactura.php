@@ -76,7 +76,7 @@
           </div>
           <div class="form-group col-md-1">
             <label for="">&nbsp;</label>
-            <button class="btn btn-info btn-circle form-control">
+            <button type="button" class="btn btn-info btn-circle form-control" onclick="agregarCarrito()">
               <i class="fas fa-plus"></i>
             </button>
           </div>

@@ -11,6 +11,9 @@ class ControladorUsuario{
 
       if(preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"])){
 
+        $ipServidor=trim($_POST["ipServidor"]);
+        $bdServidor=trim($_POST["bdServidor"]);
+
         $_SESSION["iniciarSesion"]="ok";
 
 
@@ -21,7 +24,7 @@ class ControladorUsuario{
 
       }else{
         echo '
-          <br><div class="alert alert-danger">Error al ingresar vuelve a intentarlo</div>
+          <br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>
           ';
       }
     }

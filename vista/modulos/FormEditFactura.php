@@ -1,3 +1,8 @@
+<?php
+//recuperando codigo venta
+$codVenta=parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+$venta=controladorVenta::ctrInfoVenta($codVenta);
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <section class="content-header">
