@@ -63,11 +63,12 @@ seccion de modals
 <!-- OPTIONAL SCRIPTS -->
 <script src="assest/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="assest/dist/js/demo.js"></script>
+<!--<script src="assest/dist/js/demo.js"></script>-->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="assest/dist/js/pages/dashboard3.js"></script>
+<!--<script src="assest/dist/js/pages/dashboard3.js"></script>-->
 
-<script src="assest/js/factura.js"></script>
 <script src="assest/js/cliente.js"></script>
+<script src="assest/js/factura.js"></script>
+
 </body>
 </html>
