@@ -8,7 +8,7 @@
     <!-- Datos de factura -->
 
     <div class="card">
-      <form action="RegProducto" method="post" onsubmit="return validacionCodProducto($CodProducto)">
+      <form action="RegProducto" method="post" onsubmit="return validacionRegProducto()">
         <div class="card-header">
           <h3 class="card-title">Registrar Producto</h3>
 
@@ -25,7 +25,8 @@
         <div class="card-body row">
           <div class="form-group col-md-3">
             <label for="">Codigo del Producto</label>
-            <input type="text" class="form-control" name="CodProducto" placeholder="Ejm: 91961985">
+            <input type="text" class="form-control" name="CodProducto" placeholder="Ejm: 91961985" id="codProducto">
+            <p class="text-danger" id="errorCodPro"></p>
           </div>
           <div class="form-group col-md-3">
             <label for="">Nombre</label>
