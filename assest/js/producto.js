@@ -106,3 +106,25 @@ function EliProducto(codProducto){
     }
   )
 }
+
+function validacionCodProducto(codProducto) {
+  if (typeof (codProducto) ==='number') {
+    // Si no se cumple la condicion...
+    alert('El valor es correcto');
+      return true;
+  }
+  // Si el script ha llegado a este punto, todas las condiciones
+  // se han cumplido, por lo que se devuelve el valor true
+  
+    alert('[ERROR] El campo codigo debe ser un valor numerico');
+  return false;
+}
+
+function isNumeric(val) {
+    return /^-?\d+$/.test(val);
+}
+
+valor = document.getElementById("codProducto").value;
+if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+  return false;
+}

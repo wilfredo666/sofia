@@ -8,7 +8,7 @@
     <!-- Datos de factura -->
 
     <div class="card">
-      <form action="RegProducto" method="post">
+      <form action="RegProducto" method="post" onsubmit="return validacionCodProducto($CodProducto)">
         <div class="card-header">
           <h3 class="card-title">Registrar Producto</h3>
 
