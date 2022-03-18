@@ -30,19 +30,23 @@
           </div>
           <div class="form-group col-md-3">
             <label for="">Nombre</label>
-            <input type="text" class="form-control" name="nomProducto">
+            <input type="text" class="form-control" name="NomProducto" id="nomProducto">
+              <p class="text-danger" id="errorNomPro"></p>
           </div>
           <div class="form-group col-md-3">
             <label for="">Marca</label>
-            <input type="text" class="form-control" name="marcaProducto">
+            <input type="text" class="form-control" name="MarcaProducto" id="marcaProducto">
+              <p class="text-danger" id="errorMarcPro"></p>
           </div>
           <div class="form-group col-md-3">
             <label for="">Proveedor</label>
-            <input type="text" class="form-control" name="nomProveedorProducto">
+            <input type="text" class="form-control" name="NomProveedorProducto" id="nomProveedorProducto">
+              <p class="text-danger" id="errorProvPro"></p>
           </div>
           <div class="form-group col-md-3">
             <label for="">Unidad</label>
-            <input type="text" class="form-control" name="unidadProducto">
+            <input type="text" class="form-control" name="UnidadProducto" id="unidadProducto">
+              <p class="text-danger" id="errorUnidPro"></p>
           </div>
           <div class="form-group col-md-6">
             <label for="">Imagen</label>

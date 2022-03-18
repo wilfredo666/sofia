@@ -108,11 +108,30 @@ function EliProducto(codProducto){
 }
 
 function validacionRegProducto() {
-  var codProducto=document.getElementById("codProducto").value;
-
-  if( codProducto == null || codProducto.length < 3 ) {
-    document.getElementById("errorCodPro").innerHTML="No debe estar vacio y debe tener mas de 3 caracteres";
+    var codProducto=document.getElementById("codProducto").value;
+    var nomProducto=document.getElementById("nomProducto").value;
+    var marcaProducto=document.getElementById("marcaProducto").value;
+    var nomProveedorProducto=document.getElementById("nomProveedorProducto").value;
+    var unidadProducto=document.getElementById("unidadProducto").value;
+  if( unidadProducto == null || unidadProducto === '' ){
+    document.getElementById("errorUnidPro").innerHTML="Unidad no debe estar vacio";
     return false;
+  }
+  if( nomProveedorProducto == null || nomProveedorProducto === ''){
+    document.getElementById("errorProvPro").innerHTML="Proveedor no debe estar vacio";
+    return false;
+  }
+  if( marcaProducto == null || marcaProducto === ''){
+    document.getElementById("errorMarcPro").innerHTML="Marca no debe estar vacio";
+    return false;
+  }
+  if( nomProducto == null || nomProducto === ''){
+    document.getElementById("errorNomPro").innerHTML="Nombre no debe estar vacio";
+    return false;
+  }
+  if( codProducto == null || codProducto.length < 3 || codProducto === '') {
+    document.getElementById("errorCodPro").innerHTML="No debe estar vacio y debe tener mas de 3 caracteres";
+      return false;     
   }
   
   return true;
