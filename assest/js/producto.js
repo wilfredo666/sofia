@@ -2,7 +2,7 @@
 Traduciendo DataTable productos y cargando datos
 ===============================================*/
 $(function () {
-  $("#DataTableProducto").DataTable({
+  $("#DataTableProductos").DataTable({
     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
     "paging": true,
     "lengthChange": false,

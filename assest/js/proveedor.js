@@ -2,7 +2,7 @@
 Traduciendo DataTable proveedores y cargando datos
 ===============================================*/
 $(function () {
-  $("#DataTableProveedor").DataTable({
+  $("#DataTableProveedores").DataTable({
     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
     "paging": true,
     "lengthChange": false,
@@ -35,6 +35,7 @@ $(function () {
 
   }).buttons().container().appendTo('#DataTableProveedores_wrapper .col-md-6:eq(0)');
 });
+
 
 /*$.ajax({
   url:"vista/modulos/dataTableCliente.php",

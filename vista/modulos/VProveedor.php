@@ -16,7 +16,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="DataTableVentas" class="table table-bordered table-hover">
+              <table id="DataTableProveedores" class="table table-bordered table-hover">
                 <thead>
 
                   <tr>
@@ -26,34 +26,12 @@
                     <th>Nombre(s)</th>
                     <th>Dirección</th>
                     <th>
-                      <button class="btn btn-primary" onclick="">Nuevo Proveedor</button> <!--aun falta reemplazar el on click-->
+                      <button class="btn btn-primary" onclick="FnuevoProveedor">Nuevo Proveedor</button> 
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                 
-                 <?php 
-                  $proveedores=controladorProveedor::ctrMostrarProveedores();
-                  
-                  foreach($proveedores as $key => $value){
                     
-                  ?>
-                  <tr>
-                    <td><?php echo $value["COD"];?></td>
-                    <td><?php echo $value["NIT"];?></td>
-                    <td><?php echo $value["RAZON"];?></td>
-                    <td><?php echo $value["NOMBRE"]." ".$value["APELLIDO"];?></td>
-                    <td><?php echo $value["DIRECCION"];?></td>
-                    <td>
-                      <div class="btn-group">
-                        <button class="btn btn-info" onclick="MVerProveedor(<?php echo $value["COD"];?>);"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" onclick="EditProveedor(<?php echo $value["COD"];?>);"><i class="fa fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger" onclick="MEliProveedor(<?php echo $value["COD"];?>);"><i class="fa fa-times"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php }?>
-
                 </tbody>
               </table>
             </div>

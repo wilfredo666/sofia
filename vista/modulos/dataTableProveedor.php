@@ -10,7 +10,7 @@ require_once "../../modelo/proveedorModelo.php";
 
     $datosJson= '{
     "data":[';
-    foreach($clientes as $key => $value){
+    foreach($proveedores as $key => $value){
       $datosJson.='[
         "'.$value["COD"].'",
         "'.$value["NIT"].'",
