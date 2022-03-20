@@ -9,17 +9,31 @@ class ControladorUsuario{
 
     if(isset($_POST["ingUsuario"])){
 
-      if(preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"]) && preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingPassword"])){
+      if(preg_match('/^[a-zA-Z0-9]+$/',$_POST["ingUsuario"])){
+        
+        //recuperando los datos del formulario login
+        $ipServer=$_POST["ipServidor"];
+        $user=$_POST["ingUsuario"];
+        $pass=$_POST["ingPassword"];
+        $bd=$_POST["bdServidor"];
 
-        $ipServidor=trim($_POST["ipServidor"]);
-        $bdServidor=trim($_POST["bdServidor"]);
+        //verificando la conexion a nivel de base de datos
 
-        $_SESSION["iniciarSesion"]="ok";
-
-
-        echo '<script>
+        $host="firebird:dbname=".$ipServer.":".$bd;
+        if(!($link=new PDO($host, $user, $pass))){
+          exit();
+        }else{
+          $_SESSION["iniciarSesion"]="ok";
+          
+          $_SESSION["ipServer"]=$ipServer;
+          $_SESSION["ingUsuario"]=$user;
+          $_SESSION["ingPassword"]=$pass;
+          $_SESSION["bdServidor"]=$bd;
+          
+          echo '<script>
                     window.location="inicio";
                 </script>';
+        }
 
 
       }else{

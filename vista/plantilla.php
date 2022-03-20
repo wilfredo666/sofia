@@ -1,6 +1,3 @@
-<?php 
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,9 +45,7 @@ session_start();
          $_GET["ruta"]=="FormEditProducto"||
          $_GET["ruta"]=="EditCliente"||
          $_GET["ruta"]=="EditProveedor"||
-         $_GET["ruta"]=="EditProducto"||
-         $_GET["ruta"]=="conexion"||
-         
+         $_GET["ruta"]=="EditProducto"||         
          $_GET["ruta"]=="salir"){
         include "modulos/".$_GET["ruta"].".php";
       }

@@ -11,7 +11,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Ingresar al sistema</p>
 
-        <form action="conexion" method="post" id="formulario">
+        <form action="" method="post" id="formulario">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Usuario" name="ingUsuario" required>
               
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword">
+            <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Servidor" name="ipServidor">
+            <input type="text" class="form-control" placeholder="Servidor" name="ipServidor" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-server"></span>
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Base de datos" name="bdServidor">
+            <input type="text" class="form-control" placeholder="Base de datos" name="bdServidor" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-database"></span>
@@ -53,11 +53,9 @@
           </div>
           <?php 
             
-         /* require_once "modelo/conexion.php";
           $login=new ControladorUsuario();
           $login->ctrIngresoUsuario();
-          
-            */
+  
           ?>
 
         </form>
