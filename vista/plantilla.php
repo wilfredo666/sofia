@@ -25,7 +25,7 @@ session_start();
 
   <?php
 
-  if(isset($_SESSION["iniciarSesion"])&& $_SESSION["iniciarSesion"]=="ok"){
+  if(isset($_SESSION["iniciarSesion"])&& $_SESSION["iniciarSesion"]=="ok"){     
 
     include "asideMenu.php";
 
@@ -49,6 +49,7 @@ session_start();
          $_GET["ruta"]=="EditCliente"||
          $_GET["ruta"]=="EditProveedor"||
          $_GET["ruta"]=="EditProducto"||
+         $_GET["ruta"]=="conexion"||
          
          $_GET["ruta"]=="salir"){
         include "modulos/".$_GET["ruta"].".php";

@@ -1,17 +1,20 @@
+
 <body class="hold-transition login-page">
 
   <div class="login-box">
     <div class="login-logo">
       <img src="assest/img/Logo-Sofia-1.png" style="width:150px;">
     </div>
+
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Ingresar al sistema</p>
 
-        <form action="inicio" method="post" id="formulario">
+        <form action="conexion" method="post" id="formulario">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Usuario" name="ingUsuario" required>
+              
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -48,12 +51,13 @@
               <button type="submit" class="btn btn-primary btn-block">Acceso</button>
             </div>
           </div>
-
           <?php 
-
+            
+         /* require_once "modelo/conexion.php";
           $login=new ControladorUsuario();
           $login->ctrIngresoUsuario();
-
+          
+            */
           ?>
 
         </form>
