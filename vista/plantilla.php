@@ -41,6 +41,7 @@
          $_GET["ruta"]=="RegProveedor"||
          $_GET["ruta"]=="RegProducto"||
          $_GET["ruta"]=="FormEditCliente"||
+         $_GET["ruta"]=="FormRegNuevaFactura"||
          $_GET["ruta"]=="FormEditProveedor"||
          $_GET["ruta"]=="FormEditProducto"||
          $_GET["ruta"]=="EditCliente"||
