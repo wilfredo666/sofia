@@ -1,4 +1,3 @@
-
 <body class="hold-transition sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
@@ -12,20 +11,13 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="https://www.sofiasys.biz/" class="nav-link">Contactanos</a>
         </li>
-        
-      </ul>
+        <!--estado para saber si esta conectado a impuestos-->
+        <li class="nav-item nav-link">
+                   <span class="badge badge-success">Conectado</span>
 
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-         
-         <button type="submit" class="btn btn-block bg-gradient-secondary btn-lg" disabled name="BtnEstlinea" id="BtnEstLinea" align="right">Estado de Linea</button>
-            <!-- btn btn-block bg-gradient-success btn-sm /////para cuando este en linea-->
-            <!-- class="btn btn-block bg-gradient-danger btn-lg" /////para cuando no haya conexion-->
-            <!-- class="btn btn-block bg-gradient-secondary btn-lg" /////Boton sin estado de linea-->
             <script type="text/javascript">
               //document.getElementById("BtnEstLinea")
-              function hasConnection(){
+        /*      function hasConnection(){
               exec("ping -c 1 google.com", $output, $result);
               return ($result===0) ? TRUE : FALSE;
               }  
@@ -41,11 +33,27 @@
                 Document.getElementById("BtnEstLinea").className = "btn btn-block bg-gradient-danger btn-lg";
               }
               //document.getElementById("MyElement").className = "MyClass";
-
+*/
             </script>
         
-         
-         
+        </li>
+        <li class="nav-item nav-link">
+          <b>Base de datos:</b><?php echo $_SESSION["bdServidor"];?>
+        </li>
+        <li class="nav-item nav-link">
+          <b>Servidor:</b><?php echo $_SESSION["ipServer"];?>
+        </li>
+        <li class="nav-item nav-link">
+          <b>Entidad:</b><?php echo "";?>
+        </li>
+        <li class="nav-item nav-link">
+          <b>NIT:</b><?php echo "";?>
+        </li>
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">         
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
@@ -65,24 +73,21 @@
 
       <!-- Sidebar -->
       <div class="sidebar">
+        
+        <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="assest/img/user_default.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Usuario: <?php echo $_SESSION["ingUsuario"];?></a>
+        </div>
+      </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="#" class="nav-link user-panel mt-3 pb-3 mb-3 d-flex">
-               <div class="image">
-                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDqE7wlK37hOSQyAkpTguMB862B57ll0h1E94eijXdd2n6Sao5Hq-71TLspvFso17eSiE&usqp=CAU" class="img-circle elevation-2" alt="user image">
-               </div>
-               <div class="info">
-                   <i class=" "></i>
-                  Usuario
-               </div>
-                
-              </a>
-            </li>
+
              <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-credit-card"></i>

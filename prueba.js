@@ -55,7 +55,7 @@ function prueba(){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:5000/api/Codigos/solicitudcufd?token="+token,
+      url:"https://localhost:5001/api/Codigos/solicitudcufd?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",
