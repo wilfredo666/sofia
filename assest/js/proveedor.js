@@ -115,6 +115,13 @@ function validacionRegProveedor() {
     var apProveedor=document.getElementById("apProveedor").value;
     var dirProveedor=document.getElementById("dirProveedor").value;
     var telProveedor=document.getElementById("telProveedor").value;
+    
+    if (codProveedor.keyCode==50 ||codProveedor.keyCode==147 ||codProveedor.keyCode==148) //esta es la letra ñ
+{
+document.getElementById("errorCodProv").innerHTML="Codigo No puede tener Ñ";
+codProveedor.keyCode = 0; //Cuando le haces esto le impides la escritura del caracter en la caja
+return false
+}
   if( telProveedor == null || telProveedor === '' ){
     document.getElementById("errorTelProv").innerHTML="Telefono no debe estar vacio";
     return false;

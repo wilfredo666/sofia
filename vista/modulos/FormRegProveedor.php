@@ -25,7 +25,7 @@
         <div class="card-body row">
             <div class="form-group col-md-3">
             <label for="">Codigo Proveedor</label>
-            <input type="text" class="form-control" name="CodProveedor" placeholder="Ejm: 9800081023" id="codProveedor">
+            <input type="text" pattern="[A-Za-z0-9_-]{3,15}" title="No se acepta caracteres especiales" class="form-control" name="CodProveedor" placeholder="Ejm: 9800081023" id="codProveedor">
             <p class="text-danger" id="errorCodProv"></p>
           </div>
           <div class="form-group col-md-3">

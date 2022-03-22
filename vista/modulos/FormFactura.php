@@ -23,31 +23,49 @@
       <!--ref.: ffcontrol.pdf-->
       <div class="card-body">
         <form action="" class="row">
-          <div class="form-group col-md-3">
-            <label for=""># de Factura</label>
-            <input type="text" class="form-control">
+         <div class="form-group col-md-7">
+            <label for="">Señor(es)</label>
+            <input type="text" class="form-control col-md-7" placeholder="Nombre del Cliente">
           </div>
-          <div class="form-group col-md-3">
-            <label for="">Autoriazación</label>
-            <input type="text" class="form-control">
+          
+           <div class="form-group col-md-3" align="left">
+           <!--<label for="">NIT:</label>-->
+            <!--<input type="text" class="form-control" disabled placeholder="Ejm: 1002065859">-->
+            <ul><b>NIT: EJEMPLO</b><?php echo "";?></ul>
+            <ul><b>Dir: EJEMPLO</b><?php echo "";?></ul>
+            
           </div>
-          <div class="form-group col-md-3">
-            <label for="">NIT Cliente</label>
-            <input type="text" class="form-control" placeholder="Ejm: 1002065859" onkeyup="buscarnit();" id="nitCliente">
+         
+           <div class="form-group col-md-7">
+            <label for="">Numero de Autorizacion</label> 
+               <select type="text" class="form-control col-md-7">
+                   <option value="autorizacionEjemplo1">Ejemplo1</option>
+                   <option value="autorizacionEjemplo2">Ejemplo2</option>
+               </select>
+            </div>
+          
+           <div class="form-group col-md-3">
+            <!--<label for="">Dir.:</label>-->
+            <ul><b>Razon S.: EJEMPLO</b><?php echo "";?></ul>
+            <ul><b>Telf: EJEMPLO</b><?php echo "";?></ul>
+            <!--<input type="text" class="form-control" placeholder="Ejm: Direccion" onkeyup="buscarnit();" id="nitCliente">-->
           </div>
-          <div class="form-group col-md-3">
-            <label for="">Nombre o Razón social</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="">Fecha</label>
-            <input type="date" class="form-control">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="">Fecha Limite</label>
-            <input type="date" class="form-control">
-          </div>
-
+          <div class="form-group col-md-4">
+            <label for="">NIT/CI</label> 
+               <input type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+            <label for="">Observaciones</label> 
+               <input type="text" class="form-control" placeholder="Dejar vacio en caso de no necesitarlo">
+            </div>
+            <div class="form-group col-md-5">
+            <label for="">Tipo de pago</label> 
+               <select type="text" class="form-control">
+                   <option value="Efectivo">Efectivo</option>
+                   <option value="Credito" selected>Credito</option>
+               </select>
+            </div>
+          
         </form>
       </div>
 
@@ -59,11 +77,11 @@
       <div class="card-body">
         <form action="" class="row" id="formDetalle">
           <div class="form-group col-md-2">
-            <label for="">Cantidad</label>
+            <label for="">Concepto</label>
             <input type="number" class="form-control" id="CantProducto" name="CantProducto">
           </div>
           <div class="form-group col-md-5">
-            <label for="">Decripción</label>
+            <label for="">Cantidad</label>
             <input type="text" class="form-control" id="DesProducto" name="DesProducto" placeholder="Buscar por codigo o descripción">
           </div>
           <div class="form-group col-md-2">
