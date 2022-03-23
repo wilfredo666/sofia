@@ -8,6 +8,7 @@
 
     <!-- Datos de factura -->
     <div class="card">
+
       <div class="card-header">
         <h3 class="card-title">Factura</h3>
 
@@ -20,79 +21,78 @@
           </button>
         </div>
       </div>
+
       <!--ref.: ffcontrol.pdf-->
       <div class="card-body">
         <form action="" class="row">
-         <div class="form-group col-md-3">
-            <label for="">Tipo Documento</label>
-            <select type="text" class="form-control">
-                   <option value="tipDocEjemplo1">Ninguno</option>
-                   <option value="tipDocEjemplo2">1|CI-CEDULA DE IDENTIDAD</option>
-                   <option value="tipDocEjemplo3">2|CEX-CEDULA DE IDENTIDAD EXTRANJERO</option>
-                   <option value="tipDocEjemplo4">3|PAS-PASAPORTE</option>
-                   <option value="tipDocEjemplo5">4|OD-OTRO DOCUMENTO DE IDENTIDAD</option>
-                   <option value="tipDocEjemplo6">5|NIT-NUMERO DE IDENTIFICACION TRIBUTARIA</option>
-               </select>
+          <div class="form-group row col-md-8">
+            <div class="form-group col-md-6">
+              <label for="">Numero de Autorizacion</label> 
+              <select type="text" class="form-control">
+                <option value="">Seleccionar</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Señor(es)</label>
+              <input type="text" class="form-control" placeholder="Codigo o nombre del Cliente" onkeyup="busCliente">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Tipo Documento</label>
+              <select type="text" class="form-control">
+                <option value="tipDocEjemplo1">Ninguno</option>
+                <option value="tipDocEjemplo2">1|CI-CEDULA DE IDENTIDAD</option>
+                <option value="tipDocEjemplo3">2|CEX-CEDULA DE IDENTIDAD EXTRANJERO</option>
+                <option value="tipDocEjemplo4">3|PAS-PASAPORTE</option>
+                <option value="tipDocEjemplo5">4|OD-OTRO DOCUMENTO DE IDENTIDAD</option>
+                <option value="tipDocEjemplo6">5|NIT-NUMERO DE IDENTIFICACION TRIBUTARIA</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">&nbsp;</label> 
+              <input type="text" class="form-control" placeholder="Escribir los datos del documento seleccionado">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Observaciones</label> 
+              <input type="text" class="form-control" placeholder="Observaciones respecto a la emision (opcional)">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Tipo de pago</label> 
+              <select type="text" class="form-control">
+                <option value="">Efectivo</option>
+                <option value="" selected>Credito</option>
+              </select>
+            </div>
           </div>
+
           <div class="form-group col-md-4">
-            <label for="">Señor(es)</label>
-            <input type="text" class="form-control" placeholder="Nombre del Cliente">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <h4>(Razon S. empresa)</h4>
+                </div>
+              </div>
+              <div class="card-body">
+                <p><b>NIT:</b>(nit de la empresa)<?php echo "";?></p>
+                <p><b>Dir:</b>(direccion empresa)<?php echo "";?></p>
+                <p><b>Telf:</b>(telefonos contacto)<?php echo "";?></p>
+              </div>
+            </div>
           </div>
-           <div class="form-group col-md-3" align="left">
-           <!--<label for="">NIT:</label>-->
-            <!--<input type="text" class="form-control" disabled placeholder="Ejm: 1002065859">-->
-            <ul><b>NIT: EJEMPLO</b><?php echo "";?></ul>
-            <ul><b>Dir: EJEMPLO</b><?php echo "";?></ul>
-            
-          </div>
-         
-           <div class="form-group col-md-7">
-            <label for="">Numero de Autorizacion</label> 
-               <select type="text" class="form-control col-md-7">
-                   <option value="autorizacionEjemplo1">Ejemplo1</option>
-                   <option value="autorizacionEjemplo2">Ejemplo2</option>
-               </select>
-            </div>
-          
-           <div class="form-group col-md-3">
-            <!--<label for="">Dir.:</label>-->
-            <ul><b>Razon S.: EJEMPLO</b><?php echo "";?></ul>
-            <ul><b>Telf: EJEMPLO</b><?php echo "";?></ul>
-            <!--<input type="text" class="form-control" placeholder="Ejm: Direccion" onkeyup="buscarnit();" id="nitCliente">-->
-          </div>
-          <div class="form-group col-md-4">
-            <label for="">NIT/CI</label> 
-               <input type="text" class="form-control">
-            </div>
-            <div class="form-group col-md-4">
-            <label for="">Observaciones</label> 
-               <input type="text" class="form-control" placeholder="Dejar vacio en caso de no necesitarlo">
-            </div>
-            <div class="form-group col-md-5">
-            <label for="">Tipo de pago</label> 
-               <select type="text" class="form-control">
-                   <option value="Efectivo">Efectivo</option>
-                   <option value="Credito" selected>Credito</option>
-               </select>
-            </div>
-          
         </form>
       </div>
-
-      <!-- /.card-body -->
     </div>
 
     <!-- Agregar productos -->
     <div class="card">
       <div class="card-body">
         <form action="" class="row" id="formDetalle">
-          <div class="form-group col-md-2">
+         <div class="form-group col-md-5">
             <label for="">Concepto</label>
-            <input type="number" class="form-control" id="CantProducto" name="CantProducto">
-          </div>
-          <div class="form-group col-md-5">
-            <label for="">Cantidad</label>
             <input type="text" class="form-control" id="DesProducto" name="DesProducto" placeholder="Buscar por codigo o descripción">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="">Cantidad</label>
+            <input type="number" class="form-control" id="CantProducto" name="CantProducto">
           </div>
           <div class="form-group col-md-2">
             <label for="">P. Unitario</label>
@@ -100,7 +100,7 @@
           </div>
           <div class="form-group col-md-2">
             <label for="">P. Total</label>
-            <input type="text" class="form-control" id="PreTotal" name="PreTotal">     
+            <input type="text" class="form-control" id="PreTotal" name="PreTotal" readonly>     
           </div>
           <div class="form-group col-md-1">
             <label for="">&nbsp;</label>
@@ -108,12 +108,13 @@
               <i class="fas fa-plus"></i>
             </button>
           </div>
-          </div>
-        <div class="card-footer">
-          <button class="btn btn-success">Guardar</button>
-        </div>
+        </form>
       </div>
-      </form>
+      <div class="card-footer">
+        <button class="btn btn-success">Guardar</button>
+      </div>
+    </div>
+
     <!-- Lista de productos -->
     <div class="card">
       <div class="card-body">
@@ -135,6 +136,7 @@
 
       <!-- /.card-body -->
     </div>
+
   </section>
   <!-- /.content -->
 </div>

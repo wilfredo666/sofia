@@ -21,7 +21,9 @@ class ControladorUsuario{
 
         $host="firebird:dbname=".$ipServer.":".$bd;
         if(!($link=new PDO($host, $user, $pass))){
-          exit();
+          '<script>
+                    window.location="salir";
+                </script>';
         }else{
           $_SESSION["iniciarSesion"]="ok";
           
