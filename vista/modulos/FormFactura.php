@@ -23,11 +23,21 @@
       <!--ref.: ffcontrol.pdf-->
       <div class="card-body">
         <form action="" class="row">
-         <div class="form-group col-md-7">
-            <label for="">Señor(es)</label>
-            <input type="text" class="form-control col-md-7" placeholder="Nombre del Cliente">
+         <div class="form-group col-md-3">
+            <label for="">Tipo Documento</label>
+            <select type="text" class="form-control">
+                   <option value="tipDocEjemplo1">Ninguno</option>
+                   <option value="tipDocEjemplo2">1|CI-CEDULA DE IDENTIDAD</option>
+                   <option value="tipDocEjemplo3">2|CEX-CEDULA DE IDENTIDAD EXTRANJERO</option>
+                   <option value="tipDocEjemplo4">3|PAS-PASAPORTE</option>
+                   <option value="tipDocEjemplo5">4|OD-OTRO DOCUMENTO DE IDENTIDAD</option>
+                   <option value="tipDocEjemplo6">5|NIT-NUMERO DE IDENTIFICACION TRIBUTARIA</option>
+               </select>
           </div>
-          
+          <div class="form-group col-md-4">
+            <label for="">Señor(es)</label>
+            <input type="text" class="form-control" placeholder="Nombre del Cliente">
+          </div>
            <div class="form-group col-md-3" align="left">
            <!--<label for="">NIT:</label>-->
             <!--<input type="text" class="form-control" disabled placeholder="Ejm: 1002065859">-->
