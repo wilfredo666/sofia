@@ -8,7 +8,7 @@ class ModeloVenta{
   ==============================*/
 
   static public function MdlMostrarVentas(){
-    $stmt=Conexion::conectar()->prepare("select * from ");
+    $stmt=Conexion::conectar()->prepare("select NFAC, NOMFACT, USUARIO, FECHA, MONTO from FCTROLF");
     $stmt->execute();
     return $stmt->fetchAll();
 

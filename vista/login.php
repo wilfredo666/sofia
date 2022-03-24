@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Servidor" name="ipServidor" required>
+            <input type="text" class="form-control" placeholder="Dominio o IP de Servidor" name="ipServidor" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-server"></span>

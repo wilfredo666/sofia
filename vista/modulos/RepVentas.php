@@ -24,7 +24,6 @@
                     <th>Cliente</th>
                     <th>Usuario</th>
                     <th>F. Emision</th>
-                    <th>Estado</th>
                     <th>Total</th>
                     <th>
                       <button class="btn btn-primary" onclick="MNuevaVenta();">Nueva Venta</button>
@@ -32,29 +31,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php 
-                  $clientes=controladorVenta::ctrMostrarVentas();
-
-                  foreach($ventas as $key => $value){
-
-                  ?>
-                  <tr>
-                    <td><?php echo $value["COD"];?></td>
-                    <td><?php echo $value[""];?></td>
-                    <td><?php echo $value[""];?></td>
-                    <td><?php echo $value[""];?></td>
-                    <td><?php echo $value[""];?></td>
-                    <td>
-                      <div class="btn-group">
-                        <button class="btn btn-info" onclick="MVerVenta(<?php echo $value["COD"];?>);"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-secondary" onclick="MImpVenta(<?php echo $value["COD"];?>);"><i class="fa fa-print"></i></button>
-                        <button class="btn btn-warning" onclick="MEditVenta(<?php echo $value["COD"];?>);"><i class="fa fa-pencil-alt"></i></button>
-                        <button class="btn btn-danger" onclick="MEliVenta(<?php echo $value["COD"];?>);"><i class="fa fa-times"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php }?>
-
+                
                 </tbody>
               </table>
             </div>

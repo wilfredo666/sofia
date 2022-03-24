@@ -63,18 +63,18 @@
               </select>
             </div>
           </div>
-
+          <!--datos de la empresa emisora-->
           <div class="form-group col-md-4">
             <div class="card">
               <div class="card-header">
                 <div class="card-title">
-                  <h4>(Razon S. empresa)</h4>
+                  <h4><?php echo $_SESSION["nombreEmpresa"];?></h4>
                 </div>
               </div>
               <div class="card-body">
-                <p><b>NIT:</b>(nit de la empresa)<?php echo "";?></p>
-                <p><b>Dir:</b>(direccion empresa)<?php echo "";?></p>
-                <p><b>Telf:</b>(telefonos contacto)<?php echo "";?></p>
+                <p><b>NIT: </b><?php echo $_SESSION["nitRucEmpresa"];?></p>
+                <p><b>Dir: </b><?php echo $_SESSION["direccionEmpresa"];?></p>
+                <p><b>Telf: </b><?php echo $_SESSION["telefonoEmpresa"];?></p>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@
     <div class="card">
       <div class="card-body">
         <form action="" class="row" id="formDetalle">
-         <div class="form-group col-md-5">
+          <div class="form-group col-md-5">
             <label for="">Concepto</label>
             <input type="text" class="form-control" id="DesProducto" name="DesProducto" placeholder="Buscar por codigo o descripción">
           </div>

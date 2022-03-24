@@ -44,10 +44,10 @@
           <b>Servidor:</b><?php echo $_SESSION["ipServer"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>Entidad:</b><?php echo "";?>
+          <b>Entidad:</b><?php echo $_SESSION["nombreEmpresa"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>NIT:</b><?php echo "";?>
+          <b>NIT:</b><?php echo $_SESSION["nitRucEmpresa"];?>
         </li>
       </ul>
 
@@ -81,6 +81,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">Usuario: <?php echo $_SESSION["ingUsuario"];?></a>
+          <span class="text-primary"><?php echo $_SESSION["nombreUsuario"]." ".$_SESSION["apellidoUsuario"];?></span>
         </div>
       </div>
 

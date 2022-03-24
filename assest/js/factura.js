@@ -72,6 +72,7 @@ $(function () {
     "info": true,
     "autoWidth": false,
     "responsive": true,
+    "ajax": "vista/modulos/dataTableVenta.php",
     language: {
       "decimal": "",
       "emptyTable": "No hay información",
@@ -163,11 +164,11 @@ function agregarCarrito(){
 }
 
 function buscarnit(){
-    
-    var nit=document.getElementById("nitCliente").value;
-    var obj="";
-    
-    $.ajax(
+
+  var nit=document.getElementById("nitCliente").value;
+  var obj="";
+
+  $.ajax(
     {
       type:"POST",
       url:"vista/modulos/resBusCliente.php?nit="+nit,
