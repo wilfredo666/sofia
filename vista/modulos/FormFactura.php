@@ -106,7 +106,7 @@
 
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-4">
-            <div class="card" style="background-color: #c4c4c4;">
+            <div class="card" style="background-color: #ede4e4;">
               <div class="card-header">
                 <div class="card-title">
                   <h5><?php echo $_SESSION["nombreEmpresa"];?></h5>
@@ -125,8 +125,34 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
                  </div>
-                  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                  <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Subtotal Bs.">
                 </div>
+                <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text">Descuento</span>
+                 </div>
+                  <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Descuento Bs.">
+                </div>
+                <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text">Total</span>
+                 </div>
+                  <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Total">
+                </div>
+                <button type="button" class="btn btn-primary btn-block">
+                    <i class="fas fa-plus"></i>
+                    Boton descuento
+                </button>
+                <div class="form-group">
+              <label for="">Metodo de pago</label> 
+              <select type="text" class="form-control">
+                <option value="tipDocEjemplo1">1|Efectivo</option>
+                <option value="tipDocEjemplo2">2|Cheque</option>
+                <option value="tipDocEjemplo3">3|Paypal</option>
+                <option value="tipDocEjemplo4">4|Tarjeta</option>
+                <option value="tipDocEjemplo5">5|Gift Card</option>
+                </select>
+            </div>
               </div>
             </div>
           </div>
