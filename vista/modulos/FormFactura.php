@@ -105,16 +105,27 @@
           </div>
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-4">
-            <div class="card">
+            <div class="card bg-secondary border-primary">
               <div class="card-header">
                 <div class="card-title">
-                  <h4><?php echo $_SESSION["nombreEmpresa"];?></h4>
+                  <h5><?php echo $_SESSION["nombreEmpresa"];?></h5>
                 </div>
               </div>
               <div class="card-body">
-                <p><b>NIT: </b><?php echo $_SESSION["nitRucEmpresa"];?></p>
-                <p><b>Dir: </b><?php echo $_SESSION["direccionEmpresa"];?></p>
-                <p><b>Telf: </b><?php echo $_SESSION["telefonoEmpresa"];?></p>
+                <!--<p><b>NIT: </b><?php// echo $_SESSION["nitRucEmpresa"];?></p>
+                <p><b>Dir: </b><?php// echo $_SESSION["direccionEmpresa"];?></p>
+                <p><b>Telf: </b><?php// echo $_SESSION["telefonoEmpresa"];?></p>-->
+                
+                  <div class="form-group col-md-12" >
+              <label for="">Email Cliente</label> 
+              <input type="text" class="form-control" placeholder="Sale de la API">
+            </div>
+             <div class="form-group col-md-12">
+    <label for="inputPassword" class="col-md-6 col-form-label">Password</label>
+    <div class="col-md-6">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+  </div>
               </div>
             </div>
           </div>
