@@ -2,7 +2,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand border-primary" style="background-color: #f2f2f2;">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -38,7 +38,7 @@
         
         </li>
         <li class="nav-item nav-link">
-          <b>Base de datos:</b><?php echo $_SESSION["bdServidor"];?>
+          <b>BD:</b> <?php echo $_SESSION["bdServidor"];?>
         </li>
         <li class="nav-item nav-link">
           <b>Servidor:</b><?php echo $_SESSION["ipServer"];?>

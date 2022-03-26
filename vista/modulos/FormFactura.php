@@ -106,7 +106,7 @@
 
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-4">
-            <div class="card" style="background-color: #ede4e4;">
+            <div class="card" style="background-color: #f2f2f2;"><!--#ede4e4-->
               <!--<div class="card-header">
                 <div class="card-title">
                   <h5><?php //echo $_SESSION["nombreEmpresa"];?></h5>
@@ -144,7 +144,10 @@
                     Boton descuento
                 </button>
                 <div class="form-group sm-3">
-              <label for="" class="mt-0">Metodo de pago</label> 
+              <!--<label for="" class="mt-0">Metodo de pago</label>--> 
+              <div class="select-group-prepend">
+                   <span class="select-group-text"><b>Metodo de pago</b></span>
+                 </div>
               <select type="text" class="form-control" >
                 <option value="tipDocEjemplo1">1|Efectivo</option>
                 <option value="tipDocEjemplo2">2|Cheque</option>
