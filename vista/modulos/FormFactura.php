@@ -107,11 +107,11 @@
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-4">
             <div class="card" style="background-color: #ede4e4;">
-              <div class="card-header">
+              <!--<div class="card-header">
                 <div class="card-title">
-                  <h5><?php echo $_SESSION["nombreEmpresa"];?></h5>
+                  <h5><?php //echo $_SESSION["nombreEmpresa"];?></h5>
                 </div>
-              </div>
+              </div>-->
               <div class="card-body">
                 <!--<p><b>NIT: </b><?php// echo $_SESSION["nitRucEmpresa"];?></p>
 <p><b>Dir: </b><?php// echo $_SESSION["direccionEmpresa"];?></p>
@@ -121,19 +121,19 @@
                   <label for="">Email Cliente</label> 
                   <input type="text" class="form-control" placeholder="Sale de la API">
                 </div>-->
-                <div class="input-group mb-3">
+                <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
                  </div>
                   <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Subtotal Bs.">
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Descuento</span>
                  </div>
                   <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Descuento Bs.">
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Total</span>
                  </div>
@@ -143,9 +143,9 @@
                     <i class="fas fa-plus"></i>
                     Boton descuento
                 </button>
-                <div class="form-group">
-              <label for="">Metodo de pago</label> 
-              <select type="text" class="form-control">
+                <div class="form-group sm-3">
+              <label for="" class="mt-0">Metodo de pago</label> 
+              <select type="text" class="form-control" >
                 <option value="tipDocEjemplo1">1|Efectivo</option>
                 <option value="tipDocEjemplo2">2|Cheque</option>
                 <option value="tipDocEjemplo3">3|Paypal</option>
