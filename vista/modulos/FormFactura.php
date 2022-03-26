@@ -117,10 +117,10 @@
 <p><b>Dir: </b><?php// echo $_SESSION["direccionEmpresa"];?></p>
 <p><b>Telf: </b><?php// echo $_SESSION["telefonoEmpresa"];?></p>-->
 
-                <div class="form-group">
+                <!--<div class="form-group">
                   <label for="">Email Cliente</label> 
                   <input type="text" class="form-control" placeholder="Sale de la API">
-                </div>
+                </div>-->
                 <div class="input-group mb-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
@@ -151,6 +151,8 @@
                 <option value="tipDocEjemplo3">3|Paypal</option>
                 <option value="tipDocEjemplo4">4|Tarjeta</option>
                 <option value="tipDocEjemplo5">5|Gift Card</option>
+                <option value="tipDocEjemplo5">6|Linkser</option>
+                <option value="tipDocEjemplo5">7|Tigo Money</option>
                 </select>
             </div>
               </div>
