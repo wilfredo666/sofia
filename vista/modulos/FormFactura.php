@@ -146,10 +146,10 @@
             </div>
             <div class="form-group col-md-4">
               <label for="">NIT</label> 
-              <div class="input-group" >
-                <input type="text" class="form-control" placeholder="LCLI.NIT">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="LCLI.NIT" id="nitCliente">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button">
+                  <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
                     <i class="fas fa-search">  
                     </i>
                   </button>
@@ -161,7 +161,7 @@
             <div class="form-group col-md-6">
               <label for="">Nombre o Razon social</label> 
               <div class="input-group" >
-                <input type="text" class="form-control" placeholder="LCLI.razon'validar con API' devuelve por API">
+                <input type="text" class="form-control" id="RSCliente" placeholder="LCLI.razon'validar con API' devuelve por API">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button">
                     <i class="fas fa-search">  

@@ -1,8 +1,9 @@
 <?php
 require_once "../../controlador/clienteControlador.php";
 require_once "../../modelo/clienteModelo.php";
-$nit=$_GET["nit"];
+$txtBus=$_GET["txtBus"];
 
-$cliente=controladorCliente::ctrInfoCliente($codCliente);
+$cliente=controladorCliente::ctrInfoCliente($txtBus);
 
+echo json_encode($cliente);
 ?>

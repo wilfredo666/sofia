@@ -20,8 +20,8 @@ class ModeloCliente{
   /*==============================
     Información de cliente
   ==============================*/
-  static public function MdlInfoCliente($codCliente){
-    $stmt=Conexion::conectar()->prepare("select * from LCLI where COD='$codCliente'");
+  static public function MdlInfoCliente($txtBus){
+    $stmt=Conexion::conectar()->prepare("select * from LCLI where NIT='$txtBus' OR COD='$txtBus'");
     $stmt->execute();
     return $stmt->fetch();
 

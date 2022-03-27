@@ -15,8 +15,8 @@ class controladorCliente{
   /*==================
   info cliente
   ===================*/
- static public function ctrInfoCliente($codCliente){
-    $respuesta=ModeloCliente::MdlInfoCliente($codCliente);
+ static public function ctrInfoCliente($txtBus){
+    $respuesta=ModeloCliente::MdlInfoCliente($txtBus);
 
     return $respuesta;
 
@@ -25,8 +25,4 @@ class controladorCliente{
 
 }
 
-/*if(isset($_GET["codCliente"])){
-  $infoCliente=new controladorCliente();
-  $infoCliente->ctrInfoCliente($_GET["codCliente"]);
-}*/
 ?>

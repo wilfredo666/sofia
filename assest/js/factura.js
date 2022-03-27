@@ -163,29 +163,25 @@ function agregarCarrito(){
 
 }
 
-function buscarnit(){
 
-  var nit=document.getElementById("nitCliente").value;
+/*================
+busqueda de cliente
+==================*/
+function busCliente(){
+  var nit=document.getElementById("nitCliente").value
+
   var obj="";
-
   $.ajax(
     {
       type:"POST",
-      url:"vista/modulos/resBusCliente.php?nit="+nit,
+      url:"vista/modulos/resBusCliente.php?txtBus="+nit,
       data:obj,
+      dataType:"json",
       success:function(data){
 
-        setTimeout(function(){
-          $("#modal-default").modal("hide");
-        },1000);
-        setTimeout(function(){
-          location.reload();
-        },1200);
-
+        document.getElementById("RSCliente").value=data["RAZON"];
       }
     }
   )
 }
-
-
 
