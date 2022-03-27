@@ -13,29 +13,8 @@
         </li>
         <!--estado para saber si esta conectado a impuestos-->
         <li class="nav-item nav-link">
-                   <span class="badge badge-success">Conectado</span>
+          <span class="badge badge-success">Conectado</span>
 
-            <script type="text/javascript">
-              //document.getElementById("BtnEstLinea")
-        /*      function hasConnection(){
-              exec("ping -c 1 google.com", $output, $result);
-              return ($result===0) ? TRUE : FALSE;
-              }  
-              a=1;
-              b=2;  
-              if(a<b)
-              {
-                 alert("valor 1");
-                 Document.getElementById("BtnEstLinea").className = "btn btn-block bg-gradient-success btn-sm";
-                // element.classList.replace('old', 'new');
-              } else{
-                alert("valor 2");
-                Document.getElementById("BtnEstLinea").className = "btn btn-block bg-gradient-danger btn-lg";
-              }
-              //document.getElementById("MyElement").className = "MyClass";
-*/
-            </script>
-        
         </li>
         <li class="nav-item nav-link">
           <b>BD:</b> <?php echo $_SESSION["bdServidor"];?>
@@ -73,23 +52,23 @@
 
       <!-- Sidebar -->
       <div class="sidebar">
-        
+
         <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="assest/img/user_default.png" class="img-circle elevation-2" alt="User Image">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="assest/img/user_default.png" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">Usuario: <?php echo $_SESSION["ingUsuario"];?></a>
+            <span class="text-primary"><?php echo $_SESSION["nombreUsuario"]." ".$_SESSION["apellidoUsuario"];?></span>
+          </div>
         </div>
-        <div class="info">
-          <a href="#" class="d-block">Usuario: <?php echo $_SESSION["ingUsuario"];?></a>
-          <span class="text-primary"><?php echo $_SESSION["nombreUsuario"]." ".$_SESSION["apellidoUsuario"];?></span>
-        </div>
-      </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-             <li class="nav-item">
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-credit-card"></i>
                 <p>
@@ -136,7 +115,7 @@
                 </li>
               </ul>
             </li>
-              <li class="nav-item">     
+            <li class="nav-item">     
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fal fa-people-carry"></i>
                 <p>
@@ -159,7 +138,7 @@
                 </li>
               </ul>
             </li>
-              <li class="nav-item">       
+            <li class="nav-item">       
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fal fa-boxes"></i>
                 <p>

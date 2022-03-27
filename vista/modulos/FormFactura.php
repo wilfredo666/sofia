@@ -29,31 +29,33 @@
             <div class="form-group col-md-2">
               <label for="">Fecha</label> 
               <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled>
-
             </div>
+            
+            <?php 
+            $sucursal=controladorVenta::crtInfoSucursal();
+            ?>
             <div class="form-group col-md-3">
-              <label for="">Sucursal</label> 
-              <input type="text" class="form-control" placeholder="Emp_Suc.num" onkeyup="busCliente">
+              <label for="">Sucursal</label>
+              <select name="" id="" class="form-control">
+                <option value="null">Seleccionar</option>
+                <?php 
+                foreach($sucursal as $value){
+                  ?>
+                  <option value="<?php echo $value["NUM"];?>"><?php echo $value["NUM"]."|".$value["NOMBRE"];?></option>
+                  <?php
+                }
+                ?>
+              </select> 
             </div>
             <div class="form-group col-md-3">
               <label for="">Punto de Venta</label>
-              <input type="text" class="form-control" onkeyup="busCliente" placeholder="Esta en Pendiente">
+              <input type="text" class="form-control" placeholder="Esta en Pendiente">
             </div>
             <div class="form-group col-md-3">
               <label for="">Tipo de Factura</label>
               <input type="text" class="form-control" placeholder="Sale de la API" onkeyup="busCliente">
             </div>
-            <!--<div class="form-group col-md-2">
-<label for="">Tipo Documento</label>
-<select type="text" class="form-control">
-<option value="tipDocEjemplo1">Ninguno</option>
-<option value="tipDocEjemplo2">1|CI-CEDULA DE IDENTIDAD</option>
-<option value="tipDocEjemplo3">2|CEX-CEDULA DE IDENTIDAD EXTRANJERO</option>
-<option value="tipDocEjemplo4">3|PAS-PASAPORTE</option>
-<option value="tipDocEjemplo5">4|OD-OTRO DOCUMENTO DE IDENTIDAD</option>
-<option value="tipDocEjemplo6">5|NIT-NUMERO DE IDENTIFICACION TRIBUTARIA</option>
-</select>
-</div>-->
+
             <div class="form-group col-md-7">
               <label for="">Actividad</label> 
               <input type="text" class="form-control" placeholder="Sale de la API">
@@ -72,10 +74,7 @@
                     </i>
                   </button>
                 </div>
-                <!-- <button type="button" class="btn btn-outline-primary btn-block"> 
-<i class="fas fa-search">  
-</i>
-</button>-->
+
               </div>
             </div>
 
@@ -91,36 +90,12 @@
                 </div>
               </div>
             </div>
-            <!--<div class="form-group col-md-6">
-<label for="">Observaciones</label> 
-<input type="text" class="form-control" placeholder="Observaciones respecto a la emision (opcional)">
-</div>-->
-            <!--<div class="form-group col-md-6">
-<label for="">Tipo de pago</label> 
-<select type="text" class="form-control">
-<option value="">Efectivo</option>
-<option value="" selected>Credito</option>
-</select>
-</div>-->
+
           </div>
 
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-4">
-            <div class="card" style="background-color: #f2f2f2;"><!--#ede4e4-->
-              <!--<div class="card-header">
-                <div class="card-title">
-                  <h5><?php //echo $_SESSION["nombreEmpresa"];?></h5>
-                </div>
-              </div>-->
-              <div class="card-body">
-                <!--<p><b>NIT: </b><?php// echo $_SESSION["nitRucEmpresa"];?></p>
-<p><b>Dir: </b><?php// echo $_SESSION["direccionEmpresa"];?></p>
-<p><b>Telf: </b><?php// echo $_SESSION["telefonoEmpresa"];?></p>-->
-
-                <!--<div class="form-group">
-                  <label for="">Email Cliente</label> 
-                  <input type="text" class="form-control" placeholder="Sale de la API">
-                </div>-->
+            <div class="card" style="background-color: #f2f2f2;">
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
@@ -160,7 +135,7 @@
             </div>
               </div>
             </div>
-          </div>
+          
         </form>
       </div>
     </div>

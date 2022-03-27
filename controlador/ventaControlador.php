@@ -13,16 +13,20 @@ class controladorVenta{
   }
 
   /*==================
-  info venta
+  info  venta
   ===================*/
- static public function ctrInfoVenta($codVenta){
+  static public function ctrInfoVenta($codVenta){
     $respuesta=ModeloVenta::MdlInfoVenta($codVenta);
 
     return $respuesta;
 
   }
 
+  static public function crtInfoSucursal(){
+    $respuesta=ModeloVenta::MdlInfoSucursal();
 
+    return $respuesta;
+  }
 }
 
 ?>

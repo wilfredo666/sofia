@@ -29,4 +29,16 @@ class ModeloVenta{
     $stmt=null;
 
   }
+  
+  /*==============================
+    Información de sucursales
+  ==============================*/
+  static public function MdlInfoSucursal(){
+    $stmt=Conexion::conectar()->prepare("select * from EMP_SUC");
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+    $stmt->close();
+    $stmt=null;
+  }
 }

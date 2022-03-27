@@ -27,6 +27,11 @@
     include "asideMenu.php";
 
     if(isset($_GET["ruta"])){
+      echo '
+      <script>
+      console.log("'.$_GET["ruta"].'");
+      </script>
+      ';
       if($_GET["ruta"]=="inicio" ||
          $_GET["ruta"]=="FormFactura"||
          $_GET["ruta"]=="FormEditFactura"||
