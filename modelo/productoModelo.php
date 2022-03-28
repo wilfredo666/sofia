@@ -21,8 +21,8 @@ class ModeloProducto{
   /*==============================
     Información de producto
   ==============================*/
-  static public function MdlInfoProducto($codProducto){
-    $stmt=Conexion::conectar()->prepare("select * from IPRODUCTO where COD='$codProducto'");
+  static public function MdlInfoProducto($txtBus){
+    $stmt=Conexion::conectar()->prepare("select * from IPRODUCTO where COD='$txtBus'");
     $stmt->execute();
     return $stmt->fetch();
 

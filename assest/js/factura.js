@@ -178,10 +178,41 @@ function busCliente(){
       data:obj,
       dataType:"json",
       success:function(data){
-
+            
         document.getElementById("RSCliente").value=data["RAZON"];
+          document.getElementById("RSClienteEmail").value=data["EMAIL"];
       }
     }
   )
 }
 
+function busCod(){
+  var cod=document.getElementById("codigoProducto").value
+
+  var obj="";
+  $.ajax(
+    {
+      type:"POST",
+      url:"vista/modulos/resBusProducto.php?txtBus="+cod,
+      data:obj,
+      dataType:"json",
+      success:function(data){
+          console.log(data["NOMBRE"]);  
+        document.getElementById("ConcProducto").value=data["NOMBRE"];
+        document.getElementById("UniMedProducto").value=data["UNIDAD"];
+        document.getElementById("LoteProd").value=data["LOTE"];
+      }
+    }
+  )
+}
+
+/* Sacar precio total "cantidad X precio unitario". */
+function calculate() {
+var myBox1 = document.getElementById('CantProducto').value; 
+var myBox2 = document.getElementById('PreUnitario').value;
+var result = document.getElementById('PreTotal'); 
+var myResult = myBox1 * myBox2;
+result.value = myResult;
+
+
+}

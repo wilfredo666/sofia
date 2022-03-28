@@ -142,7 +142,7 @@
             </div>
             <div class="form-group col-md-4">
               <label for="">Email</label> 
-              <input type="text" class="form-control" placeholder="LCLI.email">
+              <input type="text" class="form-control" placeholder="LCLI.email" id="RSClienteEmail">
             </div>
             <div class="form-group col-md-4">
               <label for="">NIT</label> 
@@ -160,7 +160,7 @@
 
             <div class="form-group col-md-6">
               <label for="">Nombre o Razon social</label> 
-              <div class="input-group" >
+              <div class="input-group">
                 <input type="text" class="form-control" id="RSCliente" placeholder="LCLI.razon'validar con API' devuelve por API">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button">
@@ -220,10 +220,10 @@
         <form action="" class="row" id="formDetalle">
           <div class="form-group col-md-2">
             <label for="">Codigo</label>
-            <div class="input-group" >
-              <input type="text" class="form-control" placeholder="IPROD.COD">
+            <div class="input-group form-group" >
+              <input type="text" class="form-control" placeholder="IPRODUCTO.COD" id="codigoProducto">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">
+                <button class="btn btn-outline-secondary" type="button" onclick="busCod()">
                   <i class="fas fa-search">  
                   </i>
                 </button>
@@ -232,11 +232,11 @@
           </div>
           <div class="form-group col-md-2">
             <label for="">Concepto</label>
-            <input type="number" class="form-control" id="ConcProducto" name="ConcProducto" placeholder="IPROD.Nombre">
+            <input type="text" class="form-control" id="ConcProducto" placeholder="IPROD.Nombre">
           </div>
           <div class="form-group col-md-1">
             <label for="">Cantidad</label>
-            <input type="number" class="form-control" id="CantProducto" name="CantProducto" placeholder="Entra a FFACTURA.Cantidad">
+            <input type="number" class="form-control" id="CantProducto" name="CantProducto" placeholder="Entra a FFACTURA.Cantidad" oninput="calculate()">
           </div>
           <div class="form-group col-md-2">
             <label for="">Unidad de Medida</label>
@@ -244,7 +244,7 @@
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Unit</label>
-            <input type="text" class="form-control" id="PreUnitario" name="PreUnitario" placeholder="Entra a FFACTURA.Precio">
+            <input type="text" class="form-control" id="PreUnitario" name="PreUnitario" placeholder="Entra a FFACTURA.Precio" oninput="calculate()">
           </div>
           <div class="form-group col-md-1">
             <label for="">Descuento</label>
