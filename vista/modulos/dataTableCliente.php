@@ -6,12 +6,11 @@ require_once "../../modelo/clienteModelo.php";
 
     $clientes=controladorCliente::ctrMostrarClientes();
 
-    $botones="<div class='btn-group'><button class='btn btn-warning' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto'><i class='fa fa-times'></i></button></div>";
-
 
     $datosJson= '{
     "data":[';
     foreach($clientes as $key => $value){
+      $botones="<div class='btn-group'><button class='btn btn-info' onclick='MVerCliente(".$value['COD'].")'><i class='fas fa-eye'></i></button><button class='btn btn-secondary' onclick='MEditCliente(".$value['COD'].")'><i class='fa fa-edit'></i></button><button class='btn btn-danger' onclick='MEliCliente(".$value['COD'].")'><i class='fa fa-trash'></i></button></div>";
       $datosJson.='[
         "'.$value["COD"].'",
         "'.$value["NIT"].'",

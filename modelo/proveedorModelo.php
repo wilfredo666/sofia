@@ -9,7 +9,7 @@ class ModeloProveedor{
   ==============================*/
 
   static public function MdlMostrarProveedores(){
-    $stmt=Conexion::conectar()->prepare("select * from PPROV");
+    $stmt=Conexion::conectar()->prepare("select first 483 * from PPROV");
     $stmt->execute();
     return $stmt->fetchAll();
 

@@ -4,31 +4,14 @@ require_once "../../modelo/ventaModelo.php";
 
 
 
-    $ventas=controladorVenta::ctrMostrarVentas();
-
-    $botones="<div class='btn-group'><button class='btn btn-info btn-circle' onclick=''><i class='fa fa-eye'></i></button><button class='btn btn-warning btn-circle' onclick=''><i class='fa fa-edit'></i></button><button class='btn btn-danger btn-circle' onclick=''><i class='fa fa-trash'></i></button></div>";
+$ventas=controladorVenta::ctrMostrarVentas();
 
 
-   /* $datosJson= '{
-    "data":[';
-    foreach($ventas as $key => $value){
-      $datosJson.='[
-        "'.$value["NFAC"].'",
-        "'.$value["NOMFAC"].'",
-        "'.$value["USUARIO"].'",
-        "'.$value["FECHA"].'",
-        "000",
-        "'.$botones.'"
-      ],';
-
-    }
-    $datosJson=substr($datosJson, 0, -1);
-    $datosJson.=']
-  }';*/
 $datosJson= '{
     "data":[';
-    foreach($ventas as $key => $value){
-      $datosJson.='[
+foreach($ventas as $key => $value){
+  $botones="<div class='btn-group'><button class='btn btn-info' onclick='MVerVenta(".$value['COD'].")'><i class='fas fa-eye'></i></button><button class='btn btn-secondary' onclick='MEditVenta(".$value['COD'].")'><i class='fa fa-edit'></i></button><button class='btn btn-danger' onclick='MEliVenta(".$value['COD'].")'><i class='fa fa-trash'></i></button></div>";
+  $datosJson.='[
         "'.$value["NFAC"].'",
         "'.$value["NOMFACT"].'",
         "'.$value["USUARIO"].'",
@@ -37,9 +20,9 @@ $datosJson= '{
         "'.$botones.'"
       ],';
 
-    }
-    $datosJson=substr($datosJson, 0, -1);
-    $datosJson.=']
+}
+$datosJson=substr($datosJson, 0, -1);
+$datosJson.=']
   }';
-    echo $datosJson;
+echo $datosJson;
 

@@ -5,12 +5,11 @@ require_once "../../modelo/proveedorModelo.php";
 
     $proveedores=controladorProveedor::ctrMostrarProveedores();
 
-    $botones="<div class='btn-group'><button class='btn btn-warning' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProveedor'><i class='fa fa-times'></i></button></div>";
-
 
     $datosJson= '{
     "data":[';
     foreach($proveedores as $key => $value){
+      $botones="<div class='btn-group'><button class='btn btn-info' onclick='MVerProveedor(".$value['COD'].")'><i class='fas fa-eye'></i></button><button class='btn btn-secondary' onclick='MEditProveedor(".$value['COD'].")'><i class='fa fa-edit'></i></button><button class='btn btn-danger' onclick='MEliProveedor(".$value['COD'].")'><i class='fa fa-trash'></i></button></div>";
       $datosJson.='[
         "'.$value["COD"].'",
         "'.$value["NIT"].'",

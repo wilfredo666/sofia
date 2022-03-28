@@ -5,12 +5,11 @@ require_once "../../modelo/productoModelo.php";
 
     $productos=controladorProducto::ctrMostrarProductos();
 
-    $botones="<div class='btn-group'><button class='btn btn-warning' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil-alt'></i></button><button class='btn btn-danger btnEliminarProducto'><i class='fa fa-times'></i></button></div>";
-
 
     $datosJson= '{
     "data":[';
     foreach($productos as $key => $value){
+      $botones="<div class='btn-group'><button class='btn btn-info' onclick='MVerProducto(".$value['COD'].")'><i class='fas fa-eye'></i></button><button class='btn btn-secondary' onclick='MEditProducto(".$value['COD'].")'><i class='fa fa-edit'></i></button><button class='btn btn-danger' onclick='MEliProducto(".$value['COD'].")'><i class='fa fa-trash'></i></button></div>";
       $datosJson.='[
         "'.$value["COD"].'",
         "'.$value["NOMBRE"].'",
