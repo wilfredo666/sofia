@@ -151,7 +151,7 @@ function agregarCarrito(){
   //creando un objeto
   const objDetalle={
     cant: CantProducto.value,
-    descripcion: DescProducto.value,
+    descripcion: ConcProducto.value,
     preUnitario: PreUnitario.value,
     preTotal: PreTotal.value
   };
@@ -211,9 +211,21 @@ function busCod(){
 function calculate() {
 var myBox1 = document.getElementById('CantProducto').value; 
 var myBox2 = document.getElementById('PreUnitario').value;
+var myBox3 = myBox1 * myBox2;
+var myBox4 = document.getElementById('DescProducto').value;
+    var desctotal = myBox1 * myBox4;
 var result = document.getElementById('PreTotal'); 
-var myResult = myBox1 * myBox2;
+var myResult = myBox3 - desctotal;
 result.value = myResult;
 
-
 }
+
+
+$('input.CurrencyInput').on('blur', function() {
+  const value = this.value.replace(/,/g, '');
+  this.value = parseFloat(value).toLocaleString('en-US', {
+    style: 'decimal',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2
+  });
+});
