@@ -6,4 +6,5 @@ $txtBus=$_GET["txtBus"];
 $producto=controladorProducto::ctrInfoProducto($txtBus);
 
 echo json_encode($producto);
+
 ?>

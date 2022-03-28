@@ -199,10 +199,10 @@
                     Boton descuento
                 </button>
                 <div class="form-group sm-3">
-              <!--<label for="" class="mt-0">Metodo de pago</label>--> 
+           
             </div>
                  <div class="card-footer">
-             <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#modal-lg">
+             <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
                     <i class="fas fa-hand-holding-usd"></i>
                     Metodo de Pago
                 </button>
@@ -221,7 +221,7 @@
           <div class="form-group col-md-2">
             <label for="">Codigo</label>
             <div class="input-group form-group" >
-              <input type="text" class="form-control" placeholder="IPRODUCTO.COD" id="codigoProducto">
+              <input type="text" class="form-control" placeholder="Cod. Producto" id="codigoProducto">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" onclick="busCod()">
                   <i class="fas fa-search">  
@@ -240,7 +240,7 @@
           </div>
           <div class="form-group col-md-2">
             <label for="">Unidad de Medida</label>
-            <input type="number" class="form-control" id="UniMedProducto" name="UniMedProducto" placeholder="Entra a FFACTURA.Unidad">
+            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto" placeholder="Entra a FFACTURA.Unidad">
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Unit</label>

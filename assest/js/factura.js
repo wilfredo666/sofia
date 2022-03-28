@@ -197,10 +197,11 @@ function busCod(){
       data:obj,
       dataType:"json",
       success:function(data){
-          console.log(data["NOMBRE"]);  
-        document.getElementById("ConcProducto").value=data["NOMBRE"];
-        document.getElementById("UniMedProducto").value=data["UNIDAD"];
-        document.getElementById("LoteProd").value=data["LOTE"];
+          document.getElementById("ConcProducto").value=data["NOMBRE"];
+          document.getElementById("UniMedProducto").value=data["UNIDAD"];
+          document.getElementById("PreUnitario").value=data["PVTAML"];
+          document.getElementById("LoteProd").value=data["LOTE"];
+        
       }
     }
   )
