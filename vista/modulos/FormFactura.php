@@ -180,19 +180,19 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Subtotal Bs.">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" placeholder="Subtotal Bs." readonly value="0.00">
                 </div>
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Descuento</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Descuento Bs.">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="" placeholder="Descuento Bs." readonly value="0.00">
                 </div>
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Total</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control" id="" placeholder="Total">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="" placeholder="Total" readonly value="0.00">
                 </div>
                 <button type="button" class="btn btn-primary btn-block">
                     <i class="fas fa-plus"></i>
@@ -238,17 +238,17 @@
             <label for="">Cantidad</label>
             <input type="number" class="form-control" id="CantProducto" name="CantProducto" placeholder="Entra a FFACTURA.Cantidad" oninput="calculate()">
           </div>
-          <div class="form-group col-md-2">
-            <label for="">Unidad de Medida</label>
+          <div class="form-group col-md-1">
+            <label for="">U.Medida</label>
             <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto" placeholder="Entra a FFACTURA.Unidad">
           </div>
-          <div class="form-group col-md-1">
+          <div class="form-group col-md-2">
             <label for="">P. Unit</label>
-            <input type="text" class="form-control" id="PreUnitario" name="PreUnitario" placeholder="Entra a FFACTURA.Precio" oninput="calculate()">
+            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Entra a FFACTURA.Precio" oninput="calculate()">
           </div>
           <div class="form-group col-md-1">
             <label for="">Descuento</label>
-            <input type="text" class="form-control" id="Descuento" name="Descuento" placeholder="FFACTURA.descuento">
+            <input type="text" class="form-control" id="DescProducto" name="Descuento" placeholder="FFACTURA.descuento" oninput="calculate()">
           </div>
           <div class="form-group col-md-1">
             <label for="">Lote</label>
