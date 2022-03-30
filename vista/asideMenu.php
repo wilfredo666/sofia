@@ -19,16 +19,16 @@
 
         </li>
         <li class="nav-item nav-link">
-          <b>BD:</b> <?php echo $_SESSION["bdServidor"];?>
+          <b>BD: </b> <?php echo $_SESSION["bdServidor"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>Servidor:</b><?php echo $_SESSION["ipServer"];?>
+          <b>Servidor: </b><?php echo $_SESSION["ipServer"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>Entidad:</b><?php echo $_SESSION["nombreEmpresa"];?>
+          <b>Entidad: </b><?php echo $_SESSION["nombreEmpresa"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>NIT:</b><?php echo $_SESSION["nitRucEmpresa"];?>
+          <b>NIT: </b><?php echo $_SESSION["nitRucEmpresa"];?>
         </li>
       </ul>
 
