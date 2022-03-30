@@ -43,11 +43,22 @@ class ControladorUsuario{
           $sql="select NOMBRE, NIT_RUC, DIRECCION, TELEFONO from EMPRESA";
           $query=$link->query($sql);
           $empresa=$query->fetch();
-
+          
+          
           $_SESSION["nombreEmpresa"]=$empresa["NOMBRE"];
           $_SESSION["nitRucEmpresa"]=$empresa["NIT_RUC"];
           $_SESSION["direccionEmpresa"]=$empresa["DIRECCION"];
           $_SESSION["telefonoEmpresa"]=$empresa["TELEFONO"];
+          
+          
+          //capturando el token de conexion
+          $sql="select CODSISTEMA, TOKEN from FAUTSIS";
+          $query=$link->query($sql);
+          $siat=$query->fetch();
+          
+          $_SESSION["codsistema"]=$siat["CODSISTEMA"];
+          $_SESSION["token"]=$siat["TOKEN"];
+          
           
           echo '<script>
                     window.location="inicio";

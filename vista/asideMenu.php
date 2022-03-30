@@ -13,7 +13,9 @@
         </li>
         <!--estado para saber si esta conectado a impuestos-->
         <li class="nav-item nav-link">
-          <span class="badge badge-success">Conectado</span>
+         <input type="hidden" value="<?php echo $_SESSION["codsistema"];?>" id="codSistema">
+         <input type="hidden" value="<?php echo $_SESSION["token"];?>" id="token">
+          <span class="badge badge-secondary" id="comunSiat">desconectado</span>
 
         </li>
         <li class="nav-item nav-link">

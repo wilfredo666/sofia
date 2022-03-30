@@ -1,3 +1,39 @@
+var codSistema=document.getElementById("codSistema").value
+var token=document.getElementById("token").value
+
+setInterval(()=>{
+  verificarComunicacion(token)
+},3000)
+
+
+/*==================================
+comprobar conexion con SIAT - metodo
+====================================*/
+function verificarComunicacion(token){
+  var obj="";
+  $.ajax(
+    {
+      type:"POST",
+      url:"https://localhost:5001/api/CompraVenta/comunicacion?token="+token,
+      data:JSON.stringify(obj),
+      cache:false,
+      contentType:"application/json",
+      processData:false,
+      success:function(data){
+        if(data["transaccion"]==true){
+          document.getElementById("comunSiat").innerHTML="conectado"
+          document.getElementById("comunSiat").className="badge badge-success"
+        }
+      }
+    }
+  ).fail(function(jqXHR, textSatus, errorThrown){
+    if(jqXHR.status==500){
+      document.getElementById("comunSiat").innerHTML="desconectado"
+      document.getElementById("comunSiat").className="badge badge-secondary"
+    }
+  })
+}
+
 function MNuevaVenta(){
   window.location="FormFactura";
 }
@@ -178,9 +214,9 @@ function busCliente(){
       data:obj,
       dataType:"json",
       success:function(data){
-            
+
         document.getElementById("RSCliente").value=data["RAZON"];
-          document.getElementById("RSClienteEmail").value=data["EMAIL"];
+        document.getElementById("RSClienteEmail").value=data["EMAIL"];
       }
     }
   )
@@ -197,11 +233,11 @@ function busCod(){
       data:obj,
       dataType:"json",
       success:function(data){
-          document.getElementById("ConcProducto").value=data["NOMBRE"];
-          document.getElementById("UniMedProducto").value=data["UNIDAD"];
-          document.getElementById("PreUnitario").value=data["PVTAML"];
-          document.getElementById("LoteProd").value=data["LOTE"];
-        
+        document.getElementById("ConcProducto").value=data["NOMBRE"];
+        document.getElementById("UniMedProducto").value=data["UNIDAD"];
+        document.getElementById("PreUnitario").value=data["PVTAML"];
+        document.getElementById("LoteProd").value=data["LOTE"];
+
       }
     }
   )
@@ -209,11 +245,10 @@ function busCod(){
 
 /* Sacar precio total "cantidad X precio unitario". */
 function calculate() {
-var myBox1 = document.getElementById('CantProducto').value; 
-var myBox2 = document.getElementById('PreUnitario').value;
-var result = document.getElementById('PreTotal'); 
-var myResult = myBox1 * myBox2;
-result.value = myResult;
-
+  var myBox1 = document.getElementById('CantProducto').value; 
+  var myBox2 = document.getElementById('PreUnitario').value;
+  var result = document.getElementById('PreTotal'); 
+  var myResult = myBox1 * myBox2;
+  result.value = myResult;
 
 }
