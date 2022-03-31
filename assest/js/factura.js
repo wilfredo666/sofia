@@ -4,6 +4,7 @@ comprobar conexion con SIAT - metodo
 var codSistema=document.getElementById("codSistema").value
 var token=document.getElementById("token").value
 
+
 setInterval(()=>{
   verificarComunicacion(token)
 },3000)
@@ -33,6 +34,67 @@ function verificarComunicacion(token){
   })
 }
 
+/*==================================
+obtener CUIS - metodo
+====================================*/
+var nitEmpresa=document.getElementById("nitEmpresa").innerHTML
+var cuis;
+solicitudcuis()
+function solicitudcuis(){
+  var obj={
+  codigoAmbiente: 2,
+  codigoModalidad: 2,
+  codigoPuntoVenta: 0,
+  codigoPuntoVentaSpecified: true,
+  codigoSistema: codSistema,
+  codigoSucursal: 0,
+  nit: nitEmpresa
+  }
+  $.ajax(
+    {
+      type:"POST",
+      url:"https://localhost:5001/api/Codigos/solicitudcuis?token="+token,
+      data:JSON.stringify(obj),
+      cache:false,
+      contentType:"application/json",
+      processData:false,
+      success:function(data){
+  
+        cuis=data["codigo"];
+      }
+    }
+  )
+}
+
+/*==================================
+obtener CUFD - metodo
+====================================*/
+function solicitudcufd(){
+  var obj={
+    codigoAmbiente: 2,
+    codigoModalidad: 2,
+    codigoPuntoVenta: 0,
+    codigoPuntoVentaSpecified: true,
+    codigoSistema: codSistema,
+    codigoSucursal: 0,
+    nit: nitEmpresa,
+    cuis:cuis
+  }
+  $.ajax(
+    {
+      type:"POST",
+      url:"https://localhost:5001/api/Codigos/solicitudcufd?token="+token,
+      data:JSON.stringify(obj),
+      cache:false,
+      contentType:"application/json",
+      processData:false,
+      success:function(data){
+        console.log(data);
+      }
+    }
+  )
+
+}
 function MNuevaVenta(){
   window.location="FormFactura";
 }

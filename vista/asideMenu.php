@@ -2,7 +2,7 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand border-primary" style="background-color: #f2f2f2;">
+    <nav class="main-header navbar navbar-expand" style="background-color: #f2f2f2;">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -13,13 +13,13 @@
         </li>
         <!--estado para saber si esta conectado a impuestos-->
         <li class="nav-item nav-link">
-         <input type="hidden" value="<?php echo $_SESSION["codsistema"];?>" id="codSistema">
-         <input type="hidden" value="<?php echo $_SESSION["token"];?>" id="token">
+          <input type="hidden" value="<?php echo $_SESSION["codsistema"];?>" id="codSistema">
+          <input type="hidden" value="<?php echo $_SESSION["token"];?>" id="token">
           <span class="badge badge-secondary" id="comunSiat">desconectado</span>
 
         </li>
         <li class="nav-item nav-link">
-          <b>BD: </b> <?php echo $_SESSION["bdServidor"];?>
+          <b>BD: </b> <?php echo $_SESSION["bdServidor"];?><br>
         </li>
         <li class="nav-item nav-link">
           <b>Servidor: </b><?php echo $_SESSION["ipServer"];?>
@@ -28,7 +28,7 @@
           <b>Entidad: </b><?php echo $_SESSION["nombreEmpresa"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>NIT: </b><?php echo $_SESSION["nitRucEmpresa"];?>
+          <b>NIT: </b><span id="nitEmpresa"><?php echo $_SESSION["nitRucEmpresa"];?></span>
         </li>
       </ul>
 
@@ -39,7 +39,6 @@
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
         </li>
-
       </ul>
     </nav>
     <!-- /.navbar -->
