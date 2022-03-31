@@ -102,11 +102,10 @@
         </div>
       </div>
 
-      <!--ref.: ffcontrol.pdf-->
       <div class="card-body">
         <form action="" class="row">
-          <div class="form-group row col-md-8">
-            <div class="form-group col-md-2">
+          <div class="form-group row col-md-9">
+            <div class="form-group col-md-3">
               <label for="">Fecha</label> 
               <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled>
             </div>
@@ -129,25 +128,25 @@
             </div>
             <div class="form-group col-md-3">
               <label for="">Punto de Venta</label>
-              <input type="text" class="form-control" placeholder="Esta en Pendiente">
+              <input type="text" class="form-control" placeholder="(pendiente)">
             </div>
             <div class="form-group col-md-3">
               <label for="">Tipo de Factura</label>
-              <input type="text" class="form-control" placeholder="Sale de la API" onkeyup="busCliente">
+              <input type="text" class="form-control" placeholder="Sale de la API">
             </div>
 
-            <div class="form-group col-md-7">
+            <div class="form-group col-md-6">
               <label for="">Actividad</label> 
               <input type="text" class="form-control" placeholder="Sale de la API">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="">Email</label> 
-              <input type="text" class="form-control" placeholder="LCLI.email" id="RSClienteEmail">
+              <input type="text" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail">
             </div>
-            <div class="form-group col-md-4">
-              <label for="">NIT</label> 
+            <div class="form-group col-md-6">
+              <label for="">NIT/CI</label> 
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="LCLI.NIT" id="nitCliente">
+                <input type="text" class="form-control" placeholder="Ingrese el NIT/CI del cliente" id="nitCliente">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
                     <i class="fas fa-search">  
@@ -161,7 +160,7 @@
             <div class="form-group col-md-6">
               <label for="">Nombre o Razon social</label> 
               <div class="input-group">
-                <input type="text" class="form-control" id="RSCliente" placeholder="LCLI.razon'validar con API' devuelve por API">
+                <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente'validar con API' devuelve por API">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button">
                     <i class="fas fa-search">  
@@ -175,13 +174,13 @@
           </div>
 
           <!--datos de la empresa emisora-->
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <div class="card" style="background-color: #f2f2f2;">
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" placeholder="Subtotal Bs." readonly value="0">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
                 </div>
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
@@ -220,7 +219,7 @@
       <div class="card-body">
         <form action="" class="row" id="formDetalle">
           <div class="form-group col-md-2">
-            <label for="">Codigo</label>
+            <label for="">Cod. Producto</label>
             <div class="input-group form-group" >
               <input type="text" class="form-control" placeholder="Cod. Producto" id="codigoProducto">
               <div class="input-group-append">
@@ -233,31 +232,31 @@
           </div>
           <div class="form-group col-md-2">
             <label for="">Concepto</label>
-            <input type="text" class="form-control" id="ConcProducto" placeholder="IPROD.Nombre">
+            <input type="text" class="form-control" id="ConcProducto">
           </div>
           <div class="form-group col-md-1">
             <label for="">Cantidad</label>
-            <input type="number" class="form-control" id="CantProducto" name="CantProducto" placeholder="Entra a FFACTURA.Cantidad" oninput="calculate()">
+            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="0"><!--Entra a FFACTURA.Cantidad-->
           </div>
           <div class="form-group col-md-1">
             <label for="">U.Medida</label>
-            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto" placeholder="Entra a FFACTURA.Unidad">
+            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto"><!--Entra a FFACTURA.Unidad-->
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-1">
             <label for="">P. Unit</label>
-            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Entra a FFACTURA.Precio" oninput="calculate()">
+            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Precio" oninput="calculate()"><!--Entra a FFACTURA.Precio-->
           </div>
           <div class="form-group col-md-1">
             <label for="">Descuento</label>
             <input type="text" class="form-control" id="DescProducto" name="Descuento" placeholder="FFACTURA.descuento" oninput="calculate()" value="0.00">
           </div>
-          <div class="form-group col-md-1">
+          <div class="form-group col-md-2">
             <label for="">Lote</label>
-            <input type="text" class="form-control" id="LoteProd" name="LoteProd" placeholder="FFACTURA.Lote">     
+            <input type="text" class="form-control" id="LoteProd" name="LoteProd">  <!--FFACTURA.Lote  --> 
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Total</label>
-            <input type="text" class="form-control" id="PreTotal" name="PreTotal" readonly placeholder="FFACTURA.Total">     
+            <input type="text" class="form-control" id="PreTotal" name="PreTotal" readonly value="0.00">  <!--FFACTURA.Total  --> 
           </div>
           <div class="form-group col-md-1">
             <label for="">&nbsp;</label>
