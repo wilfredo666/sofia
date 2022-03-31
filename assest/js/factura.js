@@ -42,13 +42,13 @@ var cuis;
 solicitudcuis()
 function solicitudcuis(){
   var obj={
-  codigoAmbiente: 2,
-  codigoModalidad: 2,
-  codigoPuntoVenta: 0,
-  codigoPuntoVentaSpecified: true,
-  codigoSistema: codSistema,
-  codigoSucursal: 0,
-  nit: nitEmpresa
+    codigoAmbiente: 2,
+    codigoModalidad: 2,
+    codigoPuntoVenta: 0,
+    codigoPuntoVentaSpecified: true,
+    codigoSistema: codSistema,
+    codigoSucursal: 0,
+    nit: nitEmpresa
   }
   $.ajax(
     {
@@ -59,7 +59,7 @@ function solicitudcuis(){
       contentType:"application/json",
       processData:false,
       success:function(data){
-  
+
         cuis=data["codigo"];
       }
     }
@@ -89,7 +89,7 @@ function solicitudcufd(){
       contentType:"application/json",
       processData:false,
       success:function(data){
-        console.log(data);
+
       }
     }
   )
@@ -246,15 +246,15 @@ const redibujarTabla=()=>{
 function agregarCarrito(){
 
   //creando un objeto
-    var resultforsub = parseFloat(document.getElementById('SubTotal').value); 
-    console.log(resultforsub);
-    var Subtotal= parseFloat(document.getElementById('PreTotal').value);
-    console.log(Subtotal);
-    var Acumuladorsub= resultforsub + Subtotal;
-    console.log(Acumuladorsub);
-    var NuevoSubtotal=document.getElementById('SubTotal');
-    NuevoSubtotal.value=Acumuladorsub;
-    
+  var resultforsub = parseFloat(document.getElementById('SubTotal').value); 
+  console.log(resultforsub);
+  var Subtotal= parseFloat(document.getElementById('PreTotal').value);
+  console.log(Subtotal);
+  var Acumuladorsub= resultforsub + Subtotal;
+  console.log(Acumuladorsub);
+  var NuevoSubtotal=document.getElementById('SubTotal');
+  NuevoSubtotal.value=Acumuladorsub;
+
   const objDetalle={
     cant: CantProducto.value,
     descripcion: ConcProducto.value,
@@ -266,31 +266,70 @@ function agregarCarrito(){
 
   redibujarTabla();
 
-    
+
 }
 
 
-/*================
-busqueda de cliente
-==================*/
+/*===================================
+busqueda de cliente y validar con SIN
+====================================*/
+
 function busCliente(){
-  var nit=document.getElementById("nitCliente").value
+  var nitCliente=document.getElementById("nitCliente").value
 
   var obj="";
   $.ajax(
     {
       type:"POST",
-      url:"vista/modulos/resBusCliente.php?txtBus="+nit,
+      url:"vista/modulos/resBusCliente.php?txtBus="+nitCliente,
       data:obj,
       dataType:"json",
       success:function(data){
+        if(data==false){
+          document.getElementById("error-rs").className="text-danger"
+          document.getElementById("error-rs").innerHTML="Cliente no registrado"
+        }else{
+          document.getElementById("RSCliente").value=data["RAZON"];
+          document.getElementById("RSClienteEmail").value=data["EMAIL"];
+          verificarNit(nitCliente)
+        }
 
-        document.getElementById("RSCliente").value=data["RAZON"];
-        document.getElementById("RSClienteEmail").value=data["EMAIL"];
       }
     }
   )
 }
+
+function verificarNit(nitCliente){
+  var obj={
+    codigoAmbiente: 2,
+    codigoModalidad: 2,
+    codigoSistema: codSistema,
+    codigoSucursal: 0,
+    cuis: cuis,
+    nit: nitEmpresa,
+    nitParaVerificacion: nitCliente
+  }
+  $.ajax(
+    {
+      type:"POST",
+      url:"https://localhost:5001/api/Codigos/verificarNit?token="+token,
+      data:JSON.stringify(obj),
+      cache:false,
+      contentType:"application/json",
+      processData:false,
+      success:function(data){
+        if(data["transaccion"]==false){
+          document.getElementById("error-rs").className="text-danger"
+          document.getElementById("error-rs").innerHTML="Contribuyente no activo"
+        }else{
+          document.getElementById("error-rs").className="text-success"
+          document.getElementById("error-rs").innerHTML="Contribuyente activo"
+        }
+      }
+    }
+  )
+}
+
 
 function busCod(){
   var cod=document.getElementById("codigoProducto").value
@@ -329,16 +368,16 @@ function calculate() {
   var myResult = myBox1 * myBox2;
   result.value = myResult;
 
-var myBox1 = parseFloat(document.getElementById('CantProducto').value); 
-var myBox2 = parseFloat(document.getElementById('PreUnitario').value);
-var myBox3 = myBox1 * myBox2;
-var myBox4 = parseFloat(document.getElementById('DescProducto').value);
-    var desctotal = myBox1 * myBox4;
-var result = document.getElementById('PreTotal'); 
-var myResult = myBox3 - desctotal;
-result.value = myResult;
+  var myBox1 = parseFloat(document.getElementById('CantProducto').value); 
+  var myBox2 = parseFloat(document.getElementById('PreUnitario').value);
+  var myBox3 = myBox1 * myBox2;
+  var myBox4 = parseFloat(document.getElementById('DescProducto').value);
+  var desctotal = myBox1 * myBox4;
+  var result = document.getElementById('PreTotal'); 
+  var myResult = myBox3 - desctotal;
+  result.value = myResult;
 
-    
+
 }
 
 /*>>>>>>> 081bb022e0f326fb7e419983da18cb993375e2c7*/

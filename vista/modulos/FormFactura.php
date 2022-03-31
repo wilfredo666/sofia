@@ -169,8 +169,9 @@
                   </button>
                 </div>
               </div>
+              <p id="error-rs" class="text-danger"></p>
             </div>
-
+            
           </div>
 
           <!--datos de la empresa emisora-->
