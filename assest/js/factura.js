@@ -184,6 +184,15 @@ const redibujarTabla=()=>{
 function agregarCarrito(){
 
   //creando un objeto
+    var resultforsub = parseFloat(document.getElementById('SubTotal').value); 
+    console.log(resultforsub);
+    var Subtotal= parseFloat(document.getElementById('PreTotal').value);
+    console.log(Subtotal);
+    var Acumuladorsub= resultforsub + Subtotal;
+    console.log(Acumuladorsub);
+    var NuevoSubtotal=document.getElementById('SubTotal');
+    NuevoSubtotal.value=Acumuladorsub;
+    
   const objDetalle={
     cant: CantProducto.value,
     descripcion: ConcProducto.value,
@@ -195,7 +204,7 @@ function agregarCarrito(){
 
   redibujarTabla();
 
-
+    
 }
 
 
@@ -232,6 +241,13 @@ function busCod(){
       data:obj,
       dataType:"json",
       success:function(data){
+        document.getElementById("ConcProducto").value="";
+        document.getElementById("UniMedProducto").value="";
+        document.getElementById("PreUnitario").value="";
+        document.getElementById("LoteProd").value="";
+        document.getElementById("CantProducto").value="1";
+        document.getElementById("DescProducto").value="0.00";
+        document.getElementById("PreTotal").value="";
         document.getElementById("ConcProducto").value=data["NOMBRE"];
         document.getElementById("UniMedProducto").value=data["UNIDAD"];
         document.getElementById("PreUnitario").value=data["PVTAML"];
@@ -244,25 +260,26 @@ function busCod(){
 
 /* Sacar precio total "cantidad X precio unitario". */
 function calculate() {
-<<<<<<< HEAD
-  var myBox1 = document.getElementById('CantProducto').value; 
-  var myBox2 = document.getElementById('PreUnitario').value;
-  var result = document.getElementById('PreTotal'); 
+
+  var myBox1 = parseFloat(document.getElementById('CantProducto').value); 
+  var myBox2 = parseFloat(document.getElementById('PreUnitario').value);
+  var result = parseFloat(document.getElementById('PreTotal')); 
   var myResult = myBox1 * myBox2;
   result.value = myResult;
-=======
-var myBox1 = document.getElementById('CantProducto').value; 
-var myBox2 = document.getElementById('PreUnitario').value;
+
+var myBox1 = parseFloat(document.getElementById('CantProducto').value); 
+var myBox2 = parseFloat(document.getElementById('PreUnitario').value);
 var myBox3 = myBox1 * myBox2;
-var myBox4 = document.getElementById('DescProducto').value;
+var myBox4 = parseFloat(document.getElementById('DescProducto').value);
     var desctotal = myBox1 * myBox4;
 var result = document.getElementById('PreTotal'); 
 var myResult = myBox3 - desctotal;
 result.value = myResult;
 
+    
 }
 
->>>>>>> 081bb022e0f326fb7e419983da18cb993375e2c7
+/*>>>>>>> 081bb022e0f326fb7e419983da18cb993375e2c7*/
 
 $('input.CurrencyInput').on('blur', function() {
   const value = this.value.replace(/,/g, '');

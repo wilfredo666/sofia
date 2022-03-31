@@ -180,7 +180,7 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" placeholder="Subtotal Bs." readonly value="0.00">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" placeholder="Subtotal Bs." readonly value="0">
                 </div>
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
@@ -223,7 +223,7 @@
             <div class="input-group form-group" >
               <input type="text" class="form-control" placeholder="Cod. Producto" id="codigoProducto">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" onclick="busCod()">
+                <button class="btn btn-outline-secondary" type="button" onclick="busCod()" onclick="calculate()">
                   <i class="fas fa-search">  
                   </i>
                 </button>
@@ -248,7 +248,7 @@
           </div>
           <div class="form-group col-md-1">
             <label for="">Descuento</label>
-            <input type="text" class="form-control" id="DescProducto" name="Descuento" placeholder="FFACTURA.descuento" oninput="calculate()">
+            <input type="text" class="form-control" id="DescProducto" name="Descuento" placeholder="FFACTURA.descuento" oninput="calculate()" value="0.00">
           </div>
           <div class="form-group col-md-1">
             <label for="">Lote</label>
