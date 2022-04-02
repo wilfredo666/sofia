@@ -160,7 +160,7 @@
             <div class="form-group col-md-6">
               <label for="">Nombre o Razon social</label> 
               <div class="input-group">
-                <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente'validar con API' devuelve por API">
+                <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button">
                     <i class="fas fa-search">  
@@ -186,13 +186,13 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text">Descuento</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="" placeholder="Descuento Bs." readonly value="0.00">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="descuentoTotal" readonly value="0.00">
                 </div>
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Total</span>
                  </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="" placeholder="Total" readonly value="0.00">
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="total" readonly value="0.00">
                 </div>
                 <button type="button" class="btn btn-primary btn-block">
                     <i class="fas fa-plus"></i>
@@ -277,8 +277,8 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Cantidad</th>
               <th>Descricion</th>
+              <th>Cantidad</th>
               <th>P. Unitario</th>
               <th>P. Total</th>
               <th>Acciones</th>

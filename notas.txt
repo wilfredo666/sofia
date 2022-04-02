@@ -1,0 +1,2 @@
+-calcular el P.total al buscar producto por codigo
+-resetear el focus al insertar producto

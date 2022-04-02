@@ -194,14 +194,10 @@ $(function () {
   }).buttons().container().appendTo('#DataTableVentas_wrapper .col-md-6:eq(0)');
 });
 
-const formDetalle= document.getElementById("formDetalle");
-const CantProducto=document.getElementById("CantProducto");
-const DescProducto=document.getElementById("DesProducto");
-const PreUnitario=document.getElementById("PreUnitario");
-const PreTotal=document.getElementById("PreTotal");
+/*===================
+carrito
+=====================*/
 const ListaDetalle=document.getElementById("ListaDetalle");
-
-
 let arregloDetalle=[];
 
 const redibujarTabla=()=>{
@@ -209,8 +205,8 @@ const redibujarTabla=()=>{
   arregloDetalle.forEach((detalle)=>{
     let fila=document.createElement("tr");
 
-    fila.innerHTML='<td>'+detalle.cant+'</td>'+
-      '<td>'+detalle.descripcion+'</td>'+
+    fila.innerHTML='<td>'+detalle.concepto+'</td>'+
+      '<td>'+detalle.cantProducto+'</td>'+
       '<td>'+detalle.preUnitario+'</td>'+
       '<td>'+detalle.preTotal+'</td>';
 
@@ -226,46 +222,45 @@ const redibujarTabla=()=>{
 }
 
 
-/*  formDetalle.onsubmit=(e)=>{
-    e.preventDefault();
-
-    //creando un objeto
-    const objDetalle={
-      cant: CantProducto.value,
-      descripcion: DescProducto.value,
-      preUnitario: PreUnitario.value,
-      preTotal: PreTotal.value
-    };
-
-    arregloDetalle.push(objDetalle);
-
-    redibujarTabla();
-  }*/
-
-
 function agregarCarrito(){
 
-  //creando un objeto
-  var resultforsub = parseFloat(document.getElementById('SubTotal').value); 
-  console.log(resultforsub);
-  var Subtotal= parseFloat(document.getElementById('PreTotal').value);
-  console.log(Subtotal);
-  var Acumuladorsub= resultforsub + Subtotal;
-  console.log(Acumuladorsub);
-  var NuevoSubtotal=document.getElementById('SubTotal');
-  NuevoSubtotal.value=Acumuladorsub;
+  // 1.- obtiene todo los valores del apartado para buscar producto
+  const codigoProducto=document.getElementById("codigoProducto");
+  const ConcProducto=document.getElementById("ConcProducto");
+  const CantProducto=document.getElementById("CantProducto");
+  const UniMedProducto=document.getElementById("UniMedProducto");
+  const PreUnitario=document.getElementById("PreUnitario");
+  const DescProducto=document.getElementById("DescProducto");
+  const LoteProd=document.getElementById("LoteProd");
+  const PreTotal=document.getElementById("PreTotal");
 
+
+  // 2.-Crea un objeto con los valores del apartado anterior
   const objDetalle={
-    cant: CantProducto.value,
-    descripcion: ConcProducto.value,
-    preUnitario: PreUnitario.value,
-    preTotal: PreTotal.value
+    codigoProducto: codigoProducto.value,
+    concepto: ConcProducto.value,
+    cantProducto: CantProducto.value,
+    uniMedProducto: UniMedProducto.value,
+    preUnitario: parseFloat(PreUnitario.value),
+    descProducto: parseFloat(DescProducto.value),
+    loteProd: LoteProd.value,
+    preTotal: parseFloat(PreTotal.value),
   };
 
+  //3.-Agrega el objeto a un arreglo ya creado
   arregloDetalle.push(objDetalle);
-
+  
+  //4.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
   redibujarTabla();
+  
+ /* var SubTotal = parseFloat(document.getElementById('SubTotal').value); 
 
+  var Subtotal= parseFloat(document.getElementById('PreTotal').value);
+
+  var Acumuladorsub= resultforsub + Subtotal;
+
+  var NuevoSubtotal=document.getElementById('SubTotal');
+  NuevoSubtotal.value=Acumuladorsub;*/
 
 }
 
@@ -390,3 +385,20 @@ $('input.CurrencyInput').on('blur', function() {
     minimumFractionDigits: 2
   });
 });
+
+
+/*  formDetalle.onsubmit=(e)=>{
+    e.preventDefault();
+
+    //creando un objeto
+    const objDetalle={
+      cant: CantProducto.value,
+      descripcion: DescProducto.value,
+      preUnitario: PreUnitario.value,
+      preTotal: PreTotal.value
+    };
+
+    arregloDetalle.push(objDetalle);
+
+    redibujarTabla();
+  }*/
