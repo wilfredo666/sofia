@@ -26,8 +26,8 @@
                         <option value="Efectivojemplo2">2|Dolares</option>
                         </select> 
                         <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
-                        <label for="customRadio1" class="custom-control-label">Confirmar Opcion</label>
+                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked="checked">
+                        <label for="customRadio1" class="custom-control-label" >Confirmar Opcion</label>
                         
                         </div>  
                 </div>  
@@ -256,7 +256,7 @@
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Total</label>
-            <input type="text" class="form-control" id="PreTotal" name="PreTotal" readonly value="0.00">  <!--FFACTURA.Total  --> 
+            <input type="text" class="form-control CurrencyInput" id="PreTotal" name="PreTotal" readonly value="0.00">  <!--FFACTURA.Total  --> 
           </div>
           <div class="form-group col-md-1">
             <label for="">&nbsp;</label>

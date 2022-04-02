@@ -348,7 +348,8 @@ function busCod(){
         document.getElementById("UniMedProducto").value=data["UNIDAD"];
         document.getElementById("PreUnitario").value=data["PVTAML"];
         document.getElementById("LoteProd").value=data["LOTE"];
-
+        document.getElementById("PreTotal").value=data["PVTAML"];
+          document.getElementById("codigoProducto").focus();
       }
     }
   )
