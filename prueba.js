@@ -63,6 +63,7 @@ function solicitudcuis(){
 /*====================
 verificar nit
 ======================*/
+
 function verificarNit(){
   var obj={
     codigoAmbiente: 2,

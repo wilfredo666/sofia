@@ -14,7 +14,7 @@ function verificarComunicacion(token){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:5001/api/CompraVenta/comunicacion?token="+token,
+      url:"https://localhost:44392/api/CompraVenta/comunicacion?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",

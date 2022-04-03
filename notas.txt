@@ -1,2 +1,6 @@
 -calcular el P.total al buscar producto por codigo
 -resetear el focus al insertar producto
+
+actividades--> api o tabla-->FACTECON
+-tipo de venta --> mostrar: compra venta --> enviar codigo --> recuperr del api
+-metodo de pago--> poe default efectivo.bolivianos
