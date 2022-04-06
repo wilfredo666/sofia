@@ -18,12 +18,11 @@
             <div class="card-body">
               <table id="DataTableClientes" class="table table-bordered table-hover">
                 <thead>
-
                   <tr>
-                    <th>Cod</th>
                     <th>NIT</th>
                     <th>Razon S.</th>
                     <th>Nombre(s)</th>
+                    <th>E-mail</th>
                     <th>Dirección</th>
                     <th>
                       <button class="btn btn-primary" onclick="FNuevoCliente();">Nuevo Cliente</button>

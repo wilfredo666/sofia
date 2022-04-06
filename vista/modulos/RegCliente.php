@@ -8,8 +8,9 @@ $nomCliente=trim($_POST["nomCliente"]);
 $apCliente=trim($_POST["apCliente"]);
 $dirCliente=trim($_POST["dirCliente"]);
 $telCliente=trim($_POST["telCliente"]);
+$emailCliente=trim($_POST["emailCliente"]);
 
-$stmt=Conexion::conectar()->prepare("insert into LCLI(COD, NIT, RAZON, NOMBRE, APELLIDO, DIRECCION) values ($codCliente, '$nitCliente', '$razonCliente', '$nomCliente', '$apCliente', '$dirCliente', '$telCliente)");
+$stmt=Conexion::conectar()->prepare("insert into LCLI(COD, NIT, RAZON, NOMBRE, APELLIDO, DIRECCION, TELEFONO, EMAIL) values ('$codCliente', '$nitCliente', '$razonCliente', '$nomCliente', '$apCliente', '$dirCliente', '$telCliente', '$emailCliente')");
 
 $stmt->execute();
 //$stmt->null;

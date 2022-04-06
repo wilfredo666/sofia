@@ -107,7 +107,7 @@
           <div class="form-group row col-md-9">
             <div class="form-group col-md-3">
               <label for="">Fecha</label> 
-              <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled>
+              <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
             </div>
             
             <?php 
@@ -176,21 +176,21 @@
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-3">
             <div class="card" style="background-color: #f2f2f2;">
-                <div class="input-group sm-3">
+                <!--<div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
                  </div>
                   <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
-                </div>
+                </div>-->
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
-                   <span class="input-group-text">Descuento</span>
+                   <span class="input-group-text">T. Descuento</span>
                  </div>
                   <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="descuentoTotal" readonly value="0.00">
                 </div>
                 <div class="input-group sm-3">
                  <div class="input-group-prepend">
-                   <span class="input-group-text">Total</span>
+                   <span class="input-group-text">Total a pagar</span>
                  </div>
                   <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="total" readonly value="0.00">
                 </div>
@@ -230,7 +230,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-3">
             <label for="">Concepto</label>
             <input type="text" class="form-control" id="ConcProducto">
           </div>
@@ -244,13 +244,13 @@
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Unit</label>
-            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Precio" oninput="calculate()"><!--Entra a FFACTURA.Precio-->
+            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Precio" oninput="calculate()" value="0.00"><!--Entra a FFACTURA.Precio-->
           </div>
           <div class="form-group col-md-1">
             <label for="">Descuento</label>
-            <input type="text" class="form-control" id="DescProducto" name="Descuento" placeholder="FFACTURA.descuento" oninput="calculate()" value="0.00">
+            <input type="text" class="form-control" id="DescProducto" name="Descuento"  oninput="calculate()" value="0.00"><!--Entra a FFACTURA.descuento-->
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-1">
             <label for="">Lote</label>
             <input type="text" class="form-control" id="LoteProd" name="LoteProd">  <!--FFACTURA.Lote  --> 
           </div>
@@ -280,6 +280,7 @@
               <th>Descricion</th>
               <th>Cantidad</th>
               <th>P. Unitario</th>
+              <th>Descuento</th>
               <th>P. Total</th>
               <th>Acciones</th>
             </tr>

@@ -15,7 +15,7 @@ try{
 }
 
 
-$sql="select NOMBRE, NIT_RUC from EMPRESA";
+$sql="select * from IPRODUCTO where cod='Q2G0T04205L'";
 $query=$con->query($sql);
 $us=$query->fetch();
 var_dump($us);

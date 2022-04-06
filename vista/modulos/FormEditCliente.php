@@ -27,7 +27,7 @@ $cliente=controladorCliente::ctrInfoCliente($codCliente);
             </button>
           </div>
         </div>
-        
+
         <div class="card-body row">
           <div class="form-group col-md-3">
             <label for="">Cod. Cliente</label>
@@ -57,8 +57,12 @@ $cliente=controladorCliente::ctrInfoCliente($codCliente);
             <label for="">Telefono(s)</label>
             <input type="text" class="form-control" name="telCliente" value="<?php echo $cliente["TELEFONO"];?>">
           </div>
+          <div class="form-group col-md-3">
+            <label for="">E-mail</label>
+            <input type="email" class="form-control" name="emailCliente" value="<?php echo $cliente["EMAIL"];?>">
+          </div>
         </div>
-        
+
         <div class="card-footer">
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>

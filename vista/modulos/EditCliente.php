@@ -10,8 +10,9 @@ $nomCliente=trim($_POST["nomCliente"]);
 $apCliente=trim($_POST["apCliente"]);
 $dirCliente=trim($_POST["dirCliente"]);
 $telCliente=trim($_POST["telCliente"]);
+$emailCliente=trim($_POST["emailCliente"]);
 
-$stmt=Conexion::conectar()->prepare("update LCLI set NIT='$nitCliente', RAZON='$razonCliente', NOMBRE='$nomCliente', APELLIDO='$apCliente', DIRECCION='$dirCliente', TELEFONO='$telCliente' where COD='$codCliente'");
+$stmt=Conexion::conectar()->prepare("update LCLI set NIT='$nitCliente', RAZON='$razonCliente', NOMBRE='$nomCliente', APELLIDO='$apCliente', DIRECCION='$dirCliente', TELEFONO='$telCliente', EMAIL='$emailCliente' where COD='$codCliente'");
 
 $stmt->execute();
 

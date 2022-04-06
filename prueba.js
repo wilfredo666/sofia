@@ -90,6 +90,9 @@ function verificarNit(){
   )
 }
 
+/*====================
+emitir factura nit
+======================*/
 function recepecion(){
   var obj={
     codigoAmbiente: 2,

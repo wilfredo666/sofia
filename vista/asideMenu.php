@@ -22,6 +22,7 @@
           <b>BD: </b> <?php echo $_SESSION["bdServidor"];?><br>
         </li>
         <li class="nav-item nav-link">
+         <input type="hidden" id="servidor" value="<?php echo $_SESSION["ipServer"];?>">
           <b>Servidor: </b><?php echo $_SESSION["ipServer"];?>
         </li>
         <li class="nav-item nav-link">

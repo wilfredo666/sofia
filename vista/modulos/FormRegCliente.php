@@ -22,7 +22,7 @@
             </button>
           </div>
         </div>
-        
+
         <div class="card-body row">
           <div class="form-group col-md-3">
             <label for="">Cod. Cliente</label>
@@ -52,8 +52,12 @@
             <label for="">Telefono(s)</label>
             <input type="text" class="form-control" name="telCliente">
           </div>
+          <div class="form-group col-md-3">
+            <label for="">E-mail</label>
+            <input type="email" class="form-control" name="emailCliente">
+          </div>
         </div>
-        
+
         <div class="card-footer">
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>

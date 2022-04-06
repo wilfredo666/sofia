@@ -8,7 +8,7 @@ class ModeloCliente{
   ==============================*/
 
   static public function MdlMostrarClientes(){
-    $stmt=Conexion::conectar()->prepare("select * from LCLI");
+    $stmt=Conexion::conectar()->prepare("select COD, NIT, RAZON, NOMBRE, APELLIDO, DIRECCION, TELEFONO, EMAIL from LCLI");
     $stmt->execute();
     return $stmt->fetchAll();
 

@@ -1,6 +1,7 @@
 <?php
 require_once "../../modelo/conexion.php";
 //recuperando codigo cliente
+
 $codCliente=$_GET["codCliente"];
 
 

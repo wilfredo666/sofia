@@ -6,9 +6,8 @@ class ModeloVenta{
   /*==============================
     Mostrar Ventas
   ==============================*/
-
   static public function MdlMostrarVentas(){
-    $stmt=Conexion::conectar()->prepare("select NFAC, NOMFACT, USUARIO, FECHA, MONTO from FCTROLF");
+    $stmt=Conexion::conectar()->prepare("select NUM, NFAC, NOMFACT, USUARIO, FECHA, MONTO from FCTROLF");
     $stmt->execute();
     return $stmt->fetchAll();
 
@@ -16,7 +15,7 @@ class ModeloVenta{
     $stmt=null;
 
   }
-  
+
   /*==============================
     Información de venta
   ==============================*/
@@ -29,7 +28,7 @@ class ModeloVenta{
     $stmt=null;
 
   }
-  
+
   /*==============================
     Información de sucursales
   ==============================*/
@@ -41,4 +40,5 @@ class ModeloVenta{
     $stmt->close();
     $stmt=null;
   }
+
 }

@@ -3,7 +3,8 @@ comprobar conexion con SIAT - metodo
 ====================================*/
 var codSistema=document.getElementById("codSistema").value
 var token=document.getElementById("token").value
-
+var puerto=44392;
+var host="https://"+document.getElementById("servidor").value+":"+puerto;
 
 setInterval(()=>{
   verificarComunicacion(token)
@@ -14,7 +15,7 @@ function verificarComunicacion(token){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:44392/api/CompraVenta/comunicacion?token="+token,
+      url:host+"/api/CompraVenta/comunicacion?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",
@@ -39,7 +40,9 @@ obtener CUIS - metodo
 ====================================*/
 var nitEmpresa=document.getElementById("nitEmpresa").innerHTML
 var cuis;
+
 solicitudcuis()
+
 function solicitudcuis(){
   var obj={
     codigoAmbiente: 2,
@@ -53,7 +56,7 @@ function solicitudcuis(){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:5001/api/Codigos/solicitudcuis?token="+token,
+      url:host+"/api/Codigos/solicitudcuis?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",
@@ -83,7 +86,7 @@ function solicitudcufd(){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:5001/api/Codigos/solicitudcufd?token="+token,
+      url:host+"/api/Codigos/solicitudcufd?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",
@@ -95,6 +98,8 @@ function solicitudcufd(){
   )
 
 }
+
+
 function MNuevaVenta(){
   window.location="FormFactura";
 }
@@ -156,9 +161,9 @@ function EliVenta(codVenta){
 
 
 
-/*==========================
+/*=====================================================
 traduciendo los apartados de DataTable - reporte ventas
-===========================*/
+======================================================*/
 $(function () {
   $("#DataTableVentas").DataTable({
     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
@@ -208,6 +213,7 @@ const redibujarTabla=()=>{
     fila.innerHTML='<td>'+detalle.concepto+'</td>'+
       '<td>'+detalle.cantProducto+'</td>'+
       '<td>'+detalle.preUnitario+'</td>'+
+      '<td>'+detalle.descProducto+'</td>'+
       '<td>'+detalle.preTotal+'</td>';
 
 
@@ -223,7 +229,8 @@ const redibujarTabla=()=>{
 
 
 function agregarCarrito(){
-
+let totalApagar=0;
+let totalDescuento=0;
   // 1.- obtiene todo los valores del apartado para buscar producto
   const codigoProducto=document.getElementById("codigoProducto");
   const ConcProducto=document.getElementById("ConcProducto");
@@ -250,6 +257,12 @@ function agregarCarrito(){
   //3.-Agrega el objeto a un arreglo ya creado
   arregloDetalle.push(objDetalle);
   
+  //4.- calcula el total a pagar, total descuento
+  for(var i=0;i<=arregloDetalle.length;i++){
+    totalApagar=arregloDetalle[i].preTotal
+    totalDescuento=arregloDetalle[i].descProducto
+  }
+  
   //4.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
   redibujarTabla();
   
@@ -263,7 +276,6 @@ function agregarCarrito(){
   NuevoSubtotal.value=Acumuladorsub;*/
 
 }
-
 
 /*===================================
 busqueda de cliente y validar con SIN
@@ -307,7 +319,7 @@ function verificarNit(nitCliente){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:5001/api/Codigos/verificarNit?token="+token,
+      url:host+"/api/Codigos/verificarNit?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",

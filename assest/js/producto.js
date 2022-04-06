@@ -36,13 +36,6 @@ $(function () {
   }).buttons().container().appendTo('#DataTableProductos_wrapper .col-md-6:eq(0)');
 });
 
-/*$.ajax({
-  url:"vista/modulos/dataTableCliente.php",
-  success:function(data){
-    console.log(data);
-  }
-})*/
-
 function FNuevoProducto(){
   window.location="FormRegProducto";
 }
@@ -61,9 +54,10 @@ function MVerProducto(codProducto){
       }
     }
   )
+  
 }
 
-function EditProducto(codProducto){
+function MEditProducto(codProducto){
 
   window.location="FormEditProducto?"+codProducto;
 

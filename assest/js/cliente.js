@@ -57,7 +57,7 @@ function MVerCliente(codCliente){
   )
 }
 
-function EditCliente(codCliente){
+function MEditCliente(codCliente){
 
   window.location="FormEditCliente?"+codCliente;
 
