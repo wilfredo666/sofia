@@ -63,7 +63,7 @@ $pdf->setY(55);$pdf->setX(135);
 $pdf->Cell(5,$textypos,"");
 $pdf->setY(60);$pdf->setX(135);
 $pdf->Cell(5,$textypos,"");
-
+$pdf->Image("Sofia.jpg",20,60,170,170);
 /// Apartir de aqui empezamos con la tabla de productos
 $pdf->setY(60);$pdf->setX(135);
     $pdf->Ln();
