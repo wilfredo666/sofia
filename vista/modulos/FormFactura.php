@@ -109,13 +109,21 @@
               <label for="">Fecha</label> 
               <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
             </div>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> parent of d36acc0 (30-04-22)
             <?php 
             $sucursal=controladorVenta::crtInfoSucursal();
             ?>
             <div class="form-group col-md-3">
               <label for="">Sucursal</label>
+<<<<<<< HEAD
               <select name="" id="" class="form-control">
+=======
+              <select name="FacSucursal" id="" class="form-control">
+>>>>>>> parent of d36acc0 (30-04-22)
                 <option value="null">Seleccionar</option>
                 <?php 
                 foreach($sucursal as $value){
@@ -134,10 +142,29 @@
               <label for="">Tipo de Factura</label>
               <input type="text" class="form-control" placeholder="Sale de la API">
             </div>
+<<<<<<< HEAD
 
             <div class="form-group col-md-6">
               <label for="">Actividad</label> 
               <input type="text" class="form-control" placeholder="Sale de la API">
+=======
+            
+            <?php 
+            $actividad=controladorVenta::crtInfoActividad();
+            ?>
+            <div class="form-group col-md-6">
+              <label for="">Actividad</label>
+              <select name="FacActividad" id="" class="form-control">
+                <option value="null">Seleccionar</option>
+                <?php 
+                foreach($actividad as $value){
+                ?>
+                <option value="<?php echo $value["COD"];?>"><?php echo $value["ACTECON"];?></option>
+                <?php
+                }
+                ?>
+              </select> 
+>>>>>>> parent of d36acc0 (30-04-22)
             </div>
             <div class="form-group col-md-6">
               <label for="">Email</label> 
@@ -170,12 +197,17 @@
               </div>
               <p id="error-rs" class="text-danger"></p>
             </div>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> parent of d36acc0 (30-04-22)
           </div>
 
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-3">
             <div class="card" style="background-color: #f2f2f2;">
+<<<<<<< HEAD
                 <!--<div class="input-group sm-3">
                  <div class="input-group-prepend">
                    <span class="input-group-text">Subtotal</span>
@@ -207,6 +239,38 @@
                     Metodo de Pago
                 </button>
               </div>
+=======
+              <!--<div class="input-group sm-3">
+<div class="input-group-prepend">
+<span class="input-group-text">Subtotal</span>
+</div>
+<input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
+</div>-->
+              <div class="input-group sm-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">T. Descuento</span>
+                </div>
+                <input type="text" style="text-align:right;" class="form-control CurrencyInput"  readonly value="0.00" id="totDescuento" name="totDescuento">
+              </div>
+              <div class="input-group sm-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Total a pagar</span>
+                </div>
+                <input type="text" style="text-align:right;" class="form-control CurrencyInput" readonly value="0.00" id="totApagar" name="totApagar">
+              </div>
+              <button type="button" class="btn btn-primary btn-block">
+                <i class="fas fa-plus"></i>
+                Boton descuento
+              </button>
+              <div class="form-group sm-3">
+
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
+                  <i class="fas fa-hand-holding-usd"></i>
+                  Metodo de Pago
+                </button>
+>>>>>>> parent of d36acc0 (30-04-22)
               </div>
             </div>
           
