@@ -221,7 +221,6 @@ const redibujarTabla=()=>{
     let botonEliminar =document.createElement("button");
     botonEliminar.classList.add("btn", "btn-danger");
     botonEliminar.innerText="Eliminar";
-    botonEliminar.addEventListener("click", quitarCarrito);
     tdEliminar.appendChild(botonEliminar);
     fila.appendChild(tdEliminar);
     ListaDetalle.appendChild(fila);
@@ -258,22 +257,24 @@ let totalDescuento=0;
   //3.-Agrega el objeto a un arreglo ya creado
   arregloDetalle.push(objDetalle);
   
-  //4.- calcula el total a pagar, total descuento y definir valores
-  for(var i=0;i<arregloDetalle.length;i++){
-    totalApagar=totalApagar+arregloDetalle[i].preTotal
-    totalDescuento=totalDescuento+arregloDetalle[i].descProducto
+  //4.- calcula el total a pagar, total descuento
+  for(var i=0;i<=arregloDetalle.length;i++){
+    totalApagar=arregloDetalle[i].preTotal
+    totalDescuento=arregloDetalle[i].descProducto
   }
-  document.getElementById("totDescuento").value=totalDescuento
-  document.getElementById("totApagar").value=totalApagar
   
-  //5.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
+  //4.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
   redibujarTabla();
   
+ /* var SubTotal = parseFloat(document.getElementById('SubTotal').value); 
 
-}
+  var Subtotal= parseFloat(document.getElementById('PreTotal').value);
 
-function quitarCarrito(){
-  console.log("Hello world");
+  var Acumuladorsub= resultforsub + Subtotal;
+
+  var NuevoSubtotal=document.getElementById('SubTotal');
+  NuevoSubtotal.value=Acumuladorsub;*/
+
 }
 
 /*===================================

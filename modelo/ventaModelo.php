@@ -41,15 +41,4 @@ class ModeloVenta{
     $stmt=null;
   }
 
-  /*==============================
-    Información de actividades
-  ==============================*/
-  static public function MdlInfoActividad(){
-    $stmt=Conexion::conectar()->prepare("select * from FACTECON");
-    $stmt->execute();
-    return $stmt->fetchAll();
-
-    $stmt->close();
-    $stmt=null;
-  }
 }

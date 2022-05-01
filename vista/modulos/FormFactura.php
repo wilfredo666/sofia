@@ -4,85 +4,85 @@
 
   </section>
   <div class="modal fade show" id="modal-lg"  aria-modal="true" role="dialog">
-
-    <div class="modal-dialog modal-lg">
-
-
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h4 class="modal-title">Metodos de pago</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">X</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container Fluid">
-            <div class="row">
-              <div class="form-group col-md-3" >
-                <label for="" class="align-middle">Efectivo</label>
-                <select type="text" class="form-control">
-                  <option value="EfectivoEjemplo1">1|Bolivianos</option>
-                  <option value="Efectivojemplo2">2|Dolares</option>
-                </select> 
-                <div class="custom-control custom-radio">
-                  <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked="checked">
-                  <label for="customRadio1" class="custom-control-label" >Confirmar Opcion</label>
-
-                </div>  
-              </div>  
-              <div class="form-group col-md-3">
-                <label for="">Gift Card</label>
-                <select type="text" class="form-control">
-                  <option value="GiftCardEjemplo2">1|Google</option>
-                  <option value="GiftCardEjemplo3">2|Blizzard</option>
-                </select> 
-                <div class="custom-control custom-radio">
-                  <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
-                  <label for="customRadio2" class="custom-control-label">Confirmar Opcion</label>
-                </div>      
-              </div>
-              <div class="form-group col-md-3">
-                <label for="">Tarjeta</label>
-                <select type="text" class="form-control">
-                  <option value="TarjetaEjemplo2">1|Credito</option>
-                  <option value="TarjetaEjemplo3">2|Debito</option>
-                </select> 
-                <div class="custom-control custom-radio">
-                  <input class="custom-control-input" type="radio" id="customRadio3" name="customRadio">
-                  <label for="customRadio3" class="custom-control-label">Confirmar Opcion</label>
-                </div>      
-              </div>
-              <div class="form-group col-md-3">
-                <label for="">Otros</label>
-                <select type="text" class="form-control">
-                  <option value="OtrosEjemplo2">1|Billetera - Movil</option>
-                  <option value="OtrosEjemplo3">2|Billetera - Pago Movil</option>
-                  <option value="OtrosEjemplo4">3|Canal de Pago</option>
-                  <option value="OtrosEjemplo5">4|Canal de Pago - Billetera</option>
-                  <option value="OtrosEjemplo6">5|Canal de Pago - Billetera - Pago Online</option>
-                  <option value="OtrosEjemplo7">6|Canal de Pago Pago Online</option>
-                  <option value="OtrosEjemplo8">7|Cheque</option>
-                  <option value="OtrosEjemplo9">8|Cheque - Billetera</option>
-                  <option value="OtrosEjemplo10">9|Cheque - Billetera - Pago Online</option>
-                </select> 
-                <div class="custom-control custom-radio">
-                  <input class="custom-control-input" type="radio" id="customRadio4" name="customRadio">
-                  <label for="customRadio4" class="custom-control-label">Confirmar Opcion</label>
-                </div>          
-              </div>
+        
+           <div class="modal-dialog modal-lg">
+                
+            
+           <div class="modal-content">
+            
+            <div class="modal-header">
+                <h4 class="modal-title">Metodos de pago</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">X</span>
+                </button>
             </div>
-          </div>                              
+            <div class="modal-body">
+                 <div class="container Fluid">
+                   <div class="row">
+                    <div class="form-group col-md-3" >
+                    <label for="" class="align-middle">Efectivo</label>
+                        <select type="text" class="form-control">
+                        <option value="EfectivoEjemplo1">1|Bolivianos</option>
+                        <option value="Efectivojemplo2">2|Dolares</option>
+                        </select> 
+                        <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked="checked">
+                        <label for="customRadio1" class="custom-control-label" >Confirmar Opcion</label>
+                        
+                        </div>  
+                </div>  
+                <div class="form-group col-md-3">
+                    <label for="">Gift Card</label>
+                        <select type="text" class="form-control">
+                        <option value="GiftCardEjemplo2">1|Google</option>
+                        <option value="GiftCardEjemplo3">2|Blizzard</option>
+                        </select> 
+                        <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
+                        <label for="customRadio2" class="custom-control-label">Confirmar Opcion</label>
+                        </div>      
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="">Tarjeta</label>
+                        <select type="text" class="form-control">
+                        <option value="TarjetaEjemplo2">1|Credito</option>
+                        <option value="TarjetaEjemplo3">2|Debito</option>
+                        </select> 
+                        <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio3" name="customRadio">
+                        <label for="customRadio3" class="custom-control-label">Confirmar Opcion</label>
+                        </div>      
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="">Otros</label>
+                        <select type="text" class="form-control">
+                        <option value="OtrosEjemplo2">1|Billetera - Movil</option>
+                        <option value="OtrosEjemplo3">2|Billetera - Pago Movil</option>
+                        <option value="OtrosEjemplo4">3|Canal de Pago</option>
+                        <option value="OtrosEjemplo5">4|Canal de Pago - Billetera</option>
+                        <option value="OtrosEjemplo6">5|Canal de Pago - Billetera - Pago Online</option>
+                        <option value="OtrosEjemplo7">6|Canal de Pago Pago Online</option>
+                        <option value="OtrosEjemplo8">7|Cheque</option>
+                        <option value="OtrosEjemplo9">8|Cheque - Billetera</option>
+                        <option value="OtrosEjemplo10">9|Cheque - Billetera - Pago Online</option>
+                        </select> 
+                        <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio4" name="customRadio">
+                        <label for="customRadio4" class="custom-control-label">Confirmar Opcion</label>
+                        </div>          
+                </div>
+                </div>
+                </div>                              
+            </div>
+            <div class="modal-footer align-right">
+                    <button type="button" class="btn btn-primary btn-block close" data-dismiss="modal">
+                    Enviar
+                </button>
+            </div>
+             
+                </div>
+            </div>
         </div>
-        <div class="modal-footer align-right">
-          <button type="button" class="btn btn-primary btn-block close" data-dismiss="modal">
-            Enviar
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
   <!-- Main content -->
   <section class="content">
 
@@ -109,19 +109,19 @@
               <label for="">Fecha</label> 
               <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
             </div>
-
+            
             <?php 
             $sucursal=controladorVenta::crtInfoSucursal();
             ?>
             <div class="form-group col-md-3">
               <label for="">Sucursal</label>
-              <select name="FacSucursal" id="" class="form-control">
+              <select name="" id="" class="form-control">
                 <option value="null">Seleccionar</option>
                 <?php 
                 foreach($sucursal as $value){
-                ?>
-                <option value="<?php echo $value["NUM"];?>"><?php echo $value["NUM"]."|".$value["NOMBRE"];?></option>
-                <?php
+                  ?>
+                  <option value="<?php echo $value["NUM"];?>"><?php echo $value["NUM"]."|".$value["NOMBRE"];?></option>
+                  <?php
                 }
                 ?>
               </select> 
@@ -134,22 +134,10 @@
               <label for="">Tipo de Factura</label>
               <input type="text" class="form-control" placeholder="Sale de la API">
             </div>
-            
-            <?php 
-            $actividad=controladorVenta::crtInfoActividad();
-            ?>
+
             <div class="form-group col-md-6">
-              <label for="">Actividad</label>
-              <select name="FacActividad" id="" class="form-control">
-                <option value="null">Seleccionar</option>
-                <?php 
-                foreach($actividad as $value){
-                ?>
-                <option value="<?php echo $value["COD"];?>"><?php echo $value["ACTECON"];?></option>
-                <?php
-                }
-                ?>
-              </select> 
+              <label for="">Actividad</label> 
+              <input type="text" class="form-control" placeholder="Sale de la API">
             </div>
             <div class="form-group col-md-6">
               <label for="">Email</label> 
@@ -182,46 +170,46 @@
               </div>
               <p id="error-rs" class="text-danger"></p>
             </div>
-
+            
           </div>
 
           <!--datos de la empresa emisora-->
           <div class="form-group col-md-3">
             <div class="card" style="background-color: #f2f2f2;">
-              <!--<div class="input-group sm-3">
-<div class="input-group-prepend">
-<span class="input-group-text">Subtotal</span>
-</div>
-<input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
-</div>-->
-              <div class="input-group sm-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">T. Descuento</span>
+                <!--<div class="input-group sm-3">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text">Subtotal</span>
+                 </div>
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
+                </div>-->
+                <div class="input-group sm-3">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text">T. Descuento</span>
+                 </div>
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="descuentoTotal" readonly value="0.00">
                 </div>
-                <input type="text" style="text-align:right;" class="form-control CurrencyInput"  readonly value="0.00" id="totDescuento" name="totDescuento">
-              </div>
-              <div class="input-group sm-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Total a pagar</span>
+                <div class="input-group sm-3">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text">Total a pagar</span>
+                 </div>
+                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="total" readonly value="0.00">
                 </div>
-                <input type="text" style="text-align:right;" class="form-control CurrencyInput" readonly value="0.00" id="totApagar" name="totApagar">
-              </div>
-              <button type="button" class="btn btn-primary btn-block">
-                <i class="fas fa-plus"></i>
-                Boton descuento
-              </button>
-              <div class="form-group sm-3">
-
-              </div>
-              <div class="card-footer">
-                <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
-                  <i class="fas fa-hand-holding-usd"></i>
-                  Metodo de Pago
+                <button type="button" class="btn btn-primary btn-block">
+                    <i class="fas fa-plus"></i>
+                    Boton descuento
+                </button>
+                <div class="form-group sm-3">
+           
+            </div>
+                 <div class="card-footer">
+             <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    Metodo de Pago
                 </button>
               </div>
+              </div>
             </div>
-          </div>
-
+          
         </form>
       </div>
     </div>
