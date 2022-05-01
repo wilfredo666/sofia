@@ -300,7 +300,7 @@
           </div>
           <div class="form-group col-md-1">
             <label for="">Cantidad</label>
-            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="0" min="0"><!--Entra a FFACTURA.Cantidad-->
+            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="0"><!--Entra a FFACTURA.Cantidad-->
           </div>
           <div class="form-group col-md-1">
             <label for="">U.Medida</label>
