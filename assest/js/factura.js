@@ -43,6 +43,9 @@ var codSistema=document.getElementById("codSistema").value
 var token=document.getElementById("token").value
 var puerto=44392;
 var host="https://"+document.getElementById("servidor").value+":"+puerto;
+var nitEmpresa=document.getElementById("nitEmpresa").innerHTML
+var cuis;
+var cufd;
 /*host para la API*/
 //var host="https://localhost:44392";
 
@@ -311,8 +314,11 @@ function busCliente(){
           document.getElementById("error-rs").className="text-danger"
           document.getElementById("error-rs").innerHTML="Cliente no registrado"
           document.getElementById("RSCliente").value="";
+          document.getElementById("CodCliente").value="";
+          document.getElementById("RSClienteEmail").value="";
         }else{
           document.getElementById("RSCliente").value=data["RAZON"];
+          document.getElementById("CodCliente").value=data["COD"];
           if(data["EMAIL"]==null){
             document.getElementById("RSClienteEmail").value=""
           }else{
@@ -431,45 +437,115 @@ cuando selecciona tipo de documento=>nit
 function tipoDocumento(){
   let tpDocumento=document.getElementById("tpDocumento").value
   let contExcepcion='<label for="">Exceptuar NIT</label>'+
-              '<div class="input-group form-control">'+
-                '<div class="form-check form-check-inline">'+
-                  '<input type="radio" name="tipoNIT" class="form-check-input" value="0">'+
-                  '<label  class="form-check-label">SI</label>'+
-                '</div>'+
-                '<div class="form-check form-check-inline">'+
-                  '<input type="radio" name="tipoNIT" class="form-check-input" value="1">'+
-                  '<label  class="form-check-label">NO</label>'+
-                '</div>'+
-              '</div>'
+      '<div class="input-group form-control">'+
+      '<div class="form-check form-check-inline">'+
+      '<input type="radio" name="tipoNIT" class="form-check-input" value="0">'+
+      '<label  class="form-check-label">SI</label>'+
+      '</div>'+
+      '<div class="form-check form-check-inline">'+
+      '<input type="radio" name="tipoNIT" class="form-check-input" value="1">'+
+      '<label  class="form-check-label">NO</label>'+
+      '</div>'+
+      '</div>'
   if(tpDocumento==5){
-     document.getElementById("card-exepcion").innerHTML=contExcepcion
-     }else{
-       document.getElementById("card-exepcion").innerHTML=""
-     }
+    document.getElementById("card-exepcion").innerHTML=contExcepcion
+  }else{
+    document.getElementById("card-exepcion").innerHTML=""
+  }
 }
+
 /*=========================
 emitir factura
 ==========================*/
 function emitirFactura(){
+  let date=new Date();
   /* datos de encabezado factura */
-  var fechaFactura=document.getElementById("fechaFactura").value;//fecha
+  var hora = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+  var fecha=date.getDate()+ '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
+  var fechaFactura=fecha+":"+hora;//fecha
   var facSucursal=document.getElementById("FacSucursal").value;//sucursal
   var pntVenta=document.getElementById("pntVenta").value;//punto de venta
   var tpFactura=document.getElementById("tpFactura").value;//tipo de factura
   var FacActividad=document.getElementById("FacActividad").value;//actividad
-  var RSClienteEmail=document.getElementById("RSClienteEmail").value;//email
-  var nitCliente=document.getElementById("nitCliente").value;//nit
-  var RSCliente=document.getElementById("RSCliente").value;//nombre o razon social
-  var totDescuento=document.getElementById("totDescuento").value;
-  var totApagar=document.getElementById("totApagar").value;
+  var RSClienteEmail;//email
+  var RSCliente=document.getElementById("RSCliente").value;//nombre o razon social cliente
+  var nitCliente=document.getElementById("nitCliente").value;// nit/ci cliente
+  var totDescuento=document.getElementById("totDescuento").value; //total descuento
+  var descAdicional=document.getElementById("descAdicional").value; //descuento adicional
+  var totApagar=document.getElementById("totApagar").value; //total factura a pagar
+  var RSEmpresa=document.getElementById("RSEmpresa").innerHTML //razon social de la empresa
+  var tpDocumento=document.getElementById("tpDocumento").value //tipo de documento de identidad
+  var CodCliente=document.getElementById("CodCliente").value //codigo de cliente
 
-  console.log(fechaFactura, facSucursal, pntVenta, tpFactura, FacActividad, RSClienteEmail, nitCliente, RSCliente, totDescuento, totApagar);
-  console.log(RSClienteEmail)
+  //en caso el email sea vacio
+  if(document.getElementById("RSClienteEmail").value==""){
+    RSClienteEmail="null";
+  }else{
+    RSClienteEmail=document.getElementById("RSClienteEmail").value
+  }
+
+  /*console.log(fechaFactura, facSucursal, pntVenta, tpFactura, FacActividad, RSClienteEmail, nitCliente, RSCliente, totDescuento, totApagar, nitEmpresa, RSEmpresa);*/
   var jsonDetalle=JSON.stringify(arregloDetalle);
   //console.log(jsonDetalle)
   var objDetalle=Object.assign({},arregloDetalle);
   //console.log(objDetalle)
-}
+
+  var obj={
+    codigoAmbiente: 2, //?
+    codigoPuntoVenta: pntVenta,
+    codigoPuntoVentaSpecified: true,
+    codigoSistema: codSistema,
+    codigoSucursal: facSucursal,
+    nit: nitEmpresa,
+    codigoDocumentoSector: 1, //?
+    codigoEmision: 1, //?
+    codigoModalidad: 2, //?
+    //cufd: cufd,
+    cuis: cuis,
+    tipoFacturaDocumento: 1,
+    archivo: null,
+    fechaEnvio: fechaFactura,
+    hashArchivo: "",
+    tipoFactura: tpFactura,
+    codigoControl: "0DBC3C7B9E56D74",
+    factura: {
+      cabecera: {
+        nitEmisor: nitEmpresa,
+        razonSocialEmisor: RSEmpresa,
+        municipio: "Cochabamba",
+        telefono: "44293074",
+        numeroFactura: 1,
+        cuf: "string",
+        cufd: "QUFBS0JXwr9dREE=OTRDODkzNzM0NDc=Q8Khw5prRFJhRVdVNzFEN0E3Qjc0MEU5",
+        codigoSucursal: 0,
+        direccion: "Test",
+        codigoPuntoVenta: 0,
+        fechaEmision: fechaFactura,
+        nombreRazonSocial: RSCliente,
+        codigoTipoDocumentoIdentidad: tpDocumento,
+        numeroDocumento: nitCliente,
+        complemento: "",
+        codigoCliente: CodCliente,
+        codigoMetodoPago: 1,
+        numeroTarjeta: null,
+        montoTotal: 50,
+        montoTotalSujetoIva: 50,
+        codigoMoneda: 1,
+        tipoCambio: 1,
+        montoTotalMoneda: 50,
+        montoGiftCard: 0,
+        descuentoAdicional: descAdicional,
+        codigoExcepcion: 0,
+        cafc: null,
+        leyenda: "LEYENDA",
+        usuario: "test",
+        codigoDocumentoSector: 1
+      }
+    }
+  }
+  console.log(JSON.stringify(obj))
+  
+  }
 
 /*  formDetalle.onsubmit=(e)=>{
     e.preventDefault();
