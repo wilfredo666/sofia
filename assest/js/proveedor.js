@@ -64,7 +64,7 @@ function MVerProveedor(codProveedor){
   )
 }
 
-function EditProveedor(codProveedor){
+function MEditProveedor(codProveedor){
 
   window.location="FormEditProveedor?"+codProveedor;
 

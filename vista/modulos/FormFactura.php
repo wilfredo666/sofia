@@ -106,9 +106,10 @@
         <form action="" class="row">
           <div class="form-group row col-md-9">
             <div class="form-group col-md-3">
-              <label for="">Fecha</label> 
-              <input type="text" class="form-control" name="fechaFactura" id="fechaFactura" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
-            </div>
+              <label for="">Fecha</label>
+              <?php date_default_timezone_set('America/La_Paz');?> 
+              <input type="text" class="form-control" name="fechaFactura" id="fechaFactura" value="<?php echo date("d-m-Y");?>" disabled>
+            </div>  
 
             <?php 
             $sucursal=controladorVenta::crtInfoSucursal();
@@ -116,7 +117,7 @@
             <div class="form-group col-md-3">
               <label for="">Sucursal</label>
               <select name="FacSucursal" id="FacSucursal" class="form-control">
-                <option value="null">Seleccionar</option>
+                <option value="0">Seleccionar</option>
                 <?php 
                 foreach($sucursal as $value){
                 ?>
@@ -153,13 +154,13 @@
             </div>
             <div class="form-group col-md-6">
               <label for="">Email</label> 
-              <input type="text" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail" name="RSClienteEmail">
+              <input type="email" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail" name="RSClienteEmail">
             </div>
             <div class="form-group col-md-6">
               <label for="">Tipo de documento</label> 
               <div class="input-group">
                 <select class="form-control" name="tpDocumento" id="tpDocumento" onchange="tipoDocumento()">
-                  <option>Seleccionar</option>
+                  <option value="1">Seleccionar</option>
                   <option value="1">CEDULA DE IDENTIDAD</option>
                   <option value="2">CEDULA DE IDENTIDAD DE EXTRANJERO</option>
                   <option value="3">PASAPORTE</option>
@@ -185,6 +186,7 @@
               <label for="">Nombre o Razon social</label> 
               <div class="input-group">
                 <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente">
+                <input type="hidden" id="CodCliente">
                 <!--<div class="input-group-append">
 <button class="btn btn-outline-secondary" type="button">
 <i class="fas fa-search">  

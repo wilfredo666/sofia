@@ -1,10 +1,54 @@
+/*=====================================================
+traduciendo los apartados de DataTable - reporte ventas
+======================================================*/
+$(function () {
+  $("#DataTableVentas").DataTable({
+    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+    "paging": true,
+    "lengthChange": false,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+    "ajax": "vista/modulos/dataTableVenta.php",
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay información",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords": "Sin resultados encontrados",
+      "paginate": {
+        "first": "Primero",
+        "last": "Ultimo",
+        "next": "Siguiente",
+        "previous": "Anterior"
+      }
+    }
+
+  }).buttons().container().appendTo('#DataTableVentas_wrapper .col-md-6:eq(0)');
+});
+
 /*==================================
-comprobar conexion con SIAT - metodo
+variables globales
 ====================================*/
 var codSistema=document.getElementById("codSistema").value
 var token=document.getElementById("token").value
 var puerto=44392;
 var host="https://"+document.getElementById("servidor").value+":"+puerto;
+/*host para la API*/
+//var host="https://localhost:44392";
+
+/*==================================
+comprobar conexion con SIAT - metodo
+====================================*/
 
 setInterval(()=>{
   verificarComunicacion(token)
@@ -40,6 +84,7 @@ obtener CUIS - metodo
 ====================================*/
 var nitEmpresa=document.getElementById("nitEmpresa").innerHTML
 var cuis;
+var cufd;
 
 solicitudcuis()
 
@@ -62,7 +107,6 @@ function solicitudcuis(){
       contentType:"application/json",
       processData:false,
       success:function(data){
-
         cuis=data["codigo"];
       }
     }
@@ -92,13 +136,12 @@ function solicitudcufd(){
       contentType:"application/json",
       processData:false,
       success:function(data){
-
+        cufd=data["codigo"];
       }
     }
   )
 
 }
-
 
 function MNuevaVenta(){
   window.location="FormFactura";
@@ -159,46 +202,6 @@ function EliVenta(codVenta){
   )
 }
 
-
-
-/*=====================================================
-traduciendo los apartados de DataTable - reporte ventas
-======================================================*/
-$(function () {
-  $("#DataTableVentas").DataTable({
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-    "paging": true,
-    "lengthChange": false,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-    "ajax": "vista/modulos/dataTableVenta.php",
-    language: {
-      "decimal": "",
-      "emptyTable": "No hay información",
-      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-      "infoPostFix": "",
-      "thousands": ",",
-      "lengthMenu": "Mostrar _MENU_ Entradas",
-      "loadingRecords": "Cargando...",
-      "processing": "Procesando...",
-      "search": "Buscar:",
-      "zeroRecords": "Sin resultados encontrados",
-      "paginate": {
-        "first": "Primero",
-        "last": "Ultimo",
-        "next": "Siguiente",
-        "previous": "Anterior"
-      }
-    }
-
-  }).buttons().container().appendTo('#DataTableVentas_wrapper .col-md-6:eq(0)');
-});
-
 /*===================
 carrito
 =====================*/
@@ -221,16 +224,26 @@ const redibujarTabla=()=>{
     let botonEliminar =document.createElement("button");
     botonEliminar.classList.add("btn", "btn-danger");
     botonEliminar.innerText="Eliminar";
+    botonEliminar.onclick=()=>{
+      eliminarDetalleById(detalle.codigoProducto);
+    }
     tdEliminar.appendChild(botonEliminar);
     fila.appendChild(tdEliminar);
     ListaDetalle.appendChild(fila);
   })
 }
 
+eliminarDetalleById=(cod)=>{
+  arregloDetalle=arregloDetalle.filter((detalle)=>{
+    if(cod!=detalle.codigoProducto){
+      return detalle
+    }
+  })
+  redibujarTabla()
+  calcularTotal()
+}
 
 function agregarCarrito(){
-let totalApagar=0;
-let totalDescuento=0;
   // 1.- obtiene todo los valores del apartado para buscar producto
   const codigoProducto=document.getElementById("codigoProducto");
   const ConcProducto=document.getElementById("ConcProducto");
@@ -256,25 +269,27 @@ let totalDescuento=0;
 
   //3.-Agrega el objeto a un arreglo ya creado
   arregloDetalle.push(objDetalle);
-  
-  //4.- calcula el total a pagar, total descuento
-  for(var i=0;i<=arregloDetalle.length;i++){
-    totalApagar=arregloDetalle[i].preTotal
-    totalDescuento=arregloDetalle[i].descProducto
-  }
-  
-  //4.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
+
+  //4.- calcula el total a pagar, total descuento y definir valores
+  calcularTotal()
+
+  //5.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
   redibujarTabla();
-  
- /* var SubTotal = parseFloat(document.getElementById('SubTotal').value); 
 
-  var Subtotal= parseFloat(document.getElementById('PreTotal').value);
 
-  var Acumuladorsub= resultforsub + Subtotal;
+}
 
-  var NuevoSubtotal=document.getElementById('SubTotal');
-  NuevoSubtotal.value=Acumuladorsub;*/
-
+calcularTotal=()=>{
+  let totalApagar=0;
+  let totalDescuento=0;
+  let descAdicional=document.getElementById("descAdicional").value
+  for(var i=0;i<arregloDetalle.length;i++){
+    totalApagar=totalApagar+arregloDetalle[i].preTotal
+    totalDescuento=totalDescuento+arregloDetalle[i].descProducto
+  }
+  document.getElementById("totDescuento").value=totalDescuento
+  document.getElementById("totApagar").value=totalApagar-descAdicional
+  document.getElementById("SubTotal").value=totalApagar
 }
 
 /*===================================
@@ -295,9 +310,14 @@ function busCliente(){
         if(data==false){
           document.getElementById("error-rs").className="text-danger"
           document.getElementById("error-rs").innerHTML="Cliente no registrado"
+          document.getElementById("RSCliente").value="";
         }else{
           document.getElementById("RSCliente").value=data["RAZON"];
-          document.getElementById("RSClienteEmail").value=data["EMAIL"];
+          if(data["EMAIL"]==null){
+            document.getElementById("RSClienteEmail").value=""
+          }else{
+            document.getElementById("RSClienteEmail").value=data["EMAIL"];
+          }
           verificarNit(nitCliente)
         }
 
@@ -305,6 +325,10 @@ function busCliente(){
     }
   )
 }
+
+/*===================================
+verificar nit cliente
+====================================*/
 
 function verificarNit(nitCliente){
   var obj={
@@ -326,7 +350,7 @@ function verificarNit(nitCliente){
       processData:false,
       success:function(data){
         if(data["transaccion"]==false){
-          document.getElementById("error-rs").className="text-danger"
+          document.getElementById("error-rs").className="text-warning"
           document.getElementById("error-rs").innerHTML="Contribuyente no activo"
         }else{
           document.getElementById("error-rs").className="text-success"
@@ -337,6 +361,9 @@ function verificarNit(nitCliente){
   )
 }
 
+/*===================================
+buscar producto
+====================================*/
 
 function busCod(){
   var cod=document.getElementById("codigoProducto").value
@@ -361,7 +388,7 @@ function busCod(){
         document.getElementById("PreUnitario").value=data["PVTAML"];
         document.getElementById("LoteProd").value=data["LOTE"];
         document.getElementById("PreTotal").value=data["PVTAML"];
-          document.getElementById("codigoProducto").focus();
+        document.getElementById("codigoProducto").focus();
       }
     }
   )
@@ -388,7 +415,6 @@ function calculate() {
 
 }
 
-/*>>>>>>> 081bb022e0f326fb7e419983da18cb993375e2c7*/
 
 $('input.CurrencyInput').on('blur', function() {
   const value = this.value.replace(/,/g, '');
@@ -399,6 +425,51 @@ $('input.CurrencyInput').on('blur', function() {
   });
 });
 
+/*======================================
+cuando selecciona tipo de documento=>nit
+========================================*/
+function tipoDocumento(){
+  let tpDocumento=document.getElementById("tpDocumento").value
+  let contExcepcion='<label for="">Exceptuar NIT</label>'+
+              '<div class="input-group form-control">'+
+                '<div class="form-check form-check-inline">'+
+                  '<input type="radio" name="tipoNIT" class="form-check-input" value="0">'+
+                  '<label  class="form-check-label">SI</label>'+
+                '</div>'+
+                '<div class="form-check form-check-inline">'+
+                  '<input type="radio" name="tipoNIT" class="form-check-input" value="1">'+
+                  '<label  class="form-check-label">NO</label>'+
+                '</div>'+
+              '</div>'
+  if(tpDocumento==5){
+     document.getElementById("card-exepcion").innerHTML=contExcepcion
+     }else{
+       document.getElementById("card-exepcion").innerHTML=""
+     }
+}
+/*=========================
+emitir factura
+==========================*/
+function emitirFactura(){
+  /* datos de encabezado factura */
+  var fechaFactura=document.getElementById("fechaFactura").value;//fecha
+  var facSucursal=document.getElementById("FacSucursal").value;//sucursal
+  var pntVenta=document.getElementById("pntVenta").value;//punto de venta
+  var tpFactura=document.getElementById("tpFactura").value;//tipo de factura
+  var FacActividad=document.getElementById("FacActividad").value;//actividad
+  var RSClienteEmail=document.getElementById("RSClienteEmail").value;//email
+  var nitCliente=document.getElementById("nitCliente").value;//nit
+  var RSCliente=document.getElementById("RSCliente").value;//nombre o razon social
+  var totDescuento=document.getElementById("totDescuento").value;
+  var totApagar=document.getElementById("totApagar").value;
+
+  console.log(fechaFactura, facSucursal, pntVenta, tpFactura, FacActividad, RSClienteEmail, nitCliente, RSCliente, totDescuento, totApagar);
+  console.log(RSClienteEmail)
+  var jsonDetalle=JSON.stringify(arregloDetalle);
+  //console.log(jsonDetalle)
+  var objDetalle=Object.assign({},arregloDetalle);
+  //console.log(objDetalle)
+}
 
 /*  formDetalle.onsubmit=(e)=>{
     e.preventDefault();
@@ -415,3 +486,10 @@ $('input.CurrencyInput').on('blur', function() {
 
     redibujarTabla();
   }*/
+/*
+-para convertir a un json
+var jsonDetalle=JSON.stringify(arregloDetalle);
+
+-para convertir a un objeto
+var objDetalle=Object.assign({},arregloDetalle);
+*/

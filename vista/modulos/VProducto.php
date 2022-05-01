@@ -26,7 +26,7 @@
                     <th>Proveedor</th>
                     <th>Unidad</th>
                       <th>
-                      <button class="btn btn-primary" onclick="FnuevoProducto">Nuevo Producto</button> <!--aun falta reemplazar el on click-->
+                      <button class="btn btn-primary" onclick="FNuevoProducto()">Nuevo Producto</button>
                     </th>
                       
                   </tr>

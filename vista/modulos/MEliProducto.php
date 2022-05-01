@@ -11,5 +11,5 @@ $codProducto=$_GET["codProducto"];
    <h2>Esta seguro de eliminar este producto?</h2>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger float-right" onclick="EliProducto(<?php echo $codProducto;?>);">Eliminar</button>
+    <button type="button" class="btn btn-danger float-right" onclick="EliProducto('<?php echo $codProducto;?>');">Eliminar</button>
   </div>
