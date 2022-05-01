@@ -27,6 +27,12 @@ class controladorVenta{
 
     return $respuesta;
   }
+  
+  static public function crtInfoActividad(){
+    $respuesta=ModeloVenta::MdlInfoActividad();
+
+    return $respuesta;
+  }
 }
 
 ?>

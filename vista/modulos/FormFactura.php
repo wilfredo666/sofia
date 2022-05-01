@@ -4,85 +4,85 @@
 
   </section>
   <div class="modal fade show" id="modal-lg"  aria-modal="true" role="dialog">
-        
-           <div class="modal-dialog modal-lg">
-                
-            
-           <div class="modal-content">
-            
-            <div class="modal-header">
-                <h4 class="modal-title">Metodos de pago</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">X</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                 <div class="container Fluid">
-                   <div class="row">
-                    <div class="form-group col-md-3" >
-                    <label for="" class="align-middle">Efectivo</label>
-                        <select type="text" class="form-control">
-                        <option value="EfectivoEjemplo1">1|Bolivianos</option>
-                        <option value="Efectivojemplo2">2|Dolares</option>
-                        </select> 
-                        <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked="checked">
-                        <label for="customRadio1" class="custom-control-label" >Confirmar Opcion</label>
-                        
-                        </div>  
-                </div>  
-                <div class="form-group col-md-3">
-                    <label for="">Gift Card</label>
-                        <select type="text" class="form-control">
-                        <option value="GiftCardEjemplo2">1|Google</option>
-                        <option value="GiftCardEjemplo3">2|Blizzard</option>
-                        </select> 
-                        <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
-                        <label for="customRadio2" class="custom-control-label">Confirmar Opcion</label>
-                        </div>      
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="">Tarjeta</label>
-                        <select type="text" class="form-control">
-                        <option value="TarjetaEjemplo2">1|Credito</option>
-                        <option value="TarjetaEjemplo3">2|Debito</option>
-                        </select> 
-                        <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio3" name="customRadio">
-                        <label for="customRadio3" class="custom-control-label">Confirmar Opcion</label>
-                        </div>      
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="">Otros</label>
-                        <select type="text" class="form-control">
-                        <option value="OtrosEjemplo2">1|Billetera - Movil</option>
-                        <option value="OtrosEjemplo3">2|Billetera - Pago Movil</option>
-                        <option value="OtrosEjemplo4">3|Canal de Pago</option>
-                        <option value="OtrosEjemplo5">4|Canal de Pago - Billetera</option>
-                        <option value="OtrosEjemplo6">5|Canal de Pago - Billetera - Pago Online</option>
-                        <option value="OtrosEjemplo7">6|Canal de Pago Pago Online</option>
-                        <option value="OtrosEjemplo8">7|Cheque</option>
-                        <option value="OtrosEjemplo9">8|Cheque - Billetera</option>
-                        <option value="OtrosEjemplo10">9|Cheque - Billetera - Pago Online</option>
-                        </select> 
-                        <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio4" name="customRadio">
-                        <label for="customRadio4" class="custom-control-label">Confirmar Opcion</label>
-                        </div>          
-                </div>
-                </div>
-                </div>                              
-            </div>
-            <div class="modal-footer align-right">
-                    <button type="button" class="btn btn-primary btn-block close" data-dismiss="modal">
-                    Enviar
-                </button>
-            </div>
-             
-                </div>
-            </div>
+
+    <div class="modal-dialog modal-lg">
+
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Metodos de pago</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">X</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <div class="container Fluid">
+            <div class="row">
+              <div class="form-group col-md-3" >
+                <label for="" class="align-middle">Efectivo</label>
+                <select type="text" class="form-control">
+                  <option value="EfectivoEjemplo1">1|Bolivianos</option>
+                  <option value="Efectivojemplo2">2|Dolares</option>
+                </select> 
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked="checked">
+                  <label for="customRadio1" class="custom-control-label" >Confirmar Opcion</label>
+
+                </div>  
+              </div>  
+              <div class="form-group col-md-3">
+                <label for="">Gift Card</label>
+                <select type="text" class="form-control">
+                  <option value="GiftCardEjemplo2">1|Google</option>
+                  <option value="GiftCardEjemplo3">2|Blizzard</option>
+                </select> 
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio">
+                  <label for="customRadio2" class="custom-control-label">Confirmar Opcion</label>
+                </div>      
+              </div>
+              <div class="form-group col-md-3">
+                <label for="">Tarjeta</label>
+                <select type="text" class="form-control">
+                  <option value="TarjetaEjemplo2">1|Credito</option>
+                  <option value="TarjetaEjemplo3">2|Debito</option>
+                </select> 
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" id="customRadio3" name="customRadio">
+                  <label for="customRadio3" class="custom-control-label">Confirmar Opcion</label>
+                </div>      
+              </div>
+              <div class="form-group col-md-3">
+                <label for="">Otros</label>
+                <select type="text" class="form-control">
+                  <option value="OtrosEjemplo2">1|Billetera - Movil</option>
+                  <option value="OtrosEjemplo3">2|Billetera - Pago Movil</option>
+                  <option value="OtrosEjemplo4">3|Canal de Pago</option>
+                  <option value="OtrosEjemplo5">4|Canal de Pago - Billetera</option>
+                  <option value="OtrosEjemplo6">5|Canal de Pago - Billetera - Pago Online</option>
+                  <option value="OtrosEjemplo7">6|Canal de Pago Pago Online</option>
+                  <option value="OtrosEjemplo8">7|Cheque</option>
+                  <option value="OtrosEjemplo9">8|Cheque - Billetera</option>
+                  <option value="OtrosEjemplo10">9|Cheque - Billetera - Pago Online</option>
+                </select> 
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" id="customRadio4" name="customRadio">
+                  <label for="customRadio4" class="custom-control-label">Confirmar Opcion</label>
+                </div>          
+              </div>
+            </div>
+          </div>                              
+        </div>
+        <div class="modal-footer align-right">
+          <button type="button" class="btn btn-primary btn-block close" data-dismiss="modal">
+            Enviar
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <!-- Main content -->
   <section class="content">
 
@@ -107,54 +107,40 @@
           <div class="form-group row col-md-9">
             <div class="form-group col-md-3">
               <label for="">Fecha</label> 
-              <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
+              <input type="text" class="form-control" name="fechaFactura" id="fechaFactura" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
             </div>
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> parent of d36acc0 (30-04-22)
             <?php 
             $sucursal=controladorVenta::crtInfoSucursal();
             ?>
             <div class="form-group col-md-3">
               <label for="">Sucursal</label>
-<<<<<<< HEAD
-              <select name="" id="" class="form-control">
-=======
-              <select name="FacSucursal" id="" class="form-control">
->>>>>>> parent of d36acc0 (30-04-22)
+              <select name="FacSucursal" id="FacSucursal" class="form-control">
                 <option value="null">Seleccionar</option>
                 <?php 
                 foreach($sucursal as $value){
-                  ?>
-                  <option value="<?php echo $value["NUM"];?>"><?php echo $value["NUM"]."|".$value["NOMBRE"];?></option>
-                  <?php
+                ?>
+                <option value="<?php echo $value["NUM"];?>"><?php echo $value["NUM"]."|".$value["NOMBRE"];?></option>
+                <?php
                 }
                 ?>
               </select> 
             </div>
             <div class="form-group col-md-3">
               <label for="">Punto de Venta</label>
-              <input type="text" class="form-control" placeholder="(pendiente)">
+              <input type="text" class="form-control" name="pntVenta" id="pntVenta" value="0" readonly>
             </div>
             <div class="form-group col-md-3">
               <label for="">Tipo de Factura</label>
-              <input type="text" class="form-control" placeholder="Sale de la API">
+              <input type="text" class="form-control" name="tpFactura" id="tpFactura" value="1" readonly>
             </div>
-<<<<<<< HEAD
 
-            <div class="form-group col-md-6">
-              <label for="">Actividad</label> 
-              <input type="text" class="form-control" placeholder="Sale de la API">
-=======
-            
             <?php 
             $actividad=controladorVenta::crtInfoActividad();
             ?>
             <div class="form-group col-md-6">
               <label for="">Actividad</label>
-              <select name="FacActividad" id="" class="form-control">
+              <select name="FacActividad" id="FacActividad" class="form-control">
                 <option value="null">Seleccionar</option>
                 <?php 
                 foreach($actividad as $value){
@@ -163,24 +149,35 @@
                 <?php
                 }
                 ?>
-              </select> 
->>>>>>> parent of d36acc0 (30-04-22)
+              </select>
             </div>
             <div class="form-group col-md-6">
               <label for="">Email</label> 
-              <input type="text" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail">
+              <input type="text" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail" name="RSClienteEmail">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="">Tipo de documento</label> 
+              <div class="input-group">
+                <select class="form-control" name="tpDocumento" id="tpDocumento" onchange="tipoDocumento()">
+                  <option>Seleccionar</option>
+                  <option value="1">CEDULA DE IDENTIDAD</option>
+                  <option value="2">CEDULA DE IDENTIDAD DE EXTRANJERO</option>
+                  <option value="3">PASAPORTE</option>
+                  <option value="4">OTRO DOCUMENTO DE IDENTIDAD</option>
+                  <option value="5">NÚMERO DE IDENTIFICACIÓN TRIBUTARIA</option>
+                </select>
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="">NIT/CI</label> 
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Ingrese el NIT/CI del cliente" id="nitCliente">
+                <input type="text" class="form-control" placeholder="Ingrese el NIT/CI del cliente" id="nitCliente" name="nitCliente">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
                     <i class="fas fa-search">  
                     </i>
                   </button>
                 </div>
-
               </div>
             </div>
 
@@ -188,92 +185,64 @@
               <label for="">Nombre o Razon social</label> 
               <div class="input-group">
                 <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button">
-                    <i class="fas fa-search">  
-                    </i>
-                  </button>
-                </div>
+                <!--<div class="input-group-append">
+<button class="btn btn-outline-secondary" type="button">
+<i class="fas fa-search">  
+</i>
+</button>
+</div>-->
               </div>
               <p id="error-rs" class="text-danger"></p>
             </div>
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> parent of d36acc0 (30-04-22)
+            <div class="form-group col-md-6" id="card-exepcion">
+              
+            </div>
           </div>
 
-          <!--datos de la empresa emisora-->
           <div class="form-group col-md-3">
             <div class="card" style="background-color: #f2f2f2;">
-<<<<<<< HEAD
-                <!--<div class="input-group sm-3">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text">Subtotal</span>
-                 </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
-                </div>-->
-                <div class="input-group sm-3">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text">T. Descuento</span>
-                 </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="descuentoTotal" readonly value="0.00">
-                </div>
-                <div class="input-group sm-3">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text">Total a pagar</span>
-                 </div>
-                  <input type="text" style="text-align:right;" class="form-control CurrencyInput" id="total" readonly value="0.00">
-                </div>
-                <button type="button" class="btn btn-primary btn-block">
-                    <i class="fas fa-plus"></i>
-                    Boton descuento
-                </button>
-                <div class="form-group sm-3">
-           
-            </div>
-                 <div class="card-footer">
-             <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    Metodo de Pago
-                </button>
-              </div>
-=======
-              <!--<div class="input-group sm-3">
-<div class="input-group-prepend">
-<span class="input-group-text">Subtotal</span>
-</div>
-<input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
-</div>-->
               <div class="input-group sm-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">T. Descuento</span>
+                  <span class="input-group-text">Subtotal</span>
                 </div>
-                <input type="text" style="text-align:right;" class="form-control CurrencyInput"  readonly value="0.00" id="totDescuento" name="totDescuento">
+                <input type="text" style="text-align:right;" class="form-control CurrencyInput"  readonly value="0.00" id="SubTotal" name="SubTotal">
               </div>
               <div class="input-group sm-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Total a pagar</span>
+                  <span class="input-group-text">Descuento Adicional</span>
+                </div>
+                <input type="text" style="text-align:right;" class="form-control CurrencyInput" value="0.00" id="descAdicional" name="descAdicional" onkeyup="calcularTotal()">
+              </div>
+              <div class="input-group sm-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Total</span>
                 </div>
                 <input type="text" style="text-align:right;" class="form-control CurrencyInput" readonly value="0.00" id="totApagar" name="totApagar">
               </div>
-              <button type="button" class="btn btn-primary btn-block">
-                <i class="fas fa-plus"></i>
-                Boton descuento
-              </button>
-              <div class="form-group sm-3">
 
-              </div>
+              <input type="hidden" value="0.00" id="totDescuento" name="totDescuento">
+
               <div class="card-footer">
-                <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
-                  <i class="fas fa-hand-holding-usd"></i>
-                  Metodo de Pago
-                </button>
->>>>>>> parent of d36acc0 (30-04-22)
+
+                <label for="">Metodo de pago</label> 
+                <div class="input-group">
+                  <select class="form-control" name="metPago" id="metPago">
+                    <option>Seleccionar</option>
+                    <option value="1">Efectivo</option>
+                    <option value="2">Tarjeta</option>
+                    <option value="3">GifCard</option>
+                  </select>
+
+                </div>
+                <!--<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
+<i class="fas fa-hand-holding-usd"></i>
+Metodo de Pago
+</button>-->
               </div>
             </div>
-          
+          </div>
+
         </form>
       </div>
     </div>
@@ -331,7 +300,7 @@
         </form>
       </div>
       <div class="card-footer">
-        <button class="btn btn-success">Guardar</button>
+        <button class="btn btn-success" onclick="emitirFactura()">Guardar</button>
       </div>
     </div>
 
