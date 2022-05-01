@@ -15,6 +15,7 @@
         <li class="nav-item nav-link">
           <input type="hidden" value="<?php echo $_SESSION["codsistema"];?>" id="codSistema">
           <input type="hidden" value="<?php echo $_SESSION["token"];?>" id="token">
+          <input type="hidden" value="" id="cuis">
           <span class="badge badge-secondary" id="comunSiat">desconectado</span>
 
         </li>
@@ -26,7 +27,7 @@
           <b>Servidor: </b><?php echo $_SESSION["ipServer"];?>
         </li>
         <li class="nav-item nav-link">
-          <b>Entidad: </b><?php echo $_SESSION["nombreEmpresa"];?>
+          <b>Entidad: </b><span id="RSEmpresa"><?php echo $_SESSION["nombreEmpresa"];?></span>
         </li>
         <li class="nav-item nav-link">
           <b>NIT: </b><span id="nitEmpresa"><?php echo $_SESSION["nitRucEmpresa"];?></span>

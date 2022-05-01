@@ -1,0 +1,146 @@
+
+-tipo de venta --> mostrar: compra venta --> enviar codigo --> recuperr del api
+
+insert into FCTROLF (ESPEC, NUM, AUTORIZACION, NFAC, TN, CRED, FMA) values (3, 43, '3744006701025', 43, 'N', 'N', 'N')
+
+estos si
+--------
+insert into FCTROLF (ESPEC, AUTORIZACION, NFAC, TN, CRED, FMA, FECHALIM) values (3, 367401000678650, 43, 'N', 'N', 'N', CURRENT_DATE+1)
+
+insert into FCTROLF (ESPEC, AUTORIZACION, NFAC, TN, CRED, FMA, FECHALIM) values (3, null, 49, 'N', 'N', 'N', CURRENT_DATE+1)
+
+insert into FCTROLF (ESPEC, NFAC, TN, CRED, FMA, FECHALIM) values (3, 50, 'N', 'N', 'N', CURRENT_DATE+1)
+
+formato
+-------
+insert into FCTROLF (ESPEC, NFAC, TN, CRED, FMA, FECHALIM) values (3, [# de factura], 'N', 'N', 'N', [fecha actual + 1])
+
+-->FECHALIM es un campo obligatorio
+
+select * from FCTROLF
+where NFAC=19
+---------------
+errores en la base de datos:
+tabla-->FACTECON
+al crear registros con caracteres especiales, estos no son visualizados por la interfaz y al momento de recuperarlos por sistema, son visualizados erroneamente
+---------------
+naturex
+
+servidor: 209.126.10.208
+bd: naturex
+---------------
+cambiar de la bd
+EMPRESA-->NIT_RUC-->3726922011
+FAUTSIS-->CODSISTEMA-->71D7A7B740E994C89373447
+
+
+Warning: include(): Failed opening 'modulos/FormEditProveedor.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\sofia\vista\plantilla.php on line 51
+
+
+----------------
+clientes - casos
+----------------
+registrado bd y no registrado SIN -->contribuyente no activo
+no registrado bd y no registrado SIN --> cliente no registrado y borrar el valor del campo "Nombre o Razon social"
+registrado bd y registrado SIN --> Contribuyente activo
+
+
+----------------
+ejemplo de emision de factura
+----------------
+{
+"codigoAmbiente":2,
+"codigoPuntoVenta":0,
+"codigoPuntoVentaSpecified":true,
+"codigoSistema":"71D7A7B740E994C89373447",
+"codigoSucursal":0,
+"nit":3726922011,
+"codigoDocumentoSector":1,
+"codigoEmision":1,
+"codigoModalidad":2,
+"cufd":"QUFBS0JXwr9dREE=OTRDODkzNzM0NDc=Q8Khw5prRFJhRVdVNzFEN0E3Qjc0MEU5",
+"cuis":"2E8B5B9E",
+"tipoFacturaDocumento":1,
+"archivo":null,
+"fechaEnvio":"2022-03-03T19:34:01.001",
+"hashArchivo":"",
+"tipoFactura":1,
+"codigoControl":"0DBC3C7B9E56D74",
+"factura":
+{"cabecera":
+{"nitEmisor":3726922011,
+"razonSocialEmisor":"SOFIA",
+"municipio":"Cochabamba",
+"telefono":"44293074",
+"numeroFactura":1,
+"cuf":"string",
+"cufd":"QUFBS0JXwr9dREE=OTRDODkzNzM0NDc=Q8Khw5prRFJhRVdVNzFEN0E3Qjc0MEU5",
+"codigoSucursal":0,
+"direccion":"Test",
+"codigoPuntoVenta":0,
+"fechaEmision":"2022-04-25T19:34:01.001",
+"nombreRazonSocial":"wilfredo saez",
+"codigoTipoDocumentoIdentidad":1,
+"numeroDocumento":"7904767",
+"complemento":"",
+"codigoCliente":"SAEZ",
+"codigoMetodoPago":1,
+"numeroTarjeta":null,
+"montoTotal":50,
+"montoTotalSujetoIva":50,
+"codigoMoneda":1,
+"tipoCambio":1,
+"montoTotalMoneda":50,
+"montoGiftCard":0,
+"descuentoAdicional":0,
+"codigoExcepcion":0,
+"cafc":null,
+"leyenda":"LEYENDA",
+"usuario":"test",
+"codigoDocumentoSector":1
+},
+"detalle":[
+{
+"actividadEconomica":"620000",
+"codigoProductoSin":83143,
+"codigoProducto":"JN-131231",
+"descripcion":"JUGO DE NARANJA EN VASO",
+"cantidad":5,
+"unidadMedida":58,
+"precioUnitario":2.5,
+"montoDescuento":null,
+"subTotal":12.5
+},
+{
+"actividadEconomica":"620000",
+"codigoProductoSin":831439,
+"codigoProducto":"JN-131232",
+"descripcion":"JUGO DE MANDARINA EN VASO",
+"cantidad":5,
+"unidadMedida":58,
+"precioUnitario":2.5,
+"montoDescuento":null,
+"subTotal":12.5
+},
+{
+"actividadEconomica":"620000",
+"codigoProductoSin":831439,
+"codigoProducto":"JN-131234",
+"descripcion":"JUGO DE LIMA EN VASO",
+"cantidad":5,
+"unidadMedida":58,
+"precioUnitario":2.5,
+"montoDescuento":null,
+"subTotal":12.5
+},
+{"actividadEconomica":"620000",
+"codigoProductoSin":831439,
+"codigoProducto":"JN-131233",
+"descripcion":"JUGO DE TORONJA EN VASO",
+"cantidad":5,
+"unidadMedida":58,
+"precioUnitario":2.5,
+"montoDescuento":null,
+"subTotal":12.5
+}]}
+}
