@@ -106,18 +106,17 @@
         <form action="" class="row">
           <div class="form-group row col-md-9">
             <div class="form-group col-md-3">
-              <label for="">Fecha</label>
-              <?php date_default_timezone_set('America/La_Paz');?> 
-              <input type="text" class="form-control" name="fechaFactura" id="fechaFactura" value="<?php echo date("d-m-Y");?>" disabled>
-            </div>  
+              <label for="">Fecha</label> 
+              <input type="text" class="form-control" value="<?php echo date("d-m-Y");?>" disabled name="fechaRegistro">
+            </div>
 
             <?php 
             $sucursal=controladorVenta::crtInfoSucursal();
             ?>
             <div class="form-group col-md-3">
               <label for="">Sucursal</label>
-              <select name="FacSucursal" id="FacSucursal" class="form-control">
-                <option value="0">Seleccionar</option>
+              <select name="FacSucursal" id="" class="form-control">
+                <option value="null">Seleccionar</option>
                 <?php 
                 foreach($sucursal as $value){
                 ?>
@@ -129,19 +128,19 @@
             </div>
             <div class="form-group col-md-3">
               <label for="">Punto de Venta</label>
-              <input type="text" class="form-control" name="pntVenta" id="pntVenta" value="0" readonly>
+              <input type="text" class="form-control" placeholder="(pendiente)">
             </div>
             <div class="form-group col-md-3">
               <label for="">Tipo de Factura</label>
-              <input type="text" class="form-control" name="tpFactura" id="tpFactura" value="1" readonly>
+              <input type="text" class="form-control" placeholder="Sale de la API">
             </div>
-
+            
             <?php 
             $actividad=controladorVenta::crtInfoActividad();
             ?>
             <div class="form-group col-md-6">
               <label for="">Actividad</label>
-              <select name="FacActividad" id="FacActividad" class="form-control">
+              <select name="FacActividad" id="" class="form-control">
                 <option value="null">Seleccionar</option>
                 <?php 
                 foreach($actividad as $value){
@@ -150,35 +149,23 @@
                 <?php
                 }
                 ?>
-              </select>
+              </select> 
             </div>
             <div class="form-group col-md-6">
               <label for="">Email</label> 
-              <input type="email" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail" name="RSClienteEmail">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="">Tipo de documento</label> 
-              <div class="input-group">
-                <select class="form-control" name="tpDocumento" id="tpDocumento" onchange="tipoDocumento()">
-                  <option value="1">Seleccionar</option>
-                  <option value="1">CEDULA DE IDENTIDAD</option>
-                  <option value="2">CEDULA DE IDENTIDAD DE EXTRANJERO</option>
-                  <option value="3">PASAPORTE</option>
-                  <option value="4">OTRO DOCUMENTO DE IDENTIDAD</option>
-                  <option value="5">NÚMERO DE IDENTIFICACIÓN TRIBUTARIA</option>
-                </select>
-              </div>
+              <input type="text" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail">
             </div>
             <div class="form-group col-md-6">
               <label for="">NIT/CI</label> 
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Ingrese el NIT/CI del cliente" id="nitCliente" name="nitCliente">
+                <input type="text" class="form-control" placeholder="Ingrese el NIT/CI del cliente" id="nitCliente">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
                     <i class="fas fa-search">  
                     </i>
                   </button>
                 </div>
+
               </div>
             </div>
 
@@ -186,61 +173,51 @@
               <label for="">Nombre o Razon social</label> 
               <div class="input-group">
                 <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente">
-                <input type="hidden" id="CodCliente">
-                <!--<div class="input-group-append">
-<button class="btn btn-outline-secondary" type="button">
-<i class="fas fa-search">  
-</i>
-</button>
-</div>-->
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">
+                    <i class="fas fa-search">  
+                    </i>
+                  </button>
+                </div>
               </div>
               <p id="error-rs" class="text-danger"></p>
             </div>
 
-            <div class="form-group col-md-6" id="card-exepcion">
-              
-            </div>
           </div>
 
+          <!--datos de la empresa emisora-->
           <div class="form-group col-md-3">
             <div class="card" style="background-color: #f2f2f2;">
+              <!--<div class="input-group sm-3">
+<div class="input-group-prepend">
+<span class="input-group-text">Subtotal</span>
+</div>
+<input type="text" style="text-align:right;" class="form-control CurrencyInput" id="SubTotal" readonly value="0.00">
+</div>-->
               <div class="input-group sm-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Subtotal</span>
+                  <span class="input-group-text">T. Descuento</span>
                 </div>
-                <input type="text" style="text-align:right;" class="form-control CurrencyInput"  readonly value="0.00" id="SubTotal" name="SubTotal">
+                <input type="text" style="text-align:right;" class="form-control CurrencyInput"  readonly value="0.00" id="totDescuento" name="totDescuento">
               </div>
               <div class="input-group sm-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Descuento Adicional</span>
-                </div>
-                <input type="text" style="text-align:right;" class="form-control CurrencyInput" value="0.00" id="descAdicional" name="descAdicional" onkeyup="calcularTotal()">
-              </div>
-              <div class="input-group sm-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Total</span>
+                  <span class="input-group-text">Total a pagar</span>
                 </div>
                 <input type="text" style="text-align:right;" class="form-control CurrencyInput" readonly value="0.00" id="totApagar" name="totApagar">
               </div>
+              <button type="button" class="btn btn-primary btn-block">
+                <i class="fas fa-plus"></i>
+                Boton descuento
+              </button>
+              <div class="form-group sm-3">
 
-              <input type="hidden" value="0.00" id="totDescuento" name="totDescuento">
-
+              </div>
               <div class="card-footer">
-
-                <label for="">Metodo de pago</label> 
-                <div class="input-group">
-                  <select class="form-control" name="metPago" id="metPago">
-                    <option>Seleccionar</option>
-                    <option value="1">Efectivo</option>
-                    <option value="2">Tarjeta</option>
-                    <option value="3">GifCard</option>
-                  </select>
-
-                </div>
-                <!--<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
-<i class="fas fa-hand-holding-usd"></i>
-Metodo de Pago
-</button>-->
+                <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#modal-lg">
+                  <i class="fas fa-hand-holding-usd"></i>
+                  Metodo de Pago
+                </button>
               </div>
             </div>
           </div>
@@ -271,7 +248,7 @@ Metodo de Pago
           </div>
           <div class="form-group col-md-1">
             <label for="">Cantidad</label>
-            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="0"><!--Entra a FFACTURA.Cantidad-->
+            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="0" min="0"><!--Entra a FFACTURA.Cantidad-->
           </div>
           <div class="form-group col-md-1">
             <label for="">U.Medida</label>
@@ -302,7 +279,7 @@ Metodo de Pago
         </form>
       </div>
       <div class="card-footer">
-        <button class="btn btn-success" onclick="emitirFactura()">Guardar</button>
+        <button class="btn btn-success">Guardar</button>
       </div>
     </div>
 

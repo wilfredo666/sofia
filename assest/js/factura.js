@@ -160,6 +160,7 @@ function EliVenta(codVenta){
 }
 
 
+
 /*=====================================================
 traduciendo los apartados de DataTable - reporte ventas
 ======================================================*/
@@ -386,6 +387,7 @@ function calculate() {
 
 }
 
+/*>>>>>>> 081bb022e0f326fb7e419983da18cb993375e2c7*/
 
 $('input.CurrencyInput').on('blur', function() {
   const value = this.value.replace(/,/g, '');
