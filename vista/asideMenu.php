@@ -15,7 +15,6 @@
         <li class="nav-item nav-link">
           <input type="hidden" value="<?php echo $_SESSION["codsistema"];?>" id="codSistema">
           <input type="hidden" value="<?php echo $_SESSION["token"];?>" id="token">
-          <input type="hidden" value="" id="cuis">
           <span class="badge badge-secondary" id="comunSiat">desconectado</span>
 
         </li>

@@ -52,17 +52,19 @@ class ControladorUsuario{
 
 
           //capturando el token de conexion
-          /*$sql="select CODSISTEMA, TOKEN from FAUTSIS";
+          $sql="select CODSISTEMA, TOKEN from FAUTSIS";
           $query=$link->query($sql);
           $siat=$query->fetch();
 
 
           $_SESSION["codsistema"]=$siat["CODSISTEMA"];
-          $_SESSION["token"]=$siat["TOKEN"];*/
+          $_SESSION["token"]=$siat["TOKEN"];
           
           //en caso de que el cliente aun no tenga token y/o codigo
-          $_SESSION["codsistema"]="71D7A7B740E994C89373447";
-          $_SESSION["token"]="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3JvYmxlcyIsImNvZGlnb1Npc3RlbWEiOiI3MUQ3QTdCNzQwRTk5NEM4OTM3MzQ0NyIsIm5pdCI6Ikg0c0lBQUFBQUFBQUFETTJOekt6TkRJeU1EUUVBSTlYR3pjS0FBQUEiLCJpZCI6NzEwNTQ5LCJleHAiOjE2NzUzODI0MDAsImlhdCI6MTY0Mzk0NTI1Niwibml0RGVsZWdhZG8iOjM3MjY5MjIwMTEsInN1YnNpc3RlbWEiOiJTRkUifQ.nS8t-EDaBi-e3PGtnbnTI-7PKPy_6Kia1zFPKdzZgDnZ6VfXlimlrTsEgTb8_iDKoJ7Hy-vLw_0o_vgpLqSltA";
+          /*$_SESSION["codsistema"]="71D7A7B740E994C89373447";
+          $_SESSION["token"]="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3JvYmxlcyIsImNvZGlnb1Npc3RlbWEiOiI3MUQ3QTdCNzQwRTk5NEM4OTM3MzQ0NyIsIm5pdCI6Ikg0c0lBQUFBQUFBQUFETTJOekt6TkRJeU1EUUVBSTlYR3pjS0FBQUEiLCJpZCI6NzEwNTQ5LCJleHAiOjE2NzUzODI0MDAsImlhdCI6MTY0Mzk0NTI1Niwibml0RGVsZWdhZG8iOjM3MjY5MjIwMTEsInN1YnNpc3RlbWEiOiJTRkUifQ.nS8t-EDaBi-e3PGtnbnTI-7PKPy_6Kia1zFPKdzZgDnZ6VfXlimlrTsEgTb8_iDKoJ7Hy-vLw_0o_vgpLqSltA";*/
+          
+          
           
           echo '<script>
                     window.location="inicio";

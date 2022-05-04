@@ -52,4 +52,16 @@ class ModeloVenta{
     $stmt->close();
     $stmt=null;
   }
+  
+  /*==============================
+    Información del ultimo cufd
+  ==============================*/
+  static public function MdlInfoCufd(){
+    $stmt=Conexion::conectar()->prepare("select * from FCUFD");
+    $stmt->execute();
+    return $stmt->fetchAll(); //abre la conexion
+//solo se puede hacer cerrar (close()) cuando devuelve
+    $stmt->close();
+    $stmt=null;
+  }
 }

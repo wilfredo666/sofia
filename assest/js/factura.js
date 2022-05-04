@@ -83,11 +83,29 @@ function verificarComunicacion(token){
 }
 
 /*==================================
+comprobar el la existencia del CUFD
+====================================*/
+function verificarExistenciaCUFD(){
+  var obj="";
+  $.ajax(
+    {
+      url:"controlador/ventaControlador.php?crtInfoCufd",
+      type:"POST",
+      data:obj,
+      cache:false,
+      dataType:"json",
+      success:function(data){
+        //cuando la consulta final en el modelo es un fetch, no te devuelve un multi arreglo
+        console.log(data);
+        //console.log(data[0]);
+      }
+    }
+  )
+}
+
+/*==================================
 obtener CUIS - metodo
 ====================================*/
-var nitEmpresa=document.getElementById("nitEmpresa").innerHTML
-var cuis;
-var cufd;
 
 solicitudcuis()
 
@@ -500,7 +518,7 @@ function emitirFactura(){
     codigoDocumentoSector: 1, //?
     codigoEmision: 1, //?
     codigoModalidad: 2, //?
-    //cufd: cufd,
+    cufd: cufd,
     cuis: cuis,
     tipoFacturaDocumento: 1,
     archivo: null,
@@ -544,8 +562,8 @@ function emitirFactura(){
     }
   }
   console.log(JSON.stringify(obj))
-  
-  }
+
+}
 
 /*  formDetalle.onsubmit=(e)=>{
     e.preventDefault();

@@ -17,6 +17,17 @@ insert into FCTROLF (ESPEC, NFAC, TN, CRED, FMA, FECHALIM) values (3, [# de fact
 
 -->FECHALIM es un campo obligatorio
 
+//CUFD
+-insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', '2022-05-04T10:50:57.622-04:00')
+
+insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', CURRENT_DATE+1)
+
+//ver el maximio
+SELECT *
+FROM FCUFD
+where fecha=(select max(fecha) FROM FCUFD)
+
+
 select * from FCTROLF
 where NFAC=19
 ---------------

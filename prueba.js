@@ -16,7 +16,7 @@ function solicitudcufd(){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:5001/api/Codigos/solicitudcufd?token="+token,
+      url:"https://localhost:44392/api/Codigos/solicitudcufd?token="+token,
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",
@@ -204,4 +204,24 @@ function recepecion(){
       }
     }
   )
+}
+
+/*====================
+solicitar CUIS
+======================*/
+
+function pruebaajax(){
+  var obj=""
+
+  $.ajax(
+    {
+      type:"POST",
+      url:"pruebaClase.php?index",
+      data:obj,
+      success:function(data){
+        console.log(data["CODIGO"]);
+      }
+    }
+  )
+
 }
