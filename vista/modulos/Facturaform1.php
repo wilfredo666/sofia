@@ -1,5 +1,14 @@
 <?php
+require_once "../../modelo/conexion.php";
+
+//consulta para extraer datos de la empresa
+$stmt=Conexion::conectar()->query("SELECT nombre, nit_ruc, direccion
+FROM EMPRESA");
+$stmt->execute();
+$empresa=$stmt->fetch();
+
 /// Powered by Evilnapsis go to http://evilnapsis.com
+
 include "fpdf/fpdf.php";
 
 $pdf = new FPDF($orientation='P',$unit='mm');
@@ -20,15 +29,16 @@ $pdf->Cell(5,$textypos,"(Con derecho a credito Fiscal)");
 $pdf->SetFont('Arial','B',10);
 $pdf->setY(35);$pdf->setX(10);
 /*$pdf->Cell(5,$textypos,"DE:");*/
+
 $pdf->SetFont('Arial','',10);    
 $pdf->setY(10);$pdf->setX(10);
 $pdf->Cell(5,$textypos,"No punto de venta");//Nombre de la empresa
 $pdf->setY(15);$pdf->setX(10);
-$pdf->Cell(5,$textypos,"Direccion de la empresa");//Direccion de la empresa
+$pdf->Cell(5,$textypos,$empresa["NOMBRE"]);//Direccion de la empresa
 $pdf->setY(20);$pdf->setX(10);
-$pdf->Cell(5,$textypos,"Telefono: 41112236");//Direccion de la empresa
+$pdf->Cell(5,$textypos,$empresa["DIRECCION"]);//Direccion de la empresa
 $pdf->setY(50);$pdf->setX(10);
-$pdf->Cell(5,$textypos,"Fecha:  07/04/2022  10:26 AM");//Telefono de la empresa
+$pdf->Cell(5,$textypos,$empresa["NIT_RUC"]);//Telefono de la empresa
 $pdf->setY(55);$pdf->setX(10);
 $pdf->Cell(5,$textypos,"Nombre/Razon Social: SOFIA");//Email de la empresa
 

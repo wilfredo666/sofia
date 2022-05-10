@@ -5,7 +5,7 @@ Tareas
 * reparar la edicion de producto
 * revisar el metodo crtInfoCufd para que pueda servir tanto para saber si existe cufd como para saber el ultimo vigente
 * continuar con el registro del cufd - metodo registrarNuevoCUFD
-
+* la base de datos no actualiza los registros a menos que se refresque
 
 
 
