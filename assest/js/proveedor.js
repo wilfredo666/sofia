@@ -36,14 +36,6 @@ $(function () {
   }).buttons().container().appendTo('#DataTableProveedores_wrapper .col-md-6:eq(0)');
 });
 
-
-/*$.ajax({
-  url:"vista/modulos/dataTableCliente.php",
-  success:function(data){
-    console.log(data);
-  }
-})*/
-
 function FNuevoProveedor(){
   window.location="FormRegProveedor";
 }
@@ -107,6 +99,7 @@ function EliProveedor(codProveedor){
     }
   )
 }
+
 function validacionRegProveedor() {
     var codProveedor=document.getElementById("codProveedor").value;
     var nitProveedor=document.getElementById("nitProveedor").value;

@@ -1,3 +1,14 @@
+-----------------
+Tareas
+-----------------
+* que hacer cuando no hay cuis al momento de solicitar cufd
+* reparar la edicion de producto
+* revisar el metodo crtInfoCufd para que pueda servir tanto para saber si existe cufd como para saber el ultimo vigente
+* continuar con el registro del cufd - metodo registrarNuevoCUFD
+
+
+
+
 
 -tipo de venta --> mostrar: compra venta --> enviar codigo --> recuperr del api
 
@@ -18,9 +29,12 @@ insert into FCTROLF (ESPEC, NFAC, TN, CRED, FMA, FECHALIM) values (3, [# de fact
 -->FECHALIM es un campo obligatorio
 
 //CUFD
--insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', '2022-05-04T10:50:57.622-04:00')
+insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', '2022-05-04T10:50:57.622-04:00')
 
 insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', CURRENT_DATE+1)
+
+asi lo recive:
+insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', '07-05-2022:12:15:35')
 
 //ver el maximio
 SELECT *
@@ -54,6 +68,12 @@ clientes - casos
 registrado bd y no registrado SIN -->contribuyente no activo
 no registrado bd y no registrado SIN --> cliente no registrado y borrar el valor del campo "Nombre o Razon social"
 registrado bd y registrado SIN --> Contribuyente activo
+
+----------------
+cufd
+----------------
+devuelve null en campos; codigo, codigoControl, direccion, cuando no hay cuis
+
 
 
 ----------------

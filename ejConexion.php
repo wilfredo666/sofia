@@ -18,7 +18,7 @@ try{
 $sql="select NOMBRE, NIT_RUC from EMPRESA";
 $query=$con->query($sql);
 $us=$query->fetch();
-var_dump($us);
+//var_dump($us);
 /*foreach($query as $row){
  echo $row["COD"]." ".$row["NIT"]." - ".$row["RAZON"];
   echo "<br>";

@@ -46,17 +46,20 @@ var host="https://"+document.getElementById("servidor").value+":"+puerto;
 var nitEmpresa=document.getElementById("nitEmpresa").innerHTML
 var cuis;
 var cufd;
+var direccionCufd;
+var fechaVigCufd;
+var codControlCufd;
 /*host para la API*/
 //var host="https://localhost:44392";
 
 /*==================================
 comprobar conexion con SIAT - metodo
 ====================================*/
-
+/*
 setInterval(()=>{
   verificarComunicacion(token)
 },3000)
-
+*/
 function verificarComunicacion(token){
   var obj="";
   $.ajax(
@@ -83,6 +86,35 @@ function verificarComunicacion(token){
 }
 
 /*==================================
+registrar nuevo CUFD
+====================================*/
+function registrarNuevoCUFD(){
+  //nota: usar promesas para las funciones
+  solicitudcufd();
+  var obj={
+    "cufd":cufd,
+    "direccionCufd":direccionCufd,
+    "fechaVigCufd":fechaVigCufd,
+    "codControlCufd":codControlCufd
+  };
+
+  $.ajax(
+    {
+      data:obj,
+      url:"controlador/ventaControlador.php?crtNuevoCufd",
+      type:"POST",
+      cache:false,
+      success:function(data){
+        console.log(data);
+        //cuando la consulta final en el modelo es un fetch, no te devuelve un multi arreglo
+
+      }
+    }
+  )
+}
+
+
+/*==================================
 comprobar el la existencia del CUFD
 ====================================*/
 function verificarExistenciaCUFD(){
@@ -95,9 +127,13 @@ function verificarExistenciaCUFD(){
       cache:false,
       dataType:"json",
       success:function(data){
-        //cuando la consulta final en el modelo es un fetch, no te devuelve un multi arreglo
-        console.log(data);
-        //console.log(data[0]);
+        //cuando la consulta final en el modelo es un fetch, no te devuelve un multi arregloObj
+        if(data.length==0){
+          if(cufd!="" || cufd!=undefined){
+            registrarNuevoCUFD();
+          }
+        }
+
       }
     }
   )
@@ -134,9 +170,26 @@ function solicitudcuis(){
   )
 }
 
+/*====================================
+transformar fecha con formato ISO 8061
+======================================*/
+
+function transformarFecha(fechaISO){
+  //seperando caracteres
+  let fecha_iso=fechaISO.split("T");
+  let hora_iso=fecha_iso[1].split(".");
+
+  let fecha=fecha_iso[0];
+  let hora=hora_iso[0];
+
+  var fecha_hora=fecha+":"+hora;
+  return fecha_hora;
+}
+
 /*==================================
 obtener CUFD - metodo
 ====================================*/
+
 function solicitudcufd(){
   var obj={
     codigoAmbiente: 2,
@@ -157,11 +210,49 @@ function solicitudcufd(){
       contentType:"application/json",
       processData:false,
       success:function(data){
+
         cufd=data["codigo"];
+        direccionCufd=data["direccion"];
+        fechaVigCufd=transformarFecha(data["fechaVigencia"]);
+        codControlCufd=data["codigoControl"];
       }
     }
   )
 
+}
+
+/*==================================
+verificar vigencia CUFD - metodo
+====================================*/
+
+function verificarVigenciaCufd(){
+  //fecha actual
+  let date= new Date();
+  let fechaActual=date;
+  
+  var obj="";
+  $.ajax(
+    {
+      url:"controlador/ventaControlador.php?crtUltimoCufd",
+      type:"POST",
+      data:obj,
+      cache:false,
+      dataType:"json",
+      success:function(data){
+        //feha de vigencia del ultimo cufd
+        let vigCufd=new Date(data["FECHAVIGENCIA"]);
+        
+        //comparando fechas
+        if(date.getTime()>vigCufd.getTime()){
+           console.log("CUFD caducado");
+           }else{
+             console.log("CUFD vigente");
+           }
+  
+
+      }
+    }
+  )
 }
 
 function MNuevaVenta(){
@@ -477,9 +568,10 @@ emitir factura
 ==========================*/
 function emitirFactura(){
   let date=new Date();
-  /* datos de encabezado factura */
   var hora = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
   var fecha=date.getDate()+ '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
+  
+  /* datos de encabezado factura */
   var fechaFactura=fecha+":"+hora;//fecha
   var facSucursal=document.getElementById("FacSucursal").value;//sucursal
   var pntVenta=document.getElementById("pntVenta").value;//punto de venta
