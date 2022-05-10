@@ -1,8 +1,11 @@
 <?php
+setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
+$date = date('d F, Y');
+
 require_once "../../modelo/conexion.php";
 
 //consulta para extraer datos de la empresa
-$stmt=Conexion::conectar()->query("SELECT nombre, nit_ruc, direccion
+$stmt=Conexion::conectar()->query("SELECT nombre, nit_ruc, telefono, direccion
 FROM EMPRESA");
 $stmt->execute();
 $empresa=$stmt->fetch();
@@ -11,7 +14,6 @@ $sql_factura=Conexion::conectar()->query("SELECT nombre, nit_ruc, direccion
 FROM EMPRESA");
 $sql_factura->execute();
 $factura=$sql_factura->fetch();
-/// Powered by Evilnapsis go to http://evilnapsis.com
 
 include "fpdf/fpdf.php";
 
@@ -22,7 +24,7 @@ $textypos = 5;
 $pdf->setY(5);
 $pdf->setX(10);
 // Agregamos los datos de la empresa
-$pdf->Cell(5,$textypos,"Casa Matriz");//Nombre de la empresa
+$pdf->Cell(5,$textypos,utf8_decode("CASA MATRIZ: ".$empresa ['NOMBRE']));//Nombre de la empresa
 $pdf->SetFont('Arial','B',10); 
 $pdf->setY(25);$pdf->setX(80);
 $pdf->SetFont('Arial','B',20);
@@ -36,15 +38,21 @@ $pdf->setY(35);$pdf->setX(10);
 
 $pdf->SetFont('Arial','',10);    
 $pdf->setY(10);$pdf->setX(10);
-$pdf->Cell(5,$textypos,"No punto de venta");//Nombre de la empresa
+$pdf->Cell(5,$textypos,utf8_decode("N° punto de venta"));//Nombre de la empresa
 $pdf->setY(15);$pdf->setX(10);
-$pdf->Cell(5,$textypos,$empresa["NOMBRE"]);//Direccion de la empresa
+
+
+/*$nrofactura=utf8_decode("FACTURA NÂº:  ".$data[0]['nrofactura']);
+				$this->pdf->MultiCell(70,3,$nrofactura,0,'C',0);*/
+/*$direccion=utf8_decode("Direccion: ".$empresa["DIRECCION"]);*/
+$pdf->Cell(5,$textypos,utf8_decode("Dirección: ".$empresa ['DIRECCION']));//Direccion de la empresa
 $pdf->setY(20);$pdf->setX(10);
-$pdf->Cell(5,$textypos,$empresa["DIRECCION"]);//Direccion de la empresa
+$pdf->Cell(5,$textypos,utf8_decode("Telefono: ".$empresa["TELEFONO"]));//Direccion de la empresa
 $pdf->setY(50);$pdf->setX(10);
-$pdf->Cell(5,$textypos,$empresa["NIT_RUC"]);//Telefono de la empresa
+/*$date = date("D M d, Y G:i");*/
+$pdf->Cell(5,$textypos,utf8_decode("Fecha: ".$date));//Telefono de la empresa
 $pdf->setY(55);$pdf->setX(10);
-$pdf->Cell(5,$textypos,"Nombre/Razon Social: SOFIA");//Email de la empresa
+$pdf->Cell(5,$textypos,utf8_decode("Nombre/Razon Social: "));//Email de la empresa
 
 // Agregamos los datos del cliente
 $pdf->SetFont('Arial','B',10);    
@@ -63,7 +71,7 @@ $pdf->Cell(5,$textypos,"Email del cliente");*/
 // Agregamos los datos del cliente
 $pdf->SetFont('Arial','B',10);    
 $pdf->setY(5);$pdf->setX(135);
-$pdf->Cell(5,$textypos,"NIT:                                 #12345");
+$pdf->Cell(5,$textypos,utf8_decode("NIT:                             ".$empresa["NIT_RUC"]));
 $pdf->setY(10);$pdf->setX(135);
 $pdf->Cell(5,$textypos,"FACTURA                       #12345");
 $pdf->setY(15);$pdf->setX(135);
