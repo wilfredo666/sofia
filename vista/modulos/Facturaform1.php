@@ -7,6 +7,10 @@ FROM EMPRESA");
 $stmt->execute();
 $empresa=$stmt->fetch();
 
+$sql_factura=Conexion::conectar()->query("SELECT nombre, nit_ruc, direccion
+FROM EMPRESA");
+$sql_factura->execute();
+$factura=$sql_factura->fetch();
 /// Powered by Evilnapsis go to http://evilnapsis.com
 
 include "fpdf/fpdf.php";
