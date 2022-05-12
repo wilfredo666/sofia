@@ -15,10 +15,10 @@ FROM FCTROLF");
 $sql_datos_adicionales->execute();
 $Datos_adicionales=$sql_datos_adicionales->fetch();
 
-$datostabla=Conexion::conectar()->query("SELECT cod, cantidad, concepto, precio, descto, numeroserie, actecon, total
-FROM FFACTURA where CUF='2'");
+$datostabla=Conexion::conectar()->query("SELECT COD, CANTIDAD, CONCEPTO, PRECIO, DESCTO, NUMEROSERIE, ACTECON, TOTAL
+FROM FFACTURA where CUF='3'");
 $datostabla->execute();
-$Datos_en_tabla=$datostabla->fetch();
+$Datos_en_tabla=$datostabla->fetchAll();
 
 
 $sql_factura=Conexion::conectar()->query("SELECT nombre, nit_ruc, direccion
@@ -42,7 +42,7 @@ $pdf->SetFont('Arial','B',20);
 $pdf->Cell(5,$textypos,"Factura");
 $pdf->setY(30);$pdf->setX(70);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(5,$textypos,"(Con derecho a credito Fiscal)");
+/*$pdf->Cell(5,$textypos,"(Con derecho a credito Fiscal)");*/
 $pdf->SetFont('Arial','B',10);
 $pdf->setY(35);$pdf->setX(10);
 /*$pdf->Cell(5,$textypos,"DE:");*/
@@ -104,18 +104,22 @@ $pdf->setY(60);$pdf->setX(135);
 //// Array de Cabecera
 $header = array("Cod. Producto", "Cantidad","Descripcion","Precio Uni","Descuento","ICE%","ICE ESP","Subtotal");
 //// Arrar de Productos
-$products = array(
+
+    foreach($Datos_en_tabla as $value){
+        $products = array(
     
-    /*while($Datos_en_tabla as $value){*/
-    array($Datos_en_tabla["COD"], number_format($Datos_en_tabla["CANTIDAD"]), $Datos_en_tabla['CONCEPTO'], number_format($Datos_en_tabla['PRECIO']) , $Datos_en_tabla['DESCTO'], $Datos_en_tabla['NUMEROSERIE']),
-    /*}*/
-	array("0010", 1,3,120,0,0),
+    
+    array($value["COD"], number_format($value["CANTIDAD"]), $value['CONCEPTO'], number_format($value['PRECIO']), $value['DESCTO'], $value['NUMEROSERIE']),
+    
+	/*array("0010", 1,3,120,0,0),
 	array("0024", 2,5,80,0,0),
 	array("0001", 3,1,40,0,0),
 	array("0001", 4,5,80,0,0),
 	array("0001", 11,4,30,0,0),
-	array("0001", 5,7,80,0,0),
-);
+	array("0001", 5,7,80,0,0),*/
+        
+        );
+    };
 /*$this->pdf->Image(FCPATH."Sofia.jpg",20,50,150,170);//logo para membretado*/
 				/*$y=$y+25;*/
     // Column widths
@@ -150,7 +154,7 @@ $products = array(
 //// Apartir de aqui esta la tabla con los subtotales y totales
 $yposdinamic = 36.4 + (count($products)*10);
 
-$pdf->setY($yposdinamic);
+$pdf->setY($yposdinamic+5);
 $pdf->setX(210);
     $pdf->Ln();
 /////////////////////////////
