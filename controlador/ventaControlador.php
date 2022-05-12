@@ -97,4 +97,15 @@ class controladorVenta{
     //var_dump($respuesta);
   }
 
+  /*=======================
+  registrar factura
+  ========================*/
+  static public function crtRegistroFactura($data){
+    var_dump($data);
+    /*require_once "../modelo/ventaModelo.php";
+    $respuesta=ModeloVenta::MdlRegistrarFactura($data);*/
+
+  }
+
+
 }

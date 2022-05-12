@@ -96,4 +96,18 @@ class ModeloVenta{
     $stmt->close();
     $stmt=null;
   }
+  
+  static public function MdlRegistrarFactura($data){
+    
+    $stmt=Conexion::conectar()->prepare("insert into FCTROLF (ESPEC, AUTORIZACION, NFAC, TN, CRED, FMA, FECHALIM) values (3, null, 49, 'N', 'N', 'N', CURRENT_DATE+1)");
+
+    if($stmt->execute()){
+      return "ok";
+    }else{
+      return "error";
+    }
+
+    $stmt->close();
+    $stmt=null;
+  }
 }

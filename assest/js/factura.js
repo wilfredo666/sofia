@@ -89,28 +89,30 @@ function verificarComunicacion(token){
 registrar nuevo CUFD
 ====================================*/
 function registrarNuevoCUFD(){
-  //nota: usar promesas para las funciones
-  solicitudcufd();
-  var obj={
-    "cufd":cufd,
-    "direccionCufd":direccionCufd,
-    "fechaVigCufd":fechaVigCufd,
-    "codControlCufd":codControlCufd
-  };
+  solicitudcufd()
+    .then(ok=>{
+    if(ok!=""){
+      var obj={
+        "cufd":cufd,
+        "direccionCufd":direccionCufd,
+        "fechaVigCufd":fechaVigCufd,
+        "codControlCufd":codControlCufd
+      };
 
-  $.ajax(
-    {
-      data:obj,
-      url:"controlador/ventaControlador.php?crtNuevoCufd",
-      type:"POST",
-      cache:false,
-      success:function(data){
-        console.log(data);
-        //cuando la consulta final en el modelo es un fetch, no te devuelve un multi arreglo
-
-      }
+      $.ajax(
+        {
+          data:obj,
+          url:"controlador/ventaControlador.php?crtNuevoCufd",
+          type:"POST",
+          cache:false,
+          success:function(data){
+            console.log(data);
+          }
+        }
+      )
     }
-  )
+  })
+
 }
 
 
@@ -191,33 +193,38 @@ obtener CUFD - metodo
 ====================================*/
 
 function solicitudcufd(){
-  var obj={
-    codigoAmbiente: 2,
-    codigoModalidad: 2,
-    codigoPuntoVenta: 0,
-    codigoPuntoVentaSpecified: true,
-    codigoSistema: codSistema,
-    codigoSucursal: 0,
-    nit: nitEmpresa,
-    cuis:cuis
-  }
-  $.ajax(
-    {
-      type:"POST",
-      url:host+"/api/Codigos/solicitudcufd?token="+token,
-      data:JSON.stringify(obj),
-      cache:false,
-      contentType:"application/json",
-      processData:false,
-      success:function(data){
+  return new Promise((resolve, reject)=>{
 
-        cufd=data["codigo"];
-        direccionCufd=data["direccion"];
-        fechaVigCufd=transformarFecha(data["fechaVigencia"]);
-        codControlCufd=data["codigoControl"];
-      }
+    var obj={
+      codigoAmbiente: 2,
+      codigoModalidad: 2,
+      codigoPuntoVenta: 0,
+      codigoPuntoVentaSpecified: true,
+      codigoSistema: codSistema,
+      codigoSucursal: 0,
+      nit: nitEmpresa,
+      cuis:cuis
     }
-  )
+
+    $.ajax(
+      {
+        type:"POST",
+        url:host+"/api/Codigos/solicitudcufd?token="+token,
+        data:JSON.stringify(obj),
+        cache:false,
+        contentType:"application/json",
+        processData:false,
+        success:function(data){
+          cufd=data["codigo"];
+          direccionCufd=data["direccion"];
+          fechaVigCufd=transformarFecha(data["fechaVigencia"]);
+          codControlCufd=data["codigoControl"];
+          resolve(cufd);
+        }
+      }
+    )
+  })
+
 
 }
 
@@ -228,8 +235,7 @@ verificar vigencia CUFD - metodo
 function verificarVigenciaCufd(){
   //fecha actual
   let date= new Date();
-  let fechaActual=date;
-  
+
   var obj="";
   $.ajax(
     {
@@ -239,16 +245,23 @@ function verificarVigenciaCufd(){
       cache:false,
       dataType:"json",
       success:function(data){
+
         //feha de vigencia del ultimo cufd
         let vigCufd=new Date(data["FECHAVIGENCIA"]);
-        
+
         //comparando fechas
         if(date.getTime()>vigCufd.getTime()){
-           console.log("CUFD caducado");
-           }else{
-             console.log("CUFD vigente");
-           }
-  
+          console.log("Cufd caducado");
+          registrarNuevoCUFD();
+
+        }else{
+          console.log("Cufd vigente");
+          cufd=data["CODIGO"];
+          direccionCufd=data["DIRECCION"];
+          fechaVigCufd=data["FECHAVIGENCIA"];
+          codControlCufd=data["CODIGOCONTROL"];
+        }
+
 
       }
     }
@@ -567,12 +580,15 @@ function tipoDocumento(){
 emitir factura
 ==========================*/
 function emitirFactura(){
+  //verificar vigencia de CUFD
+  verificarVigenciaCufd()
+
   let date=new Date();
-  var hora = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-  var fecha=date.getDate()+ '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();
-  
-  /* datos de encabezado factura */
-  var fechaFactura=fecha+":"+hora;//fecha
+  /*  var hora = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+  var fecha=date.getDate()+ '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();*/
+
+  /* datos de cabecera factura */
+  var fechaFactura=date.toISOString();//fecha
   var facSucursal=document.getElementById("FacSucursal").value;//sucursal
   var pntVenta=document.getElementById("pntVenta").value;//punto de venta
   var tpFactura=document.getElementById("tpFactura").value;//tipo de factura
@@ -583,6 +599,7 @@ function emitirFactura(){
   var totDescuento=document.getElementById("totDescuento").value; //total descuento
   var descAdicional=document.getElementById("descAdicional").value; //descuento adicional
   var totApagar=document.getElementById("totApagar").value; //total factura a pagar
+  var SubTotal=document.getElementById("SubTotal").value; //subtotal factura a pagar
   var RSEmpresa=document.getElementById("RSEmpresa").innerHTML //razon social de la empresa
   var tpDocumento=document.getElementById("tpDocumento").value //tipo de documento de identidad
   var CodCliente=document.getElementById("CodCliente").value //codigo de cliente
@@ -594,11 +611,6 @@ function emitirFactura(){
     RSClienteEmail=document.getElementById("RSClienteEmail").value
   }
 
-  /*console.log(fechaFactura, facSucursal, pntVenta, tpFactura, FacActividad, RSClienteEmail, nitCliente, RSCliente, totDescuento, totApagar, nitEmpresa, RSEmpresa);*/
-  var jsonDetalle=JSON.stringify(arregloDetalle);
-  //console.log(jsonDetalle)
-  var objDetalle=Object.assign({},arregloDetalle);
-  //console.log(objDetalle)
 
   var obj={
     codigoAmbiente: 2, //?
@@ -617,7 +629,7 @@ function emitirFactura(){
     fechaEnvio: fechaFactura,
     hashArchivo: "",
     tipoFactura: tpFactura,
-    codigoControl: "0DBC3C7B9E56D74",
+    codigoControl: codControlCufd,
     factura: {
       cabecera: {
         nitEmisor: nitEmpresa,
@@ -626,10 +638,10 @@ function emitirFactura(){
         telefono: "44293074",
         numeroFactura: 1,
         cuf: "string",
-        cufd: "QUFBS0JXwr9dREE=OTRDODkzNzM0NDc=Q8Khw5prRFJhRVdVNzFEN0E3Qjc0MEU5",
+        cufd: cufd,
         codigoSucursal: 0,
         direccion: "Test",
-        codigoPuntoVenta: 0,
+        codigoPuntoVenta: pntVenta,
         fechaEmision: fechaFactura,
         nombreRazonSocial: RSCliente,
         codigoTipoDocumentoIdentidad: tpDocumento,
@@ -638,7 +650,7 @@ function emitirFactura(){
         codigoCliente: CodCliente,
         codigoMetodoPago: 1,
         numeroTarjeta: null,
-        montoTotal: 50,
+        montoTotal: totApagar,
         montoTotalSujetoIva: 50,
         codigoMoneda: 1,
         tipoCambio: 1,
@@ -650,11 +662,24 @@ function emitirFactura(){
         leyenda: "LEYENDA",
         usuario: "test",
         codigoDocumentoSector: 1
-      }
+      },
+      detalle: arregloDetalle
     }
   }
-  console.log(JSON.stringify(obj))
-
+  console.log(JSON.stringify(obj));
+  /*$.ajax(
+    {
+      type:"POST",
+      url:"https://localhost:44392/api/CompraVenta/recepcion",
+      data:JSON.stringify(obj),
+      cache:false,
+      contentType:"application/json",
+      processData:false,
+      success:function(data){
+        console.log(data);
+      }
+    }
+  )*/
 }
 
 /*  formDetalle.onsubmit=(e)=>{

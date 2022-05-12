@@ -145,7 +145,7 @@ function recepecion(){
             usuario: "test",
             codigoDocumentoSector: 1
         },
-        detalle: [{
+        detalle:[{
             actividadEconomica: "620000",
             codigoProductoSin: 83143,
             codigoProducto: "JN-131231",
@@ -191,7 +191,8 @@ function recepecion(){
         }]
     }
 }
-  $.ajax(
+    console.log(JSON.stringify(obj))
+ /* $.ajax(
     {
       type:"POST",
       url:"https://localhost:44392/api/CompraVenta/recepcion",
@@ -203,7 +204,7 @@ function recepecion(){
         console.log(data);
       }
     }
-  )
+  )*/
 }
 
 /*====================
