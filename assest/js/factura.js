@@ -86,32 +86,71 @@ function verificarComunicacion(token){
 }
 
 /*==================================
+obtener CUFD - metodo
+====================================*/
+
+function solicitudcufd(){
+  return new Promise((resolve, reject)=>{
+
+    var obj={
+      codigoAmbiente: 2,
+      codigoModalidad: 2,
+      codigoPuntoVenta: 0,
+      codigoPuntoVentaSpecified: true,
+      codigoSistema: codSistema,
+      codigoSucursal: 0,
+      nit: nitEmpresa,
+      cuis:cuis
+    }
+
+    $.ajax(
+      {
+        type:"POST",
+        url:host+"/api/Codigos/solicitudcufd?token="+token,
+        data:JSON.stringify(obj),
+        cache:false,
+        contentType:"application/json",
+        processData:false,
+        success:function(data){
+          cufd=data["codigo"];
+          direccionCufd=data["direccion"];
+          fechaVigCufd=transformarFecha(data["fechaVigencia"]);
+          codControlCufd=data["codigoControl"];
+          resolve(cufd);
+        }
+      }
+    )
+  })
+
+
+}
+
+/*==================================
 registrar nuevo CUFD
 ====================================*/
 function registrarNuevoCUFD(){
-  solicitudcufd()
-    .then(ok=>{
-    if(ok!=""){
-      var obj={
-        "cufd":cufd,
-        "direccionCufd":direccionCufd,
-        "fechaVigCufd":fechaVigCufd,
-        "codControlCufd":codControlCufd
-      };
+  solicitudcufd().then(ok=>{if(ok!=""||ok!=null){
 
-      $.ajax(
-        {
-          data:obj,
-          url:"controlador/ventaControlador.php?crtNuevoCufd",
-          type:"POST",
-          cache:false,
-          success:function(data){
-            console.log(data);
-          }
+
+    var obj={
+      "cufd":cufd,
+      "direccionCufd":direccionCufd,
+      "fechaVigCufd":fechaVigCufd,
+      "codControlCufd":codControlCufd
+    };
+
+    $.ajax(
+      {
+        data:obj,
+        url:"controlador/ventaControlador.php?crtNuevoCufd",
+        type:"POST",
+        cache:false,
+        success:function(data){
+          console.log(data);
         }
-      )
-    }
-  })
+      }
+    )
+  }})
 
 }
 
@@ -119,6 +158,11 @@ function registrarNuevoCUFD(){
 /*==================================
 comprobar el la existencia del CUFD
 ====================================*/
+setTimeout(()=>{
+  verificarExistenciaCUFD()
+},4000)
+
+
 function verificarExistenciaCUFD(){
   var obj="";
   $.ajax(
@@ -134,6 +178,10 @@ function verificarExistenciaCUFD(){
           if(cufd!="" || cufd!=undefined){
             registrarNuevoCUFD();
           }
+        }else{
+          console.log("Exsite un cufd en su bd");
+          console.log("Verificando la vigencia...");
+          verificarVigenciaCufd()
         }
 
       }
@@ -144,7 +192,6 @@ function verificarExistenciaCUFD(){
 /*==================================
 obtener CUIS - metodo
 ====================================*/
-
 solicitudcuis()
 
 function solicitudcuis(){
@@ -188,45 +235,6 @@ function transformarFecha(fechaISO){
   return fecha_hora;
 }
 
-/*==================================
-obtener CUFD - metodo
-====================================*/
-
-function solicitudcufd(){
-  return new Promise((resolve, reject)=>{
-
-    var obj={
-      codigoAmbiente: 2,
-      codigoModalidad: 2,
-      codigoPuntoVenta: 0,
-      codigoPuntoVentaSpecified: true,
-      codigoSistema: codSistema,
-      codigoSucursal: 0,
-      nit: nitEmpresa,
-      cuis:cuis
-    }
-
-    $.ajax(
-      {
-        type:"POST",
-        url:host+"/api/Codigos/solicitudcufd?token="+token,
-        data:JSON.stringify(obj),
-        cache:false,
-        contentType:"application/json",
-        processData:false,
-        success:function(data){
-          cufd=data["codigo"];
-          direccionCufd=data["direccion"];
-          fechaVigCufd=transformarFecha(data["fechaVigencia"]);
-          codControlCufd=data["codigoControl"];
-          resolve(cufd);
-        }
-      }
-    )
-  })
-
-
-}
 
 /*==================================
 verificar vigencia CUFD - metodo
@@ -252,8 +260,8 @@ function verificarVigenciaCufd(){
         //comparando fechas
         if(date.getTime()>vigCufd.getTime()){
           console.log("Cufd caducado");
+          console.log("Registrando nuevo Cufd...");
           registrarNuevoCUFD();
-
         }else{
           console.log("Cufd vigente");
           cufd=data["CODIGO"];
@@ -584,10 +592,9 @@ function emitirFactura(){
   verificarVigenciaCufd()
 
   let date=new Date();
-  /*  var hora = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-  var fecha=date.getDate()+ '-' + ( date.getMonth() + 1 ) + '-' + date.getFullYear();*/
 
   /* datos de cabecera factura */
+
   var fechaFactura=date.toISOString();//fecha
   var facSucursal=document.getElementById("FacSucursal").value;//sucursal
   var pntVenta=document.getElementById("pntVenta").value;//punto de venta
@@ -610,6 +617,7 @@ function emitirFactura(){
   }else{
     RSClienteEmail=document.getElementById("RSClienteEmail").value
   }
+
 
 
   var obj={
@@ -666,8 +674,8 @@ function emitirFactura(){
       detalle: arregloDetalle
     }
   }
-  console.log(JSON.stringify(obj));
-  /*$.ajax(
+  //console.log(JSON.stringify(obj));
+  $.ajax(
     {
       type:"POST",
       url:"https://localhost:44392/api/CompraVenta/recepcion",
@@ -679,7 +687,7 @@ function emitirFactura(){
         console.log(data);
       }
     }
-  )*/
+  )
 }
 
 /*  formDetalle.onsubmit=(e)=>{

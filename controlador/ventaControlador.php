@@ -81,7 +81,7 @@ class controladorVenta{
       "FECHAVIGENCIA"=>$fechaVigCufd,
       "DIRECCION"=>$direccionCufd
     );
-
+    
     require_once "../modelo/ventaModelo.php";
     $respuesta=ModeloVenta::MdlNuevoCufd($data);
     echo $respuesta;

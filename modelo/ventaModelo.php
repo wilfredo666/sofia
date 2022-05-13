@@ -69,6 +69,7 @@ class ModeloVenta{
     Registro nuevo cufd
   ==============================*/
   static public function MdlNuevoCufd($data){
+
     $cufd=$data["CODIGO"];
     $codControlCufd=$data["CODIGOCONTROL"];
     $fechaVigCufd=$data["FECHAVIGENCIA"];
@@ -77,7 +78,7 @@ class ModeloVenta{
     $stmt=Conexion::conectar()->prepare("insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA, DIRECCION) values ('$cufd', '$codControlCufd', '$fechaVigCufd', '$direccionCufd')");
 
     if($stmt->execute()){
-      return "ok";
+      return "cufd registrado";
     }else{
       return "error";
     }

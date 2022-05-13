@@ -7,6 +7,8 @@ Tareas
 * continuar con el registro del cufd - metodo registrarNuevoCUFD
 * la base de datos no actualiza los registros a menos que se refresque
 
+*continuar con "emitir factura" en la parte de los productos
+
 
 
 
