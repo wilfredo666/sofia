@@ -6,8 +6,18 @@ Tareas
 * revisar el metodo crtInfoCufd para que pueda servir tanto para saber si existe cufd como para saber el ultimo vigente
 * continuar con el registro del cufd - metodo registrarNuevoCUFD
 * la base de datos no actualiza los registros a menos que se refresque
+* la actividad economica debe ser obligatorio antes de agregar un producto
+* extraer el nunero de telefono de la empresa para la factura
+* extraer la direccion de la empresa para la factura
+* agregar el campo codigosin para el crud de productos
+* para el panel de avisos se puede usar apenchild o after de jq
 
-*continuar con "emitir factura" en la parte de los productos
+*consultar
+==========
+- el lote del producto es inecesario para el sin
+- la unidad de medida que se entrega a impuestos es numerico
+- quitar o no la actividad y agregarlo al registro de producto
+
 
 
 
@@ -23,6 +33,8 @@ insert into FCTROLF (ESPEC, AUTORIZACION, NFAC, TN, CRED, FMA, FECHALIM) values 
 insert into FCTROLF (ESPEC, AUTORIZACION, NFAC, TN, CRED, FMA, FECHALIM) values (3, null, 49, 'N', 'N', 'N', CURRENT_DATE+1)
 
 insert into FCTROLF (ESPEC, NFAC, TN, CRED, FMA, FECHALIM) values (3, 50, 'N', 'N', 'N', CURRENT_DATE+1)
+
+insert into FCTROLF (ESPEC, TN, CRED, FMA, FECHALIM) values (3, 'N', 'N', 'N', CURRENT_DATE+1)
 
 formato
 -------
@@ -99,8 +111,9 @@ ejemplo de emision de factura
 "hashArchivo":"",
 "tipoFactura":1,
 "codigoControl":"0DBC3C7B9E56D74",
-"factura":
-{"cabecera":
+
+"factura":{
+"cabecera":
 {"nitEmisor":3726922011,
 "razonSocialEmisor":"SOFIA",
 "municipio":"Cochabamba",
@@ -177,3 +190,48 @@ ejemplo de emision de factura
 "subTotal":12.5
 }]}
 }
+
+=========================================
+sincronizacion de catalogos(productos) y actividades
+=========================================
+{
+  "codigoAmbiente": 2,
+  "codigoPuntoVenta": 0,
+  "codigoPuntoVentaSpecified": true,
+  "codigoSistema": "71D7A7B740E994C89373447",
+  "codigoSucursal": 0,
+  "cuis": "2E8B5B9E",
+  "nit": 3726922011
+}
+
+
+=============
+reciclado
+=============
+formDetalle.onsubmit=(e)=>{
+    e.preventDefault();
+
+    //creando un objeto
+    const objDetalle={
+      cant: CantProducto.value,
+      descripcion: DescProducto.value,
+      preUnitario: PreUnitario.value,
+      preTotal: PreTotal.value
+    };
+
+    arregloDetalle.push(objDetalle);
+
+    redibujarTabla();
+  }
+  
+  
+
+$('input.CurrencyInput').on('blur', function() {
+  const value = this.value.replace(/,/g, '');
+  this.value = parseFloat(value).toLocaleString('en-US', {
+    style: 'decimal',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2
+  });
+});
+

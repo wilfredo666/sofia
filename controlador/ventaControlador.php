@@ -7,7 +7,8 @@ $ruta=parse_url($_SERVER['REQUEST_URI']);
 if(isset($ruta["query"])){
   if($ruta["query"]=="crtInfoCufd"||
      $ruta["query"]=="crtNuevoCufd"||
-     $ruta["query"]=="crtUltimoCufd"){
+     $ruta["query"]=="crtUltimoCufd"||
+     $ruta["query"]=="crtRegistroFactura"){
 
     $metodo=$ruta["query"];
     $venta=new controladorVenta();
@@ -81,7 +82,7 @@ class controladorVenta{
       "FECHAVIGENCIA"=>$fechaVigCufd,
       "DIRECCION"=>$direccionCufd
     );
-    
+
     require_once "../modelo/ventaModelo.php";
     $respuesta=ModeloVenta::MdlNuevoCufd($data);
     echo $respuesta;
@@ -94,17 +95,29 @@ class controladorVenta{
     require_once "../modelo/ventaModelo.php";
     $respuesta=ModeloVenta::MdlUltimoCufd();
     echo json_encode($respuesta);
-    //var_dump($respuesta);
   }
 
   /*=======================
   registrar factura
   ========================*/
-  static public function crtRegistroFactura($data){
-    var_dump($data);
-    /*require_once "../modelo/ventaModelo.php";
-    $respuesta=ModeloVenta::MdlRegistrarFactura($data);*/
+  static public function crtRegistroFactura(){
+    require_once "../modelo/ventaModelo.php";
+    $datos=array(
+      "nitCli"=>$_POST["nitCli"],
+      "fecha"=>$_POST["fecha"],
+      "descuento"=>$_POST["descuento"],
+      "monto"=>$_POST["monto"],
+      "nomfact"=>$_POST["nomfact"],
+      "usuario"=>$_POST["usuario"],
+      "leyenda"=>$_POST["leyenda"],
+      "cuf"=>$_POST["cuf"],
+      "xml"=>$_POST["xml"],
+      "cufd"=>$_POST["cufd"],
+      "cuis"=>$_POST["cuis"]
+    );
 
+    $respuesta=ModeloVenta::MdlRegistrarFactura($datos);
+    echo $respuesta;
   }
 
 

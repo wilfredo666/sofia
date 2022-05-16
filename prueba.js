@@ -192,19 +192,8 @@ function recepecion(){
     }
 }
     console.log(JSON.stringify(obj))
- /* $.ajax(
-    {
-      type:"POST",
-      url:"https://localhost:44392/api/CompraVenta/recepcion",
-      data:JSON.stringify(obj),
-      cache:false,
-      contentType:"application/json",
-      processData:false,
-      success:function(data){
-        console.log(data);
-      }
-    }
-  )*/
+ /* 
+ */
 }
 
 /*====================

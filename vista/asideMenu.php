@@ -61,7 +61,7 @@
             <img src="assest/img/user_default.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Usuario: <?php echo $_SESSION["ingUsuario"];?></a>
+            <a href="#" class="d-block">Usuario: <span id="usuario"><?php echo $_SESSION["ingUsuario"];?></span></a>
             <span class="text-primary"><?php echo $_SESSION["nombreUsuario"]." ".$_SESSION["apellidoUsuario"];?></span>
           </div>
         </div>

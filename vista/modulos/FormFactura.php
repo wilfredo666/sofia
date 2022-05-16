@@ -128,7 +128,7 @@
               </select> 
             </div>
             <div class="form-group col-md-3">
-              <label for="">Punto de Venta</label>
+              <label for="">Punto de Venta</label><!--se extrae de FPUNTOVENTA-->
               <input type="text" class="form-control" name="pntVenta" id="pntVenta" value="0" readonly>
             </div>
             <div class="form-group col-md-3">
@@ -142,7 +142,7 @@
             <div class="form-group col-md-6">
               <label for="">Actividad</label>
               <select name="FacActividad" id="FacActividad" class="form-control">
-                <option value="null">Seleccionar</option>
+                <option value="0">Seleccionar</option>
                 <?php 
                 foreach($actividad as $value){
                 ?>
@@ -230,7 +230,7 @@
                 <label for="">Metodo de pago</label> 
                 <div class="input-group">
                   <select class="form-control" name="metPago" id="metPago">
-                    <option>Seleccionar</option>
+                    <option value="1">Seleccionar</option>
                     <option value="1">Efectivo</option>
                     <option value="2">Tarjeta</option>
                     <option value="3">GifCard</option>
@@ -242,6 +242,9 @@
 Metodo de Pago
 </button>-->
               </div>
+            </div>
+            <div class="callout callout-info">
+              <span class="list-unstyled" id="panelInfo"></span>
             </div>
           </div>
 
@@ -258,14 +261,16 @@ Metodo de Pago
             <div class="input-group form-group" >
               <input type="text" class="form-control" placeholder="Cod. Producto" id="codigoProducto">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" onclick="busCod()" onclick="calculate()">
+                <button class="btn btn-outline-secondary" type="button" onclick="busCod()">
                   <i class="fas fa-search">  
                   </i>
                 </button>
               </div>
             </div>
+            <input type="hidden" class="form-control" id="actEcoProducto">
+            <input type="hidden" class="form-control" id="codProdSin">
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="">Concepto</label>
             <input type="text" class="form-control" id="ConcProducto">
           </div>
@@ -275,7 +280,7 @@ Metodo de Pago
           </div>
           <div class="form-group col-md-1">
             <label for="">U.Medida</label>
-            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto"><!--Entra a FFACTURA.Unidad-->
+            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto" readonly><!--Entra a FFACTURA.Unidad-->
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Unit</label>
@@ -285,10 +290,10 @@ Metodo de Pago
             <label for="">Descuento</label>
             <input type="text" class="form-control" id="DescProducto" name="Descuento"  oninput="calculate()" value="0.00"><!--Entra a FFACTURA.descuento-->
           </div>
-          <div class="form-group col-md-1">
+          <!--<div class="form-group col-md-1">
             <label for="">Lote</label>
-            <input type="text" class="form-control" id="LoteProd" name="LoteProd">  <!--FFACTURA.Lote  --> 
-          </div>
+            <input type="text" class="form-control" id="LoteProd" name="LoteProd">  FFACTURA.Lote   
+          </div>-->
           <div class="form-group col-md-1">
             <label for="">P. Total</label>
             <input type="text" class="form-control CurrencyInput" id="PreTotal" name="PreTotal" readonly value="0.00">  <!--FFACTURA.Total  --> 

@@ -97,10 +97,24 @@ class ModeloVenta{
     $stmt->close();
     $stmt=null;
   }
-  
-  static public function MdlRegistrarFactura($data){
-    
-    $stmt=Conexion::conectar()->prepare("insert into FCTROLF (ESPEC, AUTORIZACION, NFAC, TN, CRED, FMA, FECHALIM) values (3, null, 49, 'N', 'N', 'N', CURRENT_DATE+1)");
+
+  static public function MdlRegistrarFactura($datos){
+
+
+    $nitCli=$_POST["nitCli"];
+    $fecha=$_POST["fecha"];
+    $descuento=$_POST["descuento"];
+    $monto=$_POST["monto"];
+    $nomfact=$_POST["nomfact"];
+    $usuario=$_POST["usuario"];
+    $leyenda=$_POST["leyenda"];
+    $cuf=$_POST["cuf"];
+    $xml=$_POST["xml"];
+    $cufd=$_POST["cufd"];
+    $cuis=$_POST["cuis"];
+
+
+      $stmt=Conexion::conectar()->prepare("insert into FCTROLF(ESPEC, NITCLI,  FECHA, FECHALIM, DESCUENTO, MONTO, NOMFACT, USUARIO, TN, CRED, FMA, LEYENDA, CUF, GIFTCARD, XML, CUFD, CUIS) values (3, '$nitCli', '$fecha', CURRENT_DATE+1, $descuento, $monto, '$nomfact', '$usuario', 'N', 'N', 'N', '$leyenda', '$cuf', 0.00, '$xml', '$cufd', '$cuis')");
 
     if($stmt->execute()){
       return "ok";
