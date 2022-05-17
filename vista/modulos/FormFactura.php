@@ -128,8 +128,21 @@
               </select> 
             </div>
             <div class="form-group col-md-3">
-              <label for="">Punto de Venta</label><!--se extrae de FPUNTOVENTA-->
-              <input type="text" class="form-control" name="pntVenta" id="pntVenta" value="0" readonly>
+              <label for="">Punto de Venta</label>
+              <?php 
+              $actividad=controladorVenta::crtInfoPuntoVenta();
+              ?><!--se extrae de FPUNTOVENTA-->
+              <select name="pntVenta" id="pntVenta" class="form-control">
+                <option value="0">Seleccionar</option>
+                <?php 
+                foreach($actividad as $value){
+                ?>
+                <option value="<?php echo $value["CODIGO"];?>"><?php echo $value["NOMBRE"];?></option>
+                <?php
+                }
+                ?>
+              </select>
+
             </div>
             <div class="form-group col-md-3">
               <label for="">Tipo de Factura</label>
@@ -198,7 +211,7 @@
             </div>
 
             <div class="form-group col-md-6" id="card-exepcion">
-              
+
             </div>
           </div>
 
@@ -291,9 +304,9 @@ Metodo de Pago
             <input type="text" class="form-control" id="DescProducto" name="Descuento"  oninput="calculate()" value="0.00"><!--Entra a FFACTURA.descuento-->
           </div>
           <!--<div class="form-group col-md-1">
-            <label for="">Lote</label>
-            <input type="text" class="form-control" id="LoteProd" name="LoteProd">  FFACTURA.Lote   
-          </div>-->
+<label for="">Lote</label>
+<input type="text" class="form-control" id="LoteProd" name="LoteProd">  FFACTURA.Lote   
+</div>-->
           <div class="form-group col-md-1">
             <label for="">P. Total</label>
             <input type="text" class="form-control CurrencyInput" id="PreTotal" name="PreTotal" readonly value="0.00">  <!--FFACTURA.Total  --> 

@@ -54,6 +54,18 @@ class ModeloVenta{
   }
 
   /*==============================
+    Información de puntos de venta
+  ==============================*/
+  static public function MdlInfoPuntoVenta(){
+    $stmt=Conexion::conectar()->prepare("select * from FPUNTOVENTA");
+    $stmt->execute();
+    return $stmt->fetchAll();
+
+    $stmt->close();
+    $stmt=null;
+  }
+
+  /*==============================
     Información del ultimo cufd
   ==============================*/
   static public function MdlInfoCufd(){
@@ -78,7 +90,7 @@ class ModeloVenta{
     $stmt=Conexion::conectar()->prepare("insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA, DIRECCION) values ('$cufd', '$codControlCufd', '$fechaVigCufd', '$direccionCufd')");
 
     if($stmt->execute()){
-      return "cufd registrado";
+      return "ok";
     }else{
       return "error";
     }
@@ -98,23 +110,26 @@ class ModeloVenta{
     $stmt=null;
   }
 
+  /*=========================
+  registrar factura
+  ==========================*/
   static public function MdlRegistrarFactura($datos){
 
 
-    $nitCli=$_POST["nitCli"];
-    $fecha=$_POST["fecha"];
-    $descuento=$_POST["descuento"];
-    $monto=$_POST["monto"];
-    $nomfact=$_POST["nomfact"];
-    $usuario=$_POST["usuario"];
-    $leyenda=$_POST["leyenda"];
-    $cuf=$_POST["cuf"];
-    $xml=$_POST["xml"];
-    $cufd=$_POST["cufd"];
-    $cuis=$_POST["cuis"];
+    $nitCli=$datos["nitCli"];
+    $fecha=$datos["fecha"];
+    $descuento=$datos["descuento"];
+    $monto=$datos["monto"];
+    $nomfact=$datos["nomfact"];
+    $usuario=$datos["usuario"];
+    $leyenda=$datos["leyenda"];
+    $cuf=$datos["cuf"];
+    $xml=$datos["xml"];
+    $cufd=$datos["cufd"];
+    $cuis=$datos["cuis"];
 
 
-      $stmt=Conexion::conectar()->prepare("insert into FCTROLF(ESPEC, NITCLI,  FECHA, FECHALIM, DESCUENTO, MONTO, NOMFACT, USUARIO, TN, CRED, FMA, LEYENDA, CUF, GIFTCARD, XML, CUFD, CUIS) values (3, '$nitCli', '$fecha', CURRENT_DATE+1, $descuento, $monto, '$nomfact', '$usuario', 'N', 'N', 'N', '$leyenda', '$cuf', 0.00, '$xml', '$cufd', '$cuis')");
+    $stmt=Conexion::conectar()->prepare("insert into FCTROLF(ESPEC, NITCLI,  FECHA, FECHALIM, DESCUENTO, MONTO, NOMFACT, USUARIO, TN, CRED, FMA, LEYENDA, CUF, GIFTCARD, XML, CUFD, CUIS) values (3, '$nitCli', '$fecha', CURRENT_DATE+1, $descuento, $monto, '$nomfact', '$usuario', 'N', 'N', 'N', '$leyenda', '$cuf', 0.00, '$xml', '$cufd', '$cuis')");
 
     if($stmt->execute()){
       return "ok";
@@ -125,4 +140,36 @@ class ModeloVenta{
     $stmt->close();
     $stmt=null;
   }
+
+  /*=========================
+    registrar detalle factura
+    ==========================*/
+  static public function MdlRegDetalleFactura($datos){
+    $numFactura=$datos["numFactura"];
+    $cuf=$datos["cuf"];
+    $productos=$datos["productos"]; //arreglo con los productos
+
+    $totProductos=count($productos);
+
+    for($i=0;$i<$totProductos;$i++){
+
+      $descripcion=$productos[$i]["descripcion"];
+      $precioUnitario=$productos[$i]["precioUnitario"];
+      $montoDescuento=$productos[$i]["montoDescuento"];
+      $subTotal=$productos[$i]["subTotal"];
+      $codigoProducto=$productos[$i]["codigoProducto"];
+      $codigoProductoSin=$productos[$i]["codigoProductoSin"];
+      $actividadEconomica=$productos[$i]["actividadEconomica"];
+      $cantidad=$productos[$i]["cantidad"];
+      $unidadMedida=$productos[$i]["unidadMedida"];
+
+      $stmt=Conexion::conectar()->prepare("insert into FFACTURA(NUMFAC, CONCEPTO, PRECIO, DESCTO, TOTAL, COD, COPROSIN, ACTECON, CANTIDAD, CUF, CODUNI) values($numFactura, '$descripcion', $precioUnitario, $montoDescuento, $subTotal, '$codigoProducto', $codigoProductoSin, $actividadEconomica, $cantidad, '$cuf', $unidadMedida)");
+      
+      $stmt->execute();
+    }
+    return "ok";
+    $stmt->close();
+    $stmt=null;
+  }
+
 }

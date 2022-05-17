@@ -11,6 +11,7 @@ Tareas
 * extraer la direccion de la empresa para la factura
 * agregar el campo codigosin para el crud de productos
 * para el panel de avisos se puede usar apenchild o after de jq
+* agregar validaciones a la factura
 
 *consultar
 ==========

@@ -41,8 +41,7 @@ variables globales
 ====================================*/
 var codSistema=document.getElementById("codSistema").value
 var token=document.getElementById("token").value
-var puerto=44392;
-var host="https://"+document.getElementById("servidor").value+":"+puerto;
+var host="https://"+document.getElementById("servidor").value+":"+44392;
 var nitEmpresa=parseInt(document.getElementById("nitEmpresa").innerHTML)
 var cuis;
 var cufd;
@@ -150,9 +149,8 @@ function solicitudcufd(){
         }
       }
     )
+
   })
-
-
 }
 
 /*==================================
@@ -177,7 +175,11 @@ function registrarNuevoCUFD(){
         type:"POST",
         cache:false,
         success:function(data){
-          console.log(data);
+          if(data=="ok"){
+            $("#panelInfo").before("<span class='text-primary'>Cufd registrado</span><br>")
+          }else{
+            $("#panelInfo").before("<span class='text-danger'>Error de registro cufd!!!</span><br>")
+          }
         }
       }
     )
@@ -262,7 +264,7 @@ function verificarVigenciaCufd(){
         //comparando fechas
         if(date.getTime()>vigCufd.getTime()){
           //console.log("Cufd caducado");
-          $("#panelInfo").before("<span class='text-danger'>Cufd caducado!!!</span><br>")
+          $("#panelInfo").before("<span class='text-warning'>Cufd caducado!!!</span><br>")
           $("#panelInfo").before("<span>Registrando nuevo Cufd...</span><br>")
           registrarNuevoCUFD();
         }else{
@@ -279,9 +281,6 @@ function verificarVigenciaCufd(){
   )
 }
 
-function escribir(){
-  $("#panelInfo").before("<span class='text-danger'>Cufd caducado</span><br>")
-}
 
 function MNuevaVenta(){
   window.location="FormFactura";
@@ -733,46 +732,48 @@ registrar factura
 
 function registrarFactura(datos){
 
-  let nitCliente=document.getElementById("nitCliente").value;// nit/ci cliente
-  let date=new Date();
-  let dateToIso=date.toISOString();
-  let fechaFactura=transformarFecha(dateToIso);
-  let descAdicional=parseFloat(document.getElementById("descAdicional").value); //descuento
-  let totApagar=parseFloat(document.getElementById("totApagar").value); //total factura a paga
-  let RSCliente=document.getElementById("RSCliente").value;//nombre o razon social cliente
-  let usuario=document.getElementById("usuario").innerHTML;//usuario
+    let nitCliente=document.getElementById("nitCliente").value;// nit/ci cliente
+    let date=new Date();
+    let dateToIso=date.toISOString();
+    let fechaFactura=transformarFecha(dateToIso);
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value); //descuento
+    let totApagar=parseFloat(document.getElementById("totApagar").value); //total factura a paga
+    let RSCliente=document.getElementById("RSCliente").value;//nombre o razon social cliente
+    let usuario=document.getElementById("usuario").innerHTML;//usuario
 
-  var obj={
-    "nitCli":nitCliente,
-    "fecha":fechaFactura,
-    "descuento":descAdicional,
-    "monto":totApagar,
-    "nomfact":RSCliente,
-    "usuario":usuario,
-    "leyenda":"leyenda",
-    "cuf":datos["cufEmision"],
-    "xml":datos["xml"],
-    "cufd":cufd,
-    "cuis":cuis
-  }
-  $.ajax(
-    {
-      data:obj,
-      url:"controlador/ventaControlador.php?crtRegistroFactura",
-      type:"POST",
-      cache:false,
-      success:function(data){
-
-        if(data=="ok"){
-          $("#panelInfo").before("<span class='text-primary'>Factura registrada</span><br>")
-          setTimeout(function(){
-            location.reload();
-          },2000);
-        }else{
-          $("#panelInfo").before("<span class='text-warning'>Factura no registrada</span><br>")
-        }
-
-      }
+    var obj={
+      "nitCli":nitCliente,
+      "fecha":fechaFactura,
+      "descuento":descAdicional,
+      "monto":totApagar,
+      "nomfact":RSCliente,
+      "usuario":usuario,
+      "leyenda":"leyenda",
+      "cuf":datos["cufEmision"],
+      "xml":datos["xml"],
+      "cufd":cufd,
+      "cuis":cuis,
+      "detalle": arregloDetalle
     }
-  )
+    $.ajax(
+      {
+        data:obj,
+        url:"controlador/ventaControlador.php?crtRegistroFactura",
+        type:"POST",
+        cache:false,
+        success:function(data){
+          //console.log(data)
+          if(data=="ok"){            
+            $("#panelInfo").before("<span class='text-primary'>Factura registrada</span><br>")
+            setTimeout(function(){
+              location.reload();
+            },2000);
+          }else{
+            $("#panelInfo").before("<span class='text-danger'>Factura no registrada</span><br>")
+          }
+
+        }
+      }
+    )
+
 }

@@ -58,6 +58,15 @@ class controladorVenta{
     return $respuesta;
   }
 
+  /*==================
+  info punto de venta
+  ===================*/
+  static public function crtInfoPuntoVenta(){
+    $respuesta=ModeloVenta::MdlInfoPuntoVenta();
+
+    return $respuesta;
+  }
+
   /*=======================
   extraccion del ultimo cufd
   ========================*/
@@ -101,8 +110,9 @@ class controladorVenta{
   registrar factura
   ========================*/
   static public function crtRegistroFactura(){
+
     require_once "../modelo/ventaModelo.php";
-    $datos=array(
+    $factura=array(
       "nitCli"=>$_POST["nitCli"],
       "fecha"=>$_POST["fecha"],
       "descuento"=>$_POST["descuento"],
@@ -114,11 +124,23 @@ class controladorVenta{
       "xml"=>$_POST["xml"],
       "cufd"=>$_POST["cufd"],
       "cuis"=>$_POST["cuis"]
+
     );
 
-    $respuesta=ModeloVenta::MdlRegistrarFactura($datos);
-    echo $respuesta;
-  }
+    $respuesta=ModeloVenta::MdlRegistrarFactura($factura);
 
+    if($respuesta=="ok"){
+
+      $detFactura=array(
+        "numFactura"=>12,
+        "cuf"=>$_POST["cuf"],
+        "productos"=>$_POST["detalle"]
+      );
+
+      $respuestaDetalle=ModeloVenta::MdlRegDetalleFactura($detFactura);
+
+    }
+    echo $respuestaDetalle;
+  }
 
 }
