@@ -16,7 +16,7 @@ $sql_datos_adicionales->execute();
 $Datos_adicionales=$sql_datos_adicionales->fetch();
 
 $datostabla=Conexion::conectar()->query("SELECT COD, CANTIDAD, CONCEPTO, PRECIO, DESCTO, NUMEROSERIE, ACTECON, TOTAL
-FROM FFACTURA where CUF='3'");
+FROM FFACTURA where CUF='2'");
 $datostabla->execute();
 $Datos_en_tabla=$datostabla->fetchAll();
 
@@ -154,7 +154,7 @@ $header = array("Cod. Producto", "Cantidad","Descripcion","Precio Uni","Descuent
 //// Apartir de aqui esta la tabla con los subtotales y totales
 $yposdinamic = 36.4 + (count($products)*10);
 
-$pdf->setY($yposdinamic+5);
+$pdf->setY($yposdinamic+20);
 $pdf->setX(210);
     $pdf->Ln();
 /////////////////////////////
