@@ -22,7 +22,7 @@
           <b>BD: </b> <?php echo $_SESSION["bdServidor"];?><br>
         </li>
         <li class="nav-item nav-link">
-         <input type="hidden" id="servidor" value="<?php echo $_SESSION["ipServer"];?>">
+          <input type="hidden" id="servidor" value="<?php echo $_SESSION["ipServer"];?>">
           <b>Servidor: </b><?php echo $_SESSION["ipServer"];?>
         </li>
         <li class="nav-item nav-link">
@@ -30,6 +30,8 @@
         </li>
         <li class="nav-item nav-link">
           <b>NIT: </b><span id="nitEmpresa"><?php echo $_SESSION["nitRucEmpresa"];?></span>
+          <input type="hidden" value="<?php echo $_SESSION["direccionEmpresa"];?>" id="dirEmpresa">
+          <input type="hidden" value="<?php echo $_SESSION["telefonoEmpresa"];?>" id="telEmpresa">
         </li>
       </ul>
 
@@ -162,7 +164,26 @@
                   </a>
                 </li>
               </ul>
-            </li>              
+            </li>
+
+            <li class="nav-item">       
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                  Opciones
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link" onclick="registrarNuevoCUFD()">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Nuevo CUFD</p>
+                  </a>
+                </li>
+              </ul>
+            </li> 
+                          
             <li class="nav-item">
               <a href="salir" class="nav-link">
                 <i class="nav-icon fas fa-door-open"></i>

@@ -41,24 +41,26 @@ variables globales
 ====================================*/
 var codSistema=document.getElementById("codSistema").value
 var token=document.getElementById("token").value
-var host="https://"+document.getElementById("servidor").value+":"+44392;
+//var host="https://"+document.getElementById("servidor").value+":"+44392;
 var nitEmpresa=parseInt(document.getElementById("nitEmpresa").innerHTML)
 var cuis;
 var cufd;
 var direccionCufd;
 var fechaVigCufd;
 var codControlCufd;
+var leyenda;
+var numFactura;
 /*host para la API*/
-//var host="https://localhost:44392";
+var host="https://factura.sofiasys.biz";
 
 /*==================================
 comprobar conexion con SIAT - metodo
 ====================================*/
-/*
+
 setInterval(()=>{
   verificarComunicacion(token)
 },3000)
-*/
+
 function verificarComunicacion(token){
   var obj="";
   $.ajax(
@@ -222,7 +224,6 @@ function verificarExistenciaCUFD(){
   )
 }
 
-
 /*====================================
 transformar fecha con formato ISO 8061
 ======================================*/
@@ -238,7 +239,6 @@ function transformarFecha(fechaISO){
   var fecha_hora=fecha+":"+hora;
   return fecha_hora;
 }
-
 
 /*==================================
 verificar vigencia CUFD - metodo
@@ -276,6 +276,29 @@ function verificarVigenciaCufd(){
         }
 
 
+      }
+    }
+  )
+}
+
+/*==================================
+Extraer leyenda aleatoria
+====================================*/
+
+function extraerLeyenda(){
+  const ActividadEco=document.getElementById("ActividadEco").value;//actividad economica
+  var obj={
+    "caeb":ActividadEco
+  };
+  $.ajax(
+    {
+      url:"controlador/ventaControlador.php?crtLeyenda",
+      type:"POST",
+      data:obj,
+      cache:false,
+      //dataType:"json",
+      success:function(data){
+        leyenda=data;
       }
     }
   )
@@ -391,7 +414,7 @@ function agregarCarrito(){
   const UniMedProducto=document.getElementById("UniMedProducto");
   const PreUnitario=document.getElementById("PreUnitario");
   const DescProducto=document.getElementById("DescProducto");//descuento
-  const LoteProd=document.getElementById("LoteProd");
+  //const LoteProd=document.getElementById("LoteProd");
   const PreTotal=document.getElementById("PreTotal");
 
 
@@ -412,7 +435,7 @@ function agregarCarrito(){
   arregloDetalle.push(objDetalle);
 
   //4.- calcula el total a pagar, total descuento y definir valores
-  calcularTotal()
+  calcularTotal();
 
   //5.- Vuelve a dibujar la tabla de detalle con todos los nuevos productos incluidos
   redibujarTabla();
@@ -427,6 +450,49 @@ function agregarCarrito(){
   document.getElementById("PreUnitario").value="";
   document.getElementById("DescProducto").value="0.00";
   document.getElementById("PreTotal").value="";
+}
+
+/*==================================
+validar campos del formulario
+===================================*/
+
+function validarCampos(){
+  let ActividadEco=document.getElementById("ActividadEco").value;//actividad economica
+  let facSucursal=document.getElementById("facSucursal").value;//sucursal
+  let pntVenta=document.getElementById("pntVenta").value;//punto de venta
+  let tpDocumento=document.getElementById("tpDocumento").value;//tipo de documento
+  let emailCliente=document.getElementById("RSClienteEmail").value;//email del cliente
+  let nitCliente=document.getElementById("nitCliente").value;//nit/ci cliente
+  let RSCliente=document.getElementById("RSCliente").value;//razon social cliente
+  let metPago=document.getElementById("metPago").value;//razon social cliente
+
+  if(ActividadEco==null || ActividadEco==0){
+    document.getElementById("error-ActividadEco").innerHTML="Debe seleccionar una actividad";
+    return false;
+  }else if( isNaN(facSucursal)){
+    document.getElementById("error-facSucursal").innerHTML="Debe seleccionar una sucursal";
+    return false;
+  }else if( isNaN(pntVenta)){
+    document.getElementById("error-pntVenta").innerHTML="Debe seleccionar punto de venta";
+    return false;
+  }
+  else if( isNaN(tpDocumento)){
+    document.getElementById("error-tpDocumento").innerHTML="Debe seleccionar el tipo de documento";
+    return false;
+  }else if(!(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(emailCliente))){
+    document.getElementById("error-email").innerHTML="Correo electronico no valido";
+    return false;
+  }else if( nitCliente==null || nitCliente.length == 0){
+    document.getElementById("error-nitCliente").innerHTML="Numero de documento no valido";
+    return false;
+  }else if( RSCliente==null || RSCliente.length == 0){
+    document.getElementById("error-rs").innerHTML="Debe ingresar un nombre para la factura";
+    return false;
+  }else if( isNaN(metPago)){
+    document.getElementById("error-metPago").innerHTML="Debe seleccionar el metodo de pago";
+    return false;
+  }
+  return true;
 }
 
 /*===================================
@@ -480,8 +546,6 @@ function calculate() {
   var myResult = myBox1 * myBox2;
   result.value = myResult;
 
-  var myBox1 = parseFloat(document.getElementById('CantProducto').value); 
-  var myBox2 = parseFloat(document.getElementById('PreUnitario').value);
   var myBox3 = myBox1 * myBox2;
   var myBox4 = parseFloat(document.getElementById('DescProducto').value);
   var desctotal = myBox1 * myBox4;
@@ -491,7 +555,6 @@ function calculate() {
 
 
 }
-
 
 calcularTotal=()=>{
   let totalApagar=0;
@@ -578,7 +641,6 @@ function verificarNit(nitCliente){
   )
 }
 
-
 /*======================================
 cuando selecciona tipo de documento=>nit
 ========================================*/
@@ -603,6 +665,39 @@ function tipoDocumento(){
   }
 }
 
+/*======================================
+extraer el ultimo numero de factura segun sucursal y punto de venta
+========================================*/
+
+function numeroFactura(){
+  let facSucursal=parseInt(document.getElementById("facSucursal").value);//sucursal
+  let pntVenta=parseInt(document.getElementById("pntVenta").value);//punto de venta
+
+  var obj={
+    "sucursal":facSucursal,
+    "puntoVenta":pntVenta
+  };
+
+  $.ajax(
+    {
+      url:"controlador/ventaControlador.php?crtNumFactura",
+      type:"POST",
+      data:obj,
+      cache:false,
+      dataType:"json",
+      success:function(data){
+
+        if(data["MAX"]!=null){
+          numFactura=data["MAX"]+1;
+        }else{
+          numFactura=1;
+        }
+
+      }
+    }
+  )
+}
+
 /*=========================
 emitir factura
 ==========================*/
@@ -611,11 +706,14 @@ function emitirFactura(){
   //verificar vigencia de CUFD
   verificarVigenciaCufd()
 
+  //extraer numero de factura
+  numeroFactura()
+
   let date=new Date();
 
   /* encabezado objeto*/
   let pntVenta=parseInt(document.getElementById("pntVenta").value);//punto de venta
-  let facSucursal=parseInt(document.getElementById("FacSucursal").value);//sucursal
+  let facSucursal=parseInt(document.getElementById("facSucursal").value);//sucursal
   let fechaFactura=date.toISOString();//fecha
   let tpFactura=parseInt(document.getElementById("tpFactura").value);//tipo de factura
 
@@ -628,7 +726,9 @@ function emitirFactura(){
   let metPago=parseInt(document.getElementById("metPago").value);
   let totApagar=parseFloat(document.getElementById("totApagar").value); //total factura a pagar
   let SubTotal=parseFloat(document.getElementById("SubTotal").value); //total factura a pagar
-  let descAdicional=parseFloat(document.getElementById("descAdicional").value); //descuento adicional
+  let descAdicional=parseFloat(document.getElementById("descAdicional").value); //descuentoadicional
+  let telEmpresa=document.getElementById("telEmpresa").value; //telefono de la empresa emisora
+  let usuarioFac=document.getElementById("usuario").innerHTML; //usuario
 
   let RSClienteEmail;//email
   //var totDescuento=document.getElementById("totDescuento").value; //total descuento
@@ -664,8 +764,8 @@ function emitirFactura(){
         nitEmisor: nitEmpresa,
         razonSocialEmisor: RSEmpresa,
         municipio: "Cochabamba",
-        telefono: "44293074",
-        numeroFactura: 1,//?
+        telefono: telEmpresa,
+        numeroFactura: numFactura,//numero de factura
         cuf: "string",
         cufd: cufd,
         codigoSucursal: 0,
@@ -683,13 +783,13 @@ function emitirFactura(){
         montoTotalSujetoIva: totApagar,//subtotal menos todos los descuentos
         codigoMoneda: 1,
         tipoCambio: 1,
-        montoTotalMoneda: totApagar,//=montoTotalSujetoIva
+        montoTotalMoneda: totApagar,//montoTotalSujetoIva
         montoGiftCard: 0,
         descuentoAdicional: descAdicional,
         codigoExcepcion: 0,
         cafc: null,
-        leyenda: "LEYENDA",
-        usuario: "test",
+        leyenda: leyenda,
+        usuario: usuarioFac,
         codigoDocumentoSector: 1
       },
       detalle: arregloDetalle
@@ -699,7 +799,7 @@ function emitirFactura(){
   $.ajax(
     {
       type:"POST",
-      url:"https://localhost:44392/api/CompraVenta/recepcion",
+      url:host+"/api/CompraVenta/recepcion",
       data:JSON.stringify(obj),
       cache:false,
       contentType:"application/json",
@@ -732,48 +832,54 @@ registrar factura
 
 function registrarFactura(datos){
 
-    let nitCliente=document.getElementById("nitCliente").value;// nit/ci cliente
-    let date=new Date();
-    let dateToIso=date.toISOString();
-    let fechaFactura=transformarFecha(dateToIso);
-    let descAdicional=parseFloat(document.getElementById("descAdicional").value); //descuento
-    let totApagar=parseFloat(document.getElementById("totApagar").value); //total factura a paga
-    let RSCliente=document.getElementById("RSCliente").value;//nombre o razon social cliente
-    let usuario=document.getElementById("usuario").innerHTML;//usuario
+  let nitCliente=document.getElementById("nitCliente").value;// nit/ci cliente
+  let date=(new Date()).getTimezoneOffset() * 60000;
+  let dateToIso=(new Date(Date.now() - date)).toISOString().slice(0, -1);
+  let fechaFactura=transformarFecha(dateToIso);
+  let descAdicional=parseFloat(document.getElementById("descAdicional").value); //descuento
+  let totApagar=parseFloat(document.getElementById("totApagar").value); //total factura a paga
+  let RSCliente=document.getElementById("RSCliente").value;//nombre o razon social cliente
+  let usuario=document.getElementById("usuario").innerHTML;//usuario
 
-    var obj={
-      "nitCli":nitCliente,
-      "fecha":fechaFactura,
-      "descuento":descAdicional,
-      "monto":totApagar,
-      "nomfact":RSCliente,
-      "usuario":usuario,
-      "leyenda":"leyenda",
-      "cuf":datos["cufEmision"],
-      "xml":datos["xml"],
-      "cufd":cufd,
-      "cuis":cuis,
-      "detalle": arregloDetalle
-    }
-    $.ajax(
-      {
-        data:obj,
-        url:"controlador/ventaControlador.php?crtRegistroFactura",
-        type:"POST",
-        cache:false,
-        success:function(data){
-          //console.log(data)
-          if(data=="ok"){            
-            $("#panelInfo").before("<span class='text-primary'>Factura registrada</span><br>")
-            setTimeout(function(){
-              location.reload();
-            },2000);
-          }else{
-            $("#panelInfo").before("<span class='text-danger'>Factura no registrada</span><br>")
-          }
-
+  var obj={
+    "nitCli":nitCliente,
+    "fecha":fechaFactura,
+    "descuento":descAdicional,
+    "monto":totApagar,
+    "nomfact":RSCliente,
+    "usuario":usuario,
+    "leyenda":"leyenda",
+    "cuf":datos["cufEmision"],
+    "xml":datos["xml"],
+    "cufd":cufd,
+    "cuis":cuis,
+    "nfac":numFactura,
+    "detalle": arregloDetalle
+  }
+  $.ajax(
+    {
+      data:obj,
+      url:"controlador/ventaControlador.php?crtRegistroFactura",
+      type:"POST",
+      cache:false,
+      success:function(data){
+        console.log(data)
+        if(data=="ok"){
+          Swal.fire({
+            icon: 'success',
+            showConfirmButton:false,
+            title:'Factura registrada!!!',
+            timer:1000
+          });
+          setTimeout(function(){
+            location.reload();
+          },1200);
+        }else{
+          $("#panelInfo").before("<span class='text-danger'>Factura no registrada</span><br>")
         }
+
       }
-    )
+    }
+  )
 
 }

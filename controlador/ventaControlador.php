@@ -8,6 +8,8 @@ if(isset($ruta["query"])){
   if($ruta["query"]=="crtInfoCufd"||
      $ruta["query"]=="crtNuevoCufd"||
      $ruta["query"]=="crtUltimoCufd"||
+     $ruta["query"]=="crtLeyenda"||
+     $ruta["query"]=="crtNumFactura"||
      $ruta["query"]=="crtRegistroFactura"){
 
     $metodo=$ruta["query"];
@@ -105,6 +107,19 @@ class controladorVenta{
     $respuesta=ModeloVenta::MdlUltimoCufd();
     echo json_encode($respuesta);
   }
+  /*============================
+  extraer leyenda aleatoria
+  =============================*/
+  static public function crtLeyenda(){
+    require_once "../modelo/ventaModelo.php";
+    
+    $datos=array(
+    "caeb"=>$_POST["caeb"]
+    );
+    $respuesta=ModeloVenta::MdlLeyenda($datos);
+    echo $respuesta["NOMBRE"];
+    //echo json_encode($respuesta);
+  }
 
   /*=======================
   registrar factura
@@ -124,7 +139,6 @@ class controladorVenta{
       "xml"=>$_POST["xml"],
       "cufd"=>$_POST["cufd"],
       "cuis"=>$_POST["cuis"]
-
     );
 
     $respuesta=ModeloVenta::MdlRegistrarFactura($factura);
@@ -132,7 +146,7 @@ class controladorVenta{
     if($respuesta=="ok"){
 
       $detFactura=array(
-        "numFactura"=>12,
+        "numFactura"=>$_POST["nfac"],
         "cuf"=>$_POST["cuf"],
         "productos"=>$_POST["detalle"]
       );
@@ -141,6 +155,22 @@ class controladorVenta{
 
     }
     echo $respuestaDetalle;
+  }
+
+  /*=======================
+  extraer numero de factura
+  ========================*/
+  static public function crtNumFactura(){
+    require_once "../modelo/ventaModelo.php";
+
+    $datos=array(
+      "sucursal"=>$_POST["sucursal"],
+      "puntoVenta"=>$_POST["puntoVenta"]
+    );
+
+    $respuesta=ModeloVenta::MdlNumFactura($datos);
+    //var_dump($respuesta);
+    echo json_encode($respuesta);
   }
 
 }

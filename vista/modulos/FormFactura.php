@@ -116,8 +116,8 @@
             ?>
             <div class="form-group col-md-3">
               <label for="">Sucursal</label>
-              <select name="FacSucursal" id="FacSucursal" class="form-control">
-                <option value="0">Seleccionar</option>
+              <select name="facSucursal" id="facSucursal" class="form-control">
+                <option>Seleccionar</option>
                 <?php 
                 foreach($sucursal as $value){
                 ?>
@@ -125,55 +125,45 @@
                 <?php
                 }
                 ?>
-              </select> 
+              </select>
+              <p id="error-facSucursal" class="text-danger"></p> 
             </div>
             <div class="form-group col-md-3">
               <label for="">Punto de Venta</label>
               <?php 
-              $actividad=controladorVenta::crtInfoPuntoVenta();
-              ?><!--se extrae de FPUNTOVENTA-->
+              $pntVenta=controladorVenta::crtInfoPuntoVenta();
+              ?>
               <select name="pntVenta" id="pntVenta" class="form-control">
-                <option value="0">Seleccionar</option>
+                <option>Seleccionar</option>
+                <option value="0">Casa Matriz</option>
                 <?php 
-                foreach($actividad as $value){
+                foreach($pntVenta as $value){
                 ?>
                 <option value="<?php echo $value["CODIGO"];?>"><?php echo $value["NOMBRE"];?></option>
                 <?php
                 }
                 ?>
               </select>
-
+              <p id="error-pntVenta" class="text-danger"></p> 
             </div>
             <div class="form-group col-md-3">
               <label for="">Tipo de Factura</label>
-              <input type="text" class="form-control" name="tpFactura" id="tpFactura" value="1" readonly>
-            </div>
-
-            <?php 
-            $actividad=controladorVenta::crtInfoActividad();
-            ?>
-            <div class="form-group col-md-6">
-              <label for="">Actividad</label>
-              <select name="FacActividad" id="FacActividad" class="form-control">
-                <option value="0">Seleccionar</option>
-                <?php 
-                foreach($actividad as $value){
-                ?>
-                <option value="<?php echo $value["COD"];?>"><?php echo $value["ACTECON"];?></option>
-                <?php
-                }
-                ?>
+              <select name="tpFactura" id="tpFactura" class="form-control">
+                <option value="1">Compra y venta</option>
               </select>
             </div>
+
+
             <div class="form-group col-md-6">
-              <label for="">Email</label> 
+              <label for="">E-mail</label> 
               <input type="email" class="form-control" placeholder="E-mail Cliente" id="RSClienteEmail" name="RSClienteEmail">
+              <p id="error-email" class="text-danger"></p> 
             </div>
             <div class="form-group col-md-6">
               <label for="">Tipo de documento</label> 
               <div class="input-group">
                 <select class="form-control" name="tpDocumento" id="tpDocumento" onchange="tipoDocumento()">
-                  <option value="1">Seleccionar</option>
+                  <option>Seleccionar</option>
                   <option value="1">CEDULA DE IDENTIDAD</option>
                   <option value="2">CEDULA DE IDENTIDAD DE EXTRANJERO</option>
                   <option value="3">PASAPORTE</option>
@@ -181,6 +171,7 @@
                   <option value="5">NÚMERO DE IDENTIFICACIÓN TRIBUTARIA</option>
                 </select>
               </div>
+              <p id="error-tpDocumento" class="text-danger"></p> 
             </div>
             <div class="form-group col-md-6">
               <label for="">NIT/CI</label> 
@@ -193,6 +184,7 @@
                   </button>
                 </div>
               </div>
+              <p id="error-nitCliente" class="text-danger"></p>
             </div>
 
             <div class="form-group col-md-6">
@@ -200,14 +192,25 @@
               <div class="input-group">
                 <input type="text" class="form-control" id="RSCliente" placeholder="Razon Social del cliente">
                 <input type="hidden" id="CodCliente">
-                <!--<div class="input-group-append">
-<button class="btn btn-outline-secondary" type="button">
-<i class="fas fa-search">  
-</i>
-</button>
-</div>-->
               </div>
               <p id="error-rs" class="text-danger"></p>
+            </div>
+            <?php 
+            $actividad=controladorVenta::crtInfoActividad();
+            ?>
+            <div class="form-group col-md-6">
+              <label for="">Actividad Economica</label>
+              <select name="ActividadEco" id="ActividadEco" class="form-control">
+                <option value="0">Seleccionar</option>
+                <?php 
+                foreach($actividad as $value){
+                ?>
+                <option value="<?php echo $value["COD"];?>"><?php echo $value["ACTECON"];?></option>
+                <?php
+                }
+                ?>
+              </select>
+              <p id="error-ActividadEco" class="text-danger"></p>
             </div>
 
             <div class="form-group col-md-6" id="card-exepcion">
@@ -293,11 +296,11 @@ Metodo de Pago
           </div>
           <div class="form-group col-md-1">
             <label for="">U.Medida</label>
-            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto" readonly><!--Entra a FFACTURA.Unidad-->
+            <input type="text" class="form-control" id="UniMedProducto" name="UniMedProducto" readonly>
           </div>
           <div class="form-group col-md-1">
             <label for="">P. Unit</label>
-            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Precio" oninput="calculate()" value="0.00"><!--Entra a FFACTURA.Precio-->
+            <input type="text" class="form-control CurrencyInput" id="PreUnitario" name="PreUnitario" placeholder="Precio" oninput="calculate()" value="0.00">
           </div>
           <div class="form-group col-md-1">
             <label for="">Descuento</label>

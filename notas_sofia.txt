@@ -2,12 +2,11 @@
 Tareas
 -----------------
 * que hacer cuando no hay cuis al momento de solicitar cufd
-* reparar la edicion de producto
+
 * revisar el metodo crtInfoCufd para que pueda servir tanto para saber si existe cufd como para saber el ultimo vigente
-* continuar con el registro del cufd - metodo registrarNuevoCUFD
-* la base de datos no actualiza los registros a menos que se refresque
-* la actividad economica debe ser obligatorio antes de agregar un producto
-* extraer el nunero de telefono de la empresa para la factura
+
+* la actividad economica debe ser obligatorio antes de agregar un producto - validar
+* extraer el numero de telefono de la empresa para la factura
 * extraer la direccion de la empresa para la factura
 * agregar el campo codigosin para el crud de productos
 * para el panel de avisos se puede usar apenchild o after de jq
@@ -22,7 +21,7 @@ Tareas
 
 
 
-
+producto.CODCAEB --> actividad economica
 -tipo de venta --> mostrar: compra venta --> enviar codigo --> recuperr del api
 
 insert into FCTROLF (ESPEC, NUM, AUTORIZACION, NFAC, TN, CRED, FMA) values (3, 43, '3744006701025', 43, 'N', 'N', 'N')
@@ -57,8 +56,6 @@ FROM FCUFD
 where fecha=(select max(fecha) FROM FCUFD)
 
 
-select * from FCTROLF
-where NFAC=19
 ---------------
 errores en la base de datos:
 tabla-->FACTECON
@@ -236,3 +233,55 @@ $('input.CurrencyInput').on('blur', function() {
   });
 });
 
+extraer leyenda aleatorea
+--------------------------
+SELECT first 1 *
+FROM FL453
+order by rand()
+
+suc
+pos
+y extraer el ultimo numero de factura en la tabla fctrolf
+
+
+pdf
+https://localhost:5001/api/Operaciones/enviomail
+
+
+{
+  "base64Pdf": "string",
+  "xmlString": "string",
+  "tipoFactura": 1,
+  "email": "string" //correo del cliente
+}
+
+
+
+metodo de cancelacion de factura
+
+fctrolf -> estado
+A=Anulada, V=Valida, E=Extraviada, N=No utilizada, C=Emitida en Contingencia
+
+
+RUTA:
+/api/CompraVenta/anulacion
+PAYLOAD:
+{
+"codigoAmbiente": 2, //prueba 2
+"codigoPuntoVenta": 0,
+"codigoPuntoVentaSpecified": true,
+"codigoSistema": "string",
+"codigoSucursal": 0,
+"nit": 0,
+"codigoDocumentoSector": 1, //compraventa
+"codigoEmision": 0,
+"codigoModalidad": 0,
+"cufd": "string",
+"cuis": "string",
+"tipoFacturaDocumento": 0,
+"codigoMotivo": 0,
+"cuf": "string"
+}
+
+
+FACTECON.COD==FL453.CAEB

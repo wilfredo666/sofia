@@ -71,8 +71,20 @@ class ModeloVenta{
   static public function MdlInfoCufd(){
     $stmt=Conexion::conectar()->prepare("select * from FCUFD");
     $stmt->execute();
-    return $stmt->fetchAll(); //abre la conexion
-    //solo se puede hacer cerrar (close()) cuando devuelve
+    return $stmt->fetchAll();
+    $stmt->close();
+    $stmt=null;
+  }
+  
+  /*==============================
+    Extraer leyenda aleatoria
+  ==============================*/
+  static public function MdlLeyenda($datos){
+    $caeb=$datos["caeb"];
+    $stmt=Conexion::conectar()->prepare("SELECT first 1 NOMBRE FROM FL453 WHERE CAEB='$caeb'
+order by rand()");
+    $stmt->execute();
+    return $stmt->fetch();
     $stmt->close();
     $stmt=null;
   }
@@ -168,6 +180,20 @@ class ModeloVenta{
       $stmt->execute();
     }
     return "ok";
+    $stmt->close();
+    $stmt=null;
+  }
+  
+  /*=========================
+    extraer numero de factura
+    ==========================*/
+  static public function MdlNumFactura($datos){
+    $sucursal=$datos["sucursal"];
+    $puntoVenta=$datos["puntoVenta"];
+    
+    $stmt=Conexion::conectar()->prepare("SELECT max(NFAC) FROM FCTROLF where SUC='$sucursal' and POS='$puntoVenta'");
+    $stmt->execute();
+    return $stmt->fetch(); 
     $stmt->close();
     $stmt=null;
   }
