@@ -20,9 +20,13 @@ class ModeloVenta{
     Información de venta
   ==============================*/
   static public function MdlInfoVenta($codVenta){
-    $stmt=Conexion::conectar()->prepare("select * from  where COD='$codVenta'");
+    $stmt=Conexion::conectar()->prepare("select NUM, NFAC, NOMFACT, USUARIO, FCTROLF.FECHA, MONTO, ESTADO, FCTROLF.CUF, CONCEPTO, PRECIO, CANTIDAD, DESCTO, TOTAL, FCTROLF.CUF
+from FCTROLF
+join FFACTURA
+ON FFACTURA.CUF=FCTROLF.CUF
+where NUM=$codVenta");
     $stmt->execute();
-    return $stmt->fetch();
+    return $stmt->fetchAll();
 
     $stmt->close();
     $stmt=null;
@@ -75,7 +79,7 @@ class ModeloVenta{
     $stmt->close();
     $stmt=null;
   }
-  
+
   /*==============================
     Extraer leyenda aleatoria
   ==============================*/
@@ -129,6 +133,7 @@ order by rand()");
 
 
     $nitCli=$datos["nitCli"];
+    $emailCli=$datos["emailCli"];
     $fecha=$datos["fecha"];
     $descuento=$datos["descuento"];
     $monto=$datos["monto"];
@@ -139,9 +144,10 @@ order by rand()");
     $xml=$datos["xml"];
     $cufd=$datos["cufd"];
     $cuis=$datos["cuis"];
+    $numFactura=$datos["numFactura"];
 
 
-    $stmt=Conexion::conectar()->prepare("insert into FCTROLF(ESPEC, NITCLI,  FECHA, FECHALIM, DESCUENTO, MONTO, NOMFACT, USUARIO, TN, CRED, FMA, LEYENDA, CUF, GIFTCARD, XML, CUFD, CUIS) values (3, '$nitCli', '$fecha', CURRENT_DATE+1, $descuento, $monto, '$nomfact', '$usuario', 'N', 'N', 'N', '$leyenda', '$cuf', 0.00, '$xml', '$cufd', '$cuis')");
+    $stmt=Conexion::conectar()->prepare("insert into FCTROLF(ESPEC, NFAC, NITCLI,  FECHA, FECHALIM, DESCUENTO, MONTO, NOMFACT, USUARIO, TN, CRED, FMA, LEYENDA, CUF, GIFTCARD, XML, CUFD, CUIS, EMAILCLI) values (3, $numFactura, '$nitCli', '$fecha', CURRENT_DATE+1, $descuento, $monto, '$nomfact', '$usuario', 'N', 'N', 'N', '$leyenda', '$cuf', 0.00, '$xml', '$cufd', '$cuis', '$emailCli')");
 
     if($stmt->execute()){
       return "ok";
@@ -176,21 +182,21 @@ order by rand()");
       $unidadMedida=$productos[$i]["unidadMedida"];
 
       $stmt=Conexion::conectar()->prepare("insert into FFACTURA(NUMFAC, CONCEPTO, PRECIO, DESCTO, TOTAL, COD, COPROSIN, ACTECON, CANTIDAD, CUF, CODUNI) values($numFactura, '$descripcion', $precioUnitario, $montoDescuento, $subTotal, '$codigoProducto', $codigoProductoSin, $actividadEconomica, $cantidad, '$cuf', $unidadMedida)");
-      
+
       $stmt->execute();
     }
     return "ok";
     $stmt->close();
     $stmt=null;
   }
-  
+
   /*=========================
     extraer numero de factura
     ==========================*/
   static public function MdlNumFactura($datos){
     $sucursal=$datos["sucursal"];
     $puntoVenta=$datos["puntoVenta"];
-    
+
     $stmt=Conexion::conectar()->prepare("SELECT max(NFAC) FROM FCTROLF where SUC='$sucursal' and POS='$puntoVenta'");
     $stmt->execute();
     return $stmt->fetch(); 

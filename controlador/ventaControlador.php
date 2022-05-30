@@ -129,6 +129,7 @@ class controladorVenta{
     require_once "../modelo/ventaModelo.php";
     $factura=array(
       "nitCli"=>$_POST["nitCli"],
+      "emailCli"=>$_POST["emailCli"],
       "fecha"=>$_POST["fecha"],
       "descuento"=>$_POST["descuento"],
       "monto"=>$_POST["monto"],
@@ -138,7 +139,8 @@ class controladorVenta{
       "cuf"=>$_POST["cuf"],
       "xml"=>$_POST["xml"],
       "cufd"=>$_POST["cufd"],
-      "cuis"=>$_POST["cuis"]
+      "cuis"=>$_POST["cuis"],
+      "numFactura"=>$_POST["nfac"]
     );
 
     $respuesta=ModeloVenta::MdlRegistrarFactura($factura);

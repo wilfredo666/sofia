@@ -11,12 +11,14 @@ Tareas
 * agregar el campo codigosin para el crud de productos
 * para el panel de avisos se puede usar apenchild o after de jq
 * agregar validaciones a la factura
-
-*consultar
+* desabilitar otra vez el boton de agregar una vez agregado el item
+* codigo del cliente cuando se insterta manualmente, cual debe ser?
+* que hacer en caso que el cufd haya caducado antes de emitir la factura y no se actualizo la pagina|| se verificara la vigencia pero de todos modos correra el resto del codigo
 ==========
 - el lote del producto es inecesario para el sin
 - la unidad de medida que se entrega a impuestos es numerico
 - quitar o no la actividad y agregarlo al registro de producto
+-nota.- en la vista de factura ya no se podra ver el detalle de aquellas facturas que no esten usando cuf
 
 
 
@@ -50,11 +52,17 @@ insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBN
 asi lo recive:
 insert into FCUFD (CODIGO, CODIGOCONTROL, FECHAVIGENCIA) values ('BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q1UhNnlLRUZXVUFFEN0E3Qjc0MEU5O', '7653B1C0C076D74', '07-05-2022:12:15:35')
 
-//ver el maximio
+//ver el maximo cufd
 SELECT *
 FROM FCUFD
 where fecha=(select max(fecha) FROM FCUFD)
 
+//sacar la factura y detalle
+select NUM, NFAC, NOMFACT, USUARIO, FCTROLF.FECHA, MONTO, CONCEPTO, PRECIO, CANTIDAD, DESCTO, TOTAL, FCTROLF.CUF
+from FCTROLF
+join FFACTURA
+ON FFACTURA.CUF=FCTROLF.CUF
+where NUM=47
 
 ---------------
 errores en la base de datos:
@@ -233,6 +241,32 @@ $('input.CurrencyInput').on('blur', function() {
   });
 });
 
+
+<!-- para clasificar la lista de los productos por actividad economica
+              <div class="form-group row">
+                <label for="" class="col-sm-4 col-form-label">Filtrar productos por actividad economica</label>
+                <div class="col-sm-8 input-group">
+                  <select name="ActividadEco" id="ActividadEco" class="form-control">
+                    <option value="0">Seleccionar</option>
+                    <?php
+                    $actividad=controladorVenta::crtInfoActividad();
+                    foreach($actividad as $value){
+                    ?>
+                    <option value="<?php echo $value["COD"];?>"><?php echo $value["COD"]."|".$value["ACTECON"];?></option>
+                    <?php
+                    }
+                    ?>
+                  </select>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
+                      <i class="fas fa-search">  
+                      </i>
+                    </button>
+                  </div>
+                </div>
+
+              </div>-->
+              
 extraer leyenda aleatorea
 --------------------------
 SELECT first 1 *
@@ -285,3 +319,9 @@ PAYLOAD:
 
 
 FACTECON.COD==FL453.CAEB
+IPRODUCTO.CODCAEB--> codigo de actividad economica
+IPRODUCTO.CODCAEB==FACTECON.COD
+
+========================
+facturacion electronica
+========================

@@ -18,8 +18,7 @@ require_once "../../modelo/productoModelo.php";
         "'.$value["COD"].'",
         "'.$value["NOMBRE"].'",
         "'.$value["MARCA"].'",
-        "'.$value["PROVEEDOR"].'",
-        "'.$value["UNIDAD"].'",
+        "'.$value["ACTECON"].'",
         "'.$botones.'"
       ],';
 

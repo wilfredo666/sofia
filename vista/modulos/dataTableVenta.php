@@ -10,10 +10,10 @@ $ventas=controladorVenta::ctrMostrarVentas();
 $datosJson= '{
     "data":[';
 foreach($ventas as $key => $value){
-  $codVenta=$value['NUM']; //# de factura venta extraido del la bd
+  $codVenta=$value['NUM']; //# de factura-autoincrementable venta extraido del la bd
   $cod='\"'.$codVenta.'\"'; //# de factura venta con comillas dobles
   
-  $botones="<div class='btn-group'><button class='btn btn-info' onclick='MVerVenta(".$cod.")'><i class='fas fa-eye'></i></button><button class='btn btn-secondary' onclick='MEditVenta(".$cod.")'><i class='fa fa-edit'></i></button><button class='btn btn-danger' onclick='MEliVenta(".$cod.")'><i class='fa fa-trash'></i></button><button class='btn btn-success' onclick='ImpVenta(".$cod.")'><i class='fa fa-print'></i></button></div>";
+  $botones="<div class='btn-group'><button class='btn btn-info' onclick='MVerVenta(".$codVenta.")'><i class='fas fa-eye'></i></button><button class='btn btn-secondary' onclick='MEditVenta(".$codVenta.")'><i class='fa fa-edit'></i></button><button class='btn btn-danger' onclick='MEliVenta(".$codVenta.")'><i class='fa fa-trash'></i></button><button class='btn btn-success' onclick='ImpVenta(".$codVenta.")'><i class='fa fa-print'></i></button></div>";
   $datosJson.='[
         "'.$value["NFAC"].'",
         "'.$value["NOMFACT"].'",

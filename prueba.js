@@ -122,7 +122,7 @@ function recepecion(){
             cuf: "string",
             cufd: "BQUtCV8K/XURBNzTRDODkzNzM0NDc=Q29tSFBQQ0VXVUFFEN0E3Qjc0MEU5O",
             codigoSucursal: 0,
-            direccion: "Test ",
+            direccion: "Test",
             codigoPuntoVenta: 0,
             fechaEmision: "2022-03-03T19:34:01.001",
             nombreRazonSocial: "Cortéz",

@@ -13,6 +13,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Productos</h3>
+
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -23,16 +24,15 @@
                     <th>Cod</th>
                     <th>Nombre</th>
                     <th>Marca</th>
-                    <th>Proveedor</th>
-                    <th>Unidad</th>
-                      <th>
-                      <button class="btn btn-primary" onclick="FNuevoProducto()">Nuevo Producto</button>
+                    <th>Actividad Economica</th>
+                    <th>
+                      <button class="btn btn-primary" onclick="FNuevoProducto()">Nuevo</button>
                     </th>
-                      
+
                   </tr>
                 </thead>
                 <tbody>
-              
+
                 </tbody>
               </table>
             </div>

@@ -205,7 +205,7 @@
                 <?php 
                 foreach($actividad as $value){
                 ?>
-                <option value="<?php echo $value["COD"];?>"><?php echo $value["ACTECON"];?></option>
+                <option value="<?php echo $value["COD"];?>"><?php echo $value["COD"]."|".$value["ACTECON"];?></option>
                 <?php
                 }
                 ?>
@@ -246,7 +246,7 @@
                 <label for="">Metodo de pago</label> 
                 <div class="input-group">
                   <select class="form-control" name="metPago" id="metPago">
-                    <option value="1">Seleccionar</option>
+                    <option>Seleccionar</option>
                     <option value="1">Efectivo</option>
                     <option value="2">Tarjeta</option>
                     <option value="3">GifCard</option>
@@ -257,9 +257,10 @@
 <i class="fas fa-hand-holding-usd"></i>
 Metodo de Pago
 </button>-->
+             <p id="error-metPago" class="text-danger"></p>
               </div>
             </div>
-            <div class="callout callout-info">
+            <div class="callout callout-info direct-chat-messages" style="height:100px;">
               <span class="list-unstyled" id="panelInfo"></span>
             </div>
           </div>
@@ -289,10 +290,11 @@ Metodo de Pago
           <div class="form-group col-md-4">
             <label for="">Concepto</label>
             <input type="text" class="form-control" id="ConcProducto">
+            <p id="error-ActEcoProd" class="text-danger"></p>
           </div>
           <div class="form-group col-md-1">
             <label for="">Cantidad</label>
-            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="0"><!--Entra a FFACTURA.Cantidad-->
+            <input type="number" class="form-control" id="CantProducto" name="CantProducto" oninput="calculate()" value="1"><!--Entra a FFACTURA.Cantidad-->
           </div>
           <div class="form-group col-md-1">
             <label for="">U.Medida</label>
@@ -316,7 +318,7 @@ Metodo de Pago
           </div>
           <div class="form-group col-md-1">
             <label for="">&nbsp;</label>
-            <button type="button" class="btn btn-info btn-circle form-control" onclick="agregarCarrito()">
+            <button type="button" class="btn btn-info btn-circle form-control" onclick="agregarCarrito()" id="btnAgregarCarr" disabled>
               <i class="fas fa-plus"></i>
             </button>
           </div>

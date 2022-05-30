@@ -8,7 +8,7 @@ class ModeloProducto{
   ==============================*/
 
   static public function MdlMostrarProductos(){
-    $stmt=Conexion::conectar()->prepare("select * from IPRODUCTO");
+    $stmt=Conexion::conectar()->prepare("select IPRODUCTO.COD, NOMBRE, MARCA, PROVEEDOR, UNIDAD, PVTAML, LOTE, CODSIN, CODCAEB, UNIMEDIDA, ACTECON from IPRODUCTO join FACTECON on  FACTECON.COD=IPRODUCTO.CODCAEB");
     $stmt->execute();
     return $stmt->fetchAll();
 
