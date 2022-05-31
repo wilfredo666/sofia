@@ -14,6 +14,7 @@ Tareas
 * desabilitar otra vez el boton de agregar una vez agregado el item
 * codigo del cliente cuando se insterta manualmente, cual debe ser?
 * que hacer en caso que el cufd haya caducado antes de emitir la factura y no se actualizo la pagina|| se verificara la vigencia pero de todos modos correra el resto del codigo
+* hacer que solo se listen las facturas que tienen cuf
 ==========
 - el lote del producto es inecesario para el sin
 - la unidad de medida que se entrega a impuestos es numerico

@@ -281,9 +281,9 @@ function verificarVigenciaCufd(){
   return true;
 }
 
-/*==================================
+/*================================
 Extraer leyenda aleatoria
-====================================*/
+==================================*/
 
 function extraerLeyenda(){
   const ActividadEco=document.getElementById("ActividadEco").value;//actividad economica
@@ -362,6 +362,11 @@ function EliVenta(codVenta){
       }
     }
   )
+}
+
+function ImpVenta(codVenta){
+ /* window.open("facturaPdf?codVenta="+codVenta, 'Factura', 'width=600,height=400,left=50,top=50,toolbar=yes')*/
+   window.open("vista/modulos/facturaPdf.php?codVenta="+codVenta, '_blank')
 }
 
 /*===================

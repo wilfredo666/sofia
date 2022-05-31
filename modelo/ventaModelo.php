@@ -20,7 +20,7 @@ class ModeloVenta{
     Información de venta
   ==============================*/
   static public function MdlInfoVenta($codVenta){
-    $stmt=Conexion::conectar()->prepare("select NUM, NFAC, NOMFACT, USUARIO, FCTROLF.FECHA, MONTO, ESTADO, FCTROLF.CUF, CONCEPTO, PRECIO, CANTIDAD, DESCTO, TOTAL, FCTROLF.CUF
+    $stmt=Conexion::conectar()->prepare("select NUM, NFAC, NOMFACT, USUARIO, FCTROLF.FECHA, MONTO, ESTADO, FCTROLF.CUF, NITCLI, CONCEPTO, PRECIO, CANTIDAD, DESCTO, TOTAL, FCTROLF.CUF
 from FCTROLF
 join FFACTURA
 ON FFACTURA.CUF=FCTROLF.CUF
